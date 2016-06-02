@@ -1,0 +1,148 @@
+/*
+ * LYAOUT
+ */
+body
+{
+	margin: 0px;
+	background-color: #1482B4;
+	font-size: 12px;
+	font-family: verdana;
+}	
+#head-container
+{
+	background: #1482B4;
+}
+
+#header
+{
+	margin: 0 auto;
+	width: 960px;
+	height: 50px;
+	padding: 20px;
+	background: #91C05E;
+}
+
+#header h1 { margin: 0; color: white}
+#header h1 img
+{
+	vertical-align: middle;
+	font-size: 16px
+}
+
+#navigation-container
+{
+	float: left;
+	width: 100%;
+	color: #000;
+	background: #303536;
+}
+
+#navigation
+{
+	margin: 0 auto;
+	width: 1000px;
+}
+
+#navigation ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#navigation ul li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+#navigation li a
+{
+	display: block;
+	float: left;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	border-right: 1px solid #fff;
+	font-size: 1.1em;
+}
+
+#navigation li a:hover { background: #383; }
+
+#content-container
+{
+	float: left;
+	width: 100%;
+	color: #000;
+	background: #eee;
+}
+
+#content-container2
+{
+	margin: 0 auto;
+	width: 1000px;
+	
+}
+
+#content-container3
+{
+	float: left;
+	width: 1000px;
+	background: #FFF;
+	min-height: 400px;
+}
+
+#content
+{
+	clear: left;
+	float: left;
+	width: 560px;
+	padding: 20px 0;
+	margin: 0 0 0 13px;
+	display: inline;
+}
+
+#content h2 { margin: 0; }
+
+#aside
+{
+	float: right;
+	width: 385px;
+	padding: 22px 0;
+	margin: 0 10px 0 0;
+	display: inline;
+}
+
+#aside h3 { margin: 0; }
+
+#footer-container
+{
+	clear: left;
+	color: #fff;
+	background: #303536;
+}
+
+#footer
+{
+	margin: 0 auto;
+	width: 900px;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}
+
+ul, li
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+.logout {
+	font-size: x-small;
+	margin-bottom: 10px;
+}
+
+.logout a {
+	background-color: black;
+	text-decoration: none;
+	color: white;
+}

@@ -1,0 +1,42 @@
+#userform {
+	display: table;
+	width: 40%;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.user_row {
+	display: table-row;
+}
+
+.user_row input, .row textarea {
+	width: 70%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	float: right;
+	text-align: center;
+}
+
+#name, #user_name, #mail, #user_mail, #right, #user_right, #password, #user_password, #submit, #user_submit  {
+	display: table-cell;
+}
+
+#name, #mail, #right, #password {
+	font-weight: bold;	
+	vertical-align: middle;	
+}
+
+#user_name, #user_mail, #user_right, #user_password {
+	width: 100%;	
+}
+
+#user_right select {
+	float: right;
+}
+
+#envoi {
+	float: right;
+	width: 40px;
+	margin-top: 20px;
+}

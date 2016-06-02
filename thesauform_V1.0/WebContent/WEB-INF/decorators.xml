@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorators">
+	<excludes>
+		<pattern>/annotationInfo*</pattern>
+		<pattern>/annotationArbre*</pattern>
+		<pattern>/annotationFather*</pattern>
+		<pattern>/annotationSearch*</pattern>
+	</excludes>
+	<decorator name="thesauform_layout" page="thesauform_layout.jsp">
+		<pattern>/*</pattern>
+		<pattern>/expert/*</pattern>
+		<pattern>/administration</pattern>
+	</decorator>
+</decorators>

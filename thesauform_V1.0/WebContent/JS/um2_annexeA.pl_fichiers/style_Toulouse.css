@@ -1,0 +1,189 @@
+/* Created by TopStyle Trial - www.topstyle4.com */
+	*,body {
+color: #000000; 
+background-color: transparent;
+font-family:   "Times New Roman", Times, serif;
+font-size: 11pt;
+line-height: 120%;
+ }
+
+#titre, #gros_titre {
+	 margin : 3px;
+	 border-style : double; 
+	 border-width : 1px;
+	 font-size: 13pt;
+	 text-align: center;	
+	 background-color:   #DDDDDD;
+}
+#titre_left {
+	 margin : 5px;
+	 padding:5	px;
+	 border-style : double; 
+	 border-width : 1px;
+	 font-size: 13pt;
+	 text-align: left;	
+	 background-color:   #ffffff;
+}		
+LEGEND{
+	font-size: 14pt;
+	font-weight: bold;
+}
+#gros_titre{
+	border-style: double;
+}		
+hr.pointille{
+	border-style:  dotted;
+	font-weight: normal;
+}
+.text_taille9{
+	font-size: 9pt;
+}	
+.text_taille8{
+	font-size: 8pt;
+}		
+.text_taille7{
+	font-size: 7pt;
+}			
+.text_taille12{
+	font-size: 12pt;
+}	
+.text_taille10{
+	font-size: 10pt;
+}
+.text_taille12b{
+	font-size: 12pt;
+	font-weight: bold 
+}		
+.text_taille13{
+	font-size:13pt;
+}	
+.text_taille14{
+	font-size:14pt;
+}			
+b{
+	font-weight: bold;
+}
+i{
+    font-style: italic;
+	  font-size: 		8pt;
+}
+.text_taille26{
+	font-size:26pt;
+}	
+table{
+	border-collapse: collapse
+}
+.text_taille26b{
+	font-size:26pt;
+	font-weight: bold;
+}	
+.text_taille20, .text_taille20b{
+	font-size:20pt;
+}
+.text_taille20b{
+	font-weight: bold;
+}		
+
+.text_taille16{
+	font-size:16pt;
+}	
+.text_taille22{
+	font-size:22pt;
+}	
+#titre_28,#titre_16,#titre_13{
+	border: 1px;
+   border-color: Black;
+   border-style:   solid;
+   text-align: center;
+	background-color:   transparent;
+	padding: 2px;
+	
+}
+#titre_28{
+	font-size: 28pt;
+}
+#titre_16	{
+	font-size: 16pt;
+}
+#titre_13	{
+	font-size: 13pt;
+}
+#titre_14{
+	border: 1px;
+   border-color: Black;
+   border-style:   solid;
+   text-align: center;
+	background-color:   transparent;
+	padding: 2px;
+	font-size: 14pt;
+}
+.cadre, .cadre_gauche{
+	border: 1px;
+   border-color: Black;
+	text-align: center;
+   border-style:   solid;
+	background-color:   transparent;
+	padding: 2px;
+}
+.cadre_gauche{
+	text-align: left;
+	font-size: 12pt;
+}
+.pt_titre, .pt_titre_gauche{
+	font-size: 12pt;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.pt_titre{
+		text-align: center;	
+}
+.pt_titre_gauche{
+	text-align:  left;	
+}
+.rouge{
+	color: Red;
+}
+.cadre_simple, .cadre_gd{
+	border: 1px;
+   border-color: Black;
+   border-style:  solid;
+	background-color:   transparent;
+	margin-top: 10px;
+}
+.cadre_pt{
+	border: 1px;
+   border-color: Black;
+   border-style:  solid;
+	background-color:   transparent;
+	margin: 0;
+	padding: 0;
+}
+.cadre_gd{
+	text-align: center;
+	font-size: 15pt;
+}
+#code{
+	position:  relative;
+	right: 0;
+}
+FIELDSET{
+	 background-color:  transparent;
+}
+
+hr{
+	padding: 0;
+	margin: 0;
+}
+hr#point{
+	border: dotted;
+}
+
+#footer
+{
+	position:  absolute; 
+	display: block;
+	top:730pt;
+	bottom: 0pt;
+	text-align:center;
+	width:100%
+}
