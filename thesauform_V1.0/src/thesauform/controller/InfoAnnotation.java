@@ -139,7 +139,6 @@ public class InfoAnnotation extends HttpServlet {
 					errors.put(ERROR_DEFINITION, e.getMessage() + " for " + traitName);
 				}
 				// get abbreviation
-				// m.getLabelLiteralForm(m.getAbbreviation(m.getPrefLabel(concept)))
 				try {
 					myTrait.setAbbreviation(traitModel
 							.getLabelLiteralForm(traitModel.getAbbreviation(traitModel.getPrefLabel(concept))));

@@ -37,14 +37,13 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/expert/validation")
 public class ExpertValidation extends HttpServlet {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4569393576368232892L;
-	
+
 	public static final String VUE_SUCCESS = "/WEB-INF/scripts/expertValidation.jsp";
-	private static final String PERSON_FILE = "person_file";
 	private static final String COMMENT_NAME = "Comment";
 	private static final String GET_PARAMETER = "trait";
 	private static final String ERROR_PARAMETER = "parameter";
@@ -277,15 +276,12 @@ public class ExpertValidation extends HttpServlet {
 						// get all related
 						try {
 							StmtIterator RelatedIt = traitModel.getAllRelated(concept);
-							System.err.println("traitModel.getAllRelated(concept)" + concept);
-							System.err.println("traitModel.getAllRelated(concept)" + traitModel);
 							if (RelatedIt.hasNext()) {
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								while (RelatedIt.hasNext()) {
 									Statement st = RelatedIt.next();
 									Resource Related = st.getObject().as(Resource.class);
 									String related = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(Related));
-									System.err.println(related);
 									Integer propertyVote = traitModel.countVote(concept, SkosVoc.related, related);
 									voteMapTmp.put(related, propertyVote);
 								}
@@ -293,7 +289,6 @@ public class ExpertValidation extends HttpServlet {
 								myTraitVote.setRelatedList(relatedVoteMap);
 								relatedVoteMap.put("proposed", voteMapTmp);
 							} else {
-								System.err.println(EMPTY_RELATED);
 								throw new Exception(EMPTY_RELATED);
 							}
 						} catch (Exception e) {
@@ -376,7 +371,7 @@ public class ExpertValidation extends HttpServlet {
 										break;
 									}
 								} catch (Exception e) {
-
+									// @TODO manage exception
 								}
 							}
 						} else {
@@ -387,22 +382,45 @@ public class ExpertValidation extends HttpServlet {
 							String property = "name";
 							Map<String, Map<String, Integer>> propertyVoteMap = nameVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
-							property = "unit";
-							propertyVoteMap = unitVoteMap;
-							myTraitVote.setPropertyList(property, propertyVoteMap);
-							property = "reference";
-							propertyVoteMap = referenceVoteMap;
-							myTraitVote.setPropertyList(property, propertyVoteMap);
-							property = "definition";
-							propertyVoteMap = definitionVoteMap;
-							myTraitVote.setPropertyList(property, propertyVoteMap);
-							property = "abbreviation";
-							propertyVoteMap = abbreviationVoteMap;
-							myTraitVote.setPropertyList(property, propertyVoteMap);
-							property = "category";
-							propertyVoteMap = categoryVoteMap;
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+
+						}
+						try {
+							String property = "unit";
+							Map<String, Map<String, Integer>> propertyVoteMap = unitVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+						try {
+							String property = "reference";
+							Map<String, Map<String, Integer>> propertyVoteMap = referenceVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+						try {
+							// TODO put reference in definition at the end (ref)
+							String property = "definition";
+							Map<String, Map<String, Integer>> propertyVoteMap = definitionVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+						try {
+							String property = "abbreviation";
+							Map<String, Map<String, Integer>> propertyVoteMap = abbreviationVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+						try {
+							String property = "category";
+							Map<String, Map<String, Integer>> propertyVoteMap = categoryVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
 
 						}
 					} else {
@@ -414,15 +432,18 @@ public class ExpertValidation extends HttpServlet {
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 				} else {
 					// re-authenticate
-					this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request, response);
+					this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request,
+							response);
 				}
 			} else {
 				// re-authenticate
-				this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request, response);
+				this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request,
+						response);
 			}
 		} else {
 			// re-authenticate
-			this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request, response);
+			this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request,
+					response);
 		}
 	}
 

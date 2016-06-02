@@ -60,7 +60,6 @@ public class Annotation {
 				if (del.equalsIgnoreCase("1")) {
 					pere = "delete";
 				}
-				System.out.println("ann4");
 				if (!Format.formatName(pere.trim()).equalsIgnoreCase(Format.formatName(concept.trim()))) {
 					if (pere.trim().equalsIgnoreCase("delete")) {
 						Resource delete = m.createDelete(modifConcept);
@@ -295,8 +294,6 @@ public class Annotation {
 					m.setResource(comment, DCTerms.created, date);
 					m.setResource(comment, DC.creator, person);
 				}
-				System.out.println("ann3");
-
 				m.save(file, file + "save");
 				m.close();
 			} else {
