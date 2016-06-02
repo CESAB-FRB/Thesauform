@@ -36,7 +36,7 @@
 						<c:forEach items="${my_updated_list}" var="name">
 							<div>
 								<a
-									href="expert/validation?change=Update&&trait=<c:out value="${name}"/>"><c:out
+									href="/expert/validation?change=Update&&trait=<c:out value="${name}"/>"><c:out
 										value="${name}" /></a>
 							</div>
 						</c:forEach>
@@ -52,7 +52,7 @@
 						<c:forEach items="${my_inserted_list}" var="name">
 							<div>
 								<a
-									href="expert/validation?change=Insert&&trait=<c:out value="${name}"/>"><c:out
+									href="/expert/validation?change=Insert&&trait=<c:out value="${name}"/>"><c:out
 										value="${name}" /></a>
 							</div>
 						</c:forEach>
@@ -68,7 +68,7 @@
 						<c:forEach items="${my_deleted_list}" var="name">
 							<div>
 								<a
-									href="expert/validation?change=Delete&&trait=<c:out value="${name}"/>"><c:out
+									href="/expert/validation?change=Delete&&trait=<c:out value="${name}"/>"><c:out
 										value="${name}" /></a>
 							</div>
 						</c:forEach>
