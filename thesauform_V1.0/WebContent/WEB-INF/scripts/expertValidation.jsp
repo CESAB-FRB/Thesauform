@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <content tag="logout">
 	<jsp:include page="logout.jsp" />
@@ -160,7 +161,18 @@
 								<c:when test="${myTypeList.key=='current'}">
 									<tr>
 										<td>Current definition</td>
-										<td><c:out value="${prop.key}" /></td>
+										<td>
+											<c:out value="${prop.key}" />
+											<c:if test="${!empty myTraitVote.referenceList}">
+												<c:forEach items="${myTraitVote.referenceList}" var="myTypeList2">
+													<c:forEach items="${myTypeList.value}" var="prop2">
+														<c:if test="${myTypeList2.key=='current'}">
+															(ref: <c:out value="${prop2.key}" />)
+														</c:if>
+													</c:forEach>
+												</c:forEach>
+											</c:if>
+										</td>			
 										<td>
 											<div id="def${count}">${prop.value}</div>
 										</td>
@@ -178,7 +190,19 @@
 								<c:otherwise>
 									<tr>
 										<td>Proposition ${count}</td>
-										<td><c:out value="${prop.key}" /></td>
+										<td>
+											<c:choose>
+												<c:when test="${fn:contains(prop.key,'__')}">
+													<c:set var="my_def_ref" value="${fn:replace(prop.key, '__', '|')}"/>
+													<c:set var="my_def_ref"
+														value="${fn:split(my_def_ref, '|')}" />												
+													<c:out value="${my_def_ref[0]}"/> (ref: <c:out value="${my_def_ref[1]}"/>)
+												</c:when>
+												<c:otherwise>
+													<c:out value="${prop.key}" />
+												</c:otherwise>
+											</c:choose>
+										</td>
 										<td>
 											<div id="def${count}">${prop.value}</div>
 										</td>
@@ -189,58 +213,6 @@
 										<td><span title="def${count}"
 											class="ui-icon ui-icon-circle-minus"
 											onclick="delVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}');"></span>
-										</td>
-									</tr>
-									<c:set var="count" value="${count + 1}" scope="page" />
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${empty myTraitVote.referenceList}">
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<th colspan="4">Reference</th>
-					</tr>
-					<c:set var="count" value="1" scope="page" />
-					<c:forEach items="${myTraitVote.referenceList}" var="myTypeList">
-						<c:forEach items="${myTypeList.value}" var="prop">
-							<c:choose>
-								<c:when test="${myTypeList.key=='current'}">
-									<tr>
-										<td>Current reference</td>
-										<td><c:out value="${prop.key}" /></td>
-										<td>
-											<div id="ref${count}">${prop.value}</div>
-										</td>
-										<td><span title="ref${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'reference', '${prop.key}');"></span>
-										</td>
-										<td><span title="ref${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'reference', '${prop.key}');"></span>
-										</td>
-									</tr>
-									<c:set var="count" value="${count + 1}" scope="page" />
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<td>Proposition ${count}</td>
-										<td><c:out value="${prop.key}" /></td>
-										<td>
-											<div id="ref${count}">${prop.value}</div>
-										</td>
-										<td><span title="ref${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'reference', '${prop.key}');"></span>
-										</td>
-										<td><span title="ref${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'reference', '${prop.key}');"></span>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />

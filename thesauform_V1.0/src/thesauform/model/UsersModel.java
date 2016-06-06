@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Get users database in memory (map)
@@ -50,12 +51,12 @@ public class UsersModel {
 			// set model
 			SkosPersonModel personModel = new SkosPersonModel(personsFile);
 			Map<String, Map<String, String>> personMap = personModel.getAllPersons();
-			Iterator personIterator = personMap.entrySet().iterator();
+			Iterator<Entry<String, Map<String, String>>> personIterator = personMap.entrySet().iterator();
 			if (personIterator.hasNext()) {
 				while (personIterator.hasNext()) {
-					Map.Entry personPair = (Map.Entry) personIterator.next();
-					Map<String, String> personMapTmp = (Map<String, String>) personPair.getValue();
-					String name = (String) personPair.getKey();
+					Entry<String, Map<String, String>> personPair = personIterator.next();
+					Map<String, String> personMapTmp = personPair.getValue();
+					String name = personPair.getKey();
 					String mail = personMapTmp.get("mail");
 					String password = personMapTmp.get("password");
 					String right = personMapTmp.get("right");

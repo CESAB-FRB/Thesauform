@@ -4,13 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -46,6 +42,9 @@ import thesauform.model.vocabularies.StatusVoc;
 import thesauform.model.vocabularies.TraitVocTemp;
 import thesauform.model.vocabularies.UnitVoc;
 
+/*
+ * TODO Vote should be linked to annotation directly
+ */
 public class SkosModel implements AnnotationModel {
 
 	protected Model m = ModelFactory.createDefaultModel();
@@ -65,7 +64,7 @@ public class SkosModel implements AnnotationModel {
 	}
 
 	public SkosModel(String file) {
-		//TODO manage exeception
+		// TODO manage exeception
 		// use the file manager to read an RDF document into the model
 		FileManager.get().readModel(m, file);
 	}
@@ -363,26 +362,27 @@ public class SkosModel implements AnnotationModel {
 		return map;
 	}
 
-	public List<String> getAllTraitWithAnn(String annotationType) {
-		List<String> list = new ArrayList<String>();
-		NodeIterator resources = this.getAllMember(m.getResource(annotationType));
-		while (resources.hasNext()) {
-			String name = resources.next().as(Resource.class).getLocalName();
-			list.add(name);
-		}
-		return list;
-	}
-
 	public int countVote(Resource c, Property p, String value) {
 		int cpt = 0;
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
-		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
 		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
 		// Query string
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
 				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
-				+ "?vote change:hasValue ?val . FILTER regex(?val,\"" + value + "\") . " + " }";
+				+ "?vote change:hasValue ?val . FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
+		//@Patch1: count differently for definition with reference
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog4 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL + prolog4
+				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
+				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
+				+ "?vote change:hasValue ?val . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
+				+ "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\"" + refDef[1] + "\" ) }";
+		}
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, m);
 		try {
@@ -439,7 +439,17 @@ public class SkosModel implements AnnotationModel {
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
 				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
-				+ "?vote change:hasValue ?val . FILTER regex(?val,\"" + value + "\") . " + " }";
+				+ "?vote change:hasValue ?val . FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
+		//@Patch1: count differently for definition with reference
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog4 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL + prolog4
+				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
+				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
+				+ "?vote change:hasValue ?val . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
+				+ "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\"" + refDef[1] + "\" ) }";
+		}
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, m);
 		try {
@@ -499,19 +509,37 @@ public class SkosModel implements AnnotationModel {
 			throw new Exception("Vocabularie " + property + " not managed");
 		}
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
-		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
 		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
 		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
 		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
-		// Query string.
+		// Query string
+		// TODO @Patch1 if def__ref annotation should be selected on a special
+		// way
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
 				+ ThesauformConfiguration.NL + "SELECT ?vote WHERE { " + "<" + c + "> change:vote ?vote . "
 				+ "?vote change:hasProperty <" + p + "> . " + "?vote change:hasValue ?val . "
 				+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
 				+ "?creator foaf:name ?cname ." + "FILTER (regex(?val,\"" + value
-				+ "\") && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\"" + person.toLowerCase().replace(" ", "_")
+				+ "\") && NOT EXISTS { ?vote trait:reference ?ref } "
+				+ "&& (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\"" + person.toLowerCase().replace(" ", "_")
 				+ "\"))." + " }";
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog6 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			// change queryString
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+					+ ThesauformConfiguration.NL + prolog6 + ThesauformConfiguration.NL + "SELECT ?vote WHERE { " + "<"
+					+ c + "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
+					+ "?vote change:hasValue ?val . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
+					+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
+					+ "?creator foaf:name ?cname ." + "FILTER (regex(?val,\"" + refDef[0] + "\") && regex(?refval,\""
+					+ refDef[1] + "\") && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\""
+					+ person.toLowerCase().replace(" ", "_") + "\"))." + " }";
+		}
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, m);
 		try {
@@ -572,10 +600,21 @@ public class SkosModel implements AnnotationModel {
 			throw new Exception("Vocabularie " + property + " not managed");
 		}
 		if (this.existVote(traitName, property, person, value) == null) {
+			// TODO @Patch1 if def__ref annotation should be inserted in a
+			// special way
 			Resource vote = m.createResource();
 			m.add(vote, ChangeVoc.hasVote, m.createTypedLiteral(0));
 			m.add(vote, ChangeVoc.hasProperty, p);
-			m.add(vote, ChangeVoc.hasValue, value);
+			if (p == SkosVoc.definition && value.contains("__")) {
+				String[] refDef = value.split("__");
+				m.add(vote, ChangeVoc.hasValue, refDef[0]);
+				Resource refR = createResource();
+				m.add(refR,RDF.value,refDef[1]);
+				m.add(refR,RDF.type,RefVoc.Reference);
+					m.add(vote, TraitVocTemp.reference, refR);
+			} else {
+				m.add(vote, ChangeVoc.hasValue, value);
+			}
 			m.add(c, ChangeVoc.vote, vote);
 			Resource contribution = m.createResource();
 			m.add(contribution, DC.creator, pe);
@@ -615,6 +654,7 @@ public class SkosModel implements AnnotationModel {
 		} else {
 			throw new Exception("Vocabularie " + property + " not managed");
 		}
+		//TODO remove reference if exists?
 		Resource vote = this.existVote(traitName, property, person, value);
 		if (vote != null) {
 			vote.removeAll(null);
@@ -631,9 +671,11 @@ public class SkosModel implements AnnotationModel {
 		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
 		String prolog3 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog4 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
-		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
 		String prolog6 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
-		String prolog7 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">"; // Query string.
+		String prolog7 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">"; // Query
+																				// string.
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
 				+ ThesauformConfiguration.NL + prolog6 + ThesauformConfiguration.NL + prolog7
@@ -695,6 +737,21 @@ public class SkosModel implements AnnotationModel {
 						map.get("name").add(value);
 					}
 				} else if (prop.getLocalName().equalsIgnoreCase("definition")) {
+					// @Patch1: get the reference if exists
+					String refStr = "";
+					try {
+						if (annotation.getProperty(TraitVocTemp.reference).getResource() != null) {
+							// reference exists
+							Resource ref = annotation.getProperty(TraitVocTemp.reference).getResource();
+							refStr = ref.listProperties(RDF.value).next().getObject().asNode()
+									.getLiteralLexicalForm();
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					if (refStr != "") {
+						value = value + "__" + refStr;
+					}
 					if (map.get("definition") == null || map.get("definition").isEmpty()) {
 						List<String> list = new ArrayList<String>();
 						list.add(value);
@@ -748,6 +805,53 @@ public class SkosModel implements AnnotationModel {
 			}
 		}
 		return map;
+	}
+
+	/*
+	 * TODO test if annotation exists before to insert. Not working with reference definition.
+	 * Not important as vote are linked to concept
+	 */
+	public boolean existsAnnotation(String trait, Property property, String value) {
+		boolean exists = false;
+		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+		String prolog3 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog4 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
+		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+				+ "?trait rdfs:label ?name ." + "?trait change:update ?upd ." + "?upd change:hasValue ?val ."
+				+ "?upd change:hasProperty <" + property + "> ." + "FILTER (regex(?val,\"" + value
+				+ "\") && NOT EXISTS { ?upd trait:reference ?ref } && REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\""
+				+ trait.toLowerCase().replace(" ", "_") + "\")." + "}";
+		// @Patch1: if referenced definition
+		if (property == SkosVoc.definition && value.contains("__")) {
+			String[] refDef = value.split("__");
+			// change queryString
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+					+ ThesauformConfiguration.NL + "SELECT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+					+ "?trait rdfs:label ?name ." + "?trait change:update ?upd ." + "?upd change:hasValue ?val ."
+					+ "?upd change:hasProperty <" + property + "> ." + "?upd trait:reference ?ref . "
+					+ "?ref rdf:value ?refval . " + "FILTER (regex(?val,\"" + refDef[0]
+					+ "\") && REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\" && regex(?val,\"" + refDef[1] + "\")"
+					+ trait.toLowerCase().replace(" ", "_") + "\")." + "}";
+		}
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			if (rs.hasNext()) {
+				exists = true;
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return exists;
 	}
 
 	public Resource setConcept(String cl, Resource scheme, Resource person, Calendar date) {
@@ -1066,7 +1170,8 @@ public class SkosModel implements AnnotationModel {
 	/**
 	 * get all parent of a concept
 	 * 
-	 * @param concept Resource
+	 * @param concept
+	 *            Resource
 	 * @return StmtIterator
 	 */
 	public StmtIterator getAllParent(Resource concept) {
@@ -1426,384 +1531,6 @@ public class SkosModel implements AnnotationModel {
 		this.setResource(contribution, DCTerms.created, Calendar.getInstance());
 		m.add(vote, ChangeVoc.contribution, contribution);
 		return vote;
-	}
-
-	public String getVote(Resource x, Property p, String value) {
-		String val = "0";
-		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
-		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
-				+ ">";
-		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
-		// Query string.
-		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
-				+ ThesauformConfiguration.NL + "SELECT ?voteNum WHERE { " + "<" + x + "> change:vote ?vote . "
-				+ "?vote change:hasProperty <" + p + "> . " + "?vote change:hasVote ?voteNum . "
-				+ "?vote change:hasValue ?val . FILTER regex(?val,\"" + value + "\") . " + " }";
-		Query query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, m);
-		try {
-			ResultSet rs = qexec.execSelect();
-			for (; rs.hasNext();) {
-				QuerySolution rb = rs.nextSolution();
-				RDFNode y = rb.get("voteNum");
-				val = y.asNode().getLiteralLexicalForm();
-			}
-		} finally {
-			// QueryExecution objects should be closed to free any system
-			// resources
-			qexec.close();
-		}
-		return val;
-	}
-
-	public static Map sortMap(Map aMap) {
-		Map myMap = new HashMap();
-		TreeSet set = new TreeSet(new Comparator() {
-			public int compare(Object obj, Object obj1) {
-				Integer val1 = (Integer) ((Map.Entry) obj).getValue();
-				Integer val2 = (Integer) ((Map.Entry) obj1).getValue();
-				return val1.compareTo(val2);
-			}
-		});
-		set.addAll(aMap.entrySet());
-		for (Iterator it = set.iterator(); it.hasNext();) {
-			Map.Entry myMapEntry = (Map.Entry) it.next();
-			myMap.put(myMapEntry.getKey(), myMapEntry.getValue());
-		}
-		return myMap;
-	}
-
-	public String allInfo(Resource concept, String change) {
-		String file = concept.getLocalName() + "\n";
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		if (change.equalsIgnoreCase("insert")) {
-			file = file + "vote trait insertion : " + this.getVote(concept, ChangeVoc.insert, "insert" + " /n");
-		}
-		List<String> tut;
-		try {
-			tut = map.get("reference");
-			tut.add(this.getValue(this.getReference(this.getDefinition(concept))));
-			map.put("reference", tut);
-		} catch (Exception e) {
-			tut = new ArrayList<String>();
-			if (!this.getValue(this.getReference(this.getDefinition(concept))).isEmpty()) {
-				tut.add(this.getValue(this.getReference(this.getDefinition(concept))));
-				map.put("reference", tut);
-			}
-		}
-		try {
-			tut = map.get("abbreviation");
-			tut.add(this.getLabelLiteralForm(this.getAbbreviation(this.getPrefLabel(concept))));
-			map.put("abbreviation", tut);
-		} catch (Exception e) {
-			tut = new ArrayList<String>();
-			if (!this.getLabelLiteralForm(this.getAbbreviation(this.getPrefLabel(concept))).isEmpty()) {
-				tut.add(this.getLabelLiteralForm(this.getAbbreviation(this.getPrefLabel(concept))));
-				map.put("abbreviation", tut);
-			}
-		}
-		StmtIterator it = this.getAllAltLabel(concept);
-		StmtIterator itb = this.getAllAltLabel(concept);
-		if (it.toList().size() == 0) {
-
-		} else {
-			while (itb.hasNext()) {
-				Statement st = itb.next();
-				Resource AltLabel = st.getObject().as(Resource.class);
-				try {
-					tut = map.get("synonym");
-					tut.add(this.getLabelLiteralForm(AltLabel));
-				} catch (Exception e) {
-					tut = new ArrayList<String>();
-					tut.add(this.getLabelLiteralForm(AltLabel));
-				}
-				map.put("synonym", tut);
-			}
-		}
-		StmtIterator it2 = this.getAllRelated(concept);
-		StmtIterator it2b = this.getAllRelated(concept);
-		if (it2.toList().size() == 0) {
-
-		} else {
-			while (it2b.hasNext()) {
-				Statement st = it2b.next();
-				Resource Related = st.getObject().as(Resource.class);
-				try {
-					tut = map.get("related");
-					tut.add(this.getLabelLiteralForm(this.getPrefLabel(Related)));
-				} catch (Exception e) {
-					tut = new ArrayList<String>();
-					tut.add(this.getLabelLiteralForm(this.getPrefLabel(Related)));
-				}
-				map.put("related", tut);
-			}
-		}
-		int cpt = 0;
-		try {
-			StmtIterator itu = this.SimpleSelector(concept, ChangeVoc.update, null);
-			while (itu.hasNext()) {
-				cpt++;
-				Resource o = itu.next().getObject().as(Resource.class);
-				RDFNode value = o.listProperties(ChangeVoc.hasValue).next().getObject();
-				String p = o.listProperties(ChangeVoc.hasProperty).next().getObject().as(Resource.class).getLocalName();
-				if (p.equalsIgnoreCase("altLabel")) {
-					p = "synonym";
-				}
-				String v = "";
-				if (value.isResource()) {
-					v = value.as(Resource.class).getLocalName();
-				} else {
-					v = value.asNode().getLiteralLexicalForm();
-				}
-				try {
-					tut = map.get(p);
-					tut.add(v);
-				} catch (Exception e) {
-					tut = new ArrayList<String>();
-					tut.add(v);
-				}
-				map.put(p, tut);
-			}
-		} catch (Exception e) {
-
-		}
-		file = file + ("vote suppresion trait : " + this.getVote(concept, ChangeVoc.delete, "delete") + " \n");
-		int cj = 0;
-		cpt = 0;
-		if (cj == 0) {
-			file = file + "pref name : ";
-			cj++;
-		} else {
-			file = file + "pref name : ";
-		}
-		file = file + "curent one : " + this.getLabelLiteralForm(this.getPrefLabel(concept)) + " "
-				+ this.getVote(concept, SkosXLVoc.prefLabel, this.getLabelLiteralForm(this.getPrefLabel(concept)))
-				+ " \n";
-		try {
-			List<String> u = map.get("prefLabel");
-			Iterator<String> ut = u.iterator();
-			cpt = 0;
-
-			if (!map.get("prefLabel").isEmpty()) {
-				while (ut.hasNext()) {
-					String v = ut.next();
-					cpt++;
-					file = file + "Pref laber Modif" + cpt + " : " + v + " "
-							+ this.getVote(concept, SkosXLVoc.prefLabel, v) + " \n";
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		try {
-			if (this.getDefinition(concept) != null || !map.get("definition").isEmpty()) {
-				file = file + "definition : ";
-
-				try {
-					this.getValue(this.getDefinition(concept));
-					file = file + "curent one : " + this.getValue(this.getDefinition(concept)) + " "
-							+ this.getVote(concept, SkosVoc.definition, this.getValue(this.getDefinition(concept)))
-							+ " \n";
-
-				} catch (Exception e) {
-
-				}
-				try {
-					if (!map.get("definition").isEmpty()) {
-						List<String> u = map.get("definition");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-
-							file = file + "definition modif" + cpt + " " + v + " "
-									+ this.getVote(concept, SkosVoc.definition, v) + " \n";
-
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		try {
-			if (this.getReference(this.getDefinition(concept)) != null || !map.get("reference").isEmpty()) {
-				file = file + "reference : ";
-				try {
-					if (!map.get("reference").isEmpty()) {
-						List<String> u = map.get("reference");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-
-							file = file + "reference modif" + cpt + " " + v + " "
-									+ this.getVote(concept, TraitVocTemp.reference, v) + " \n";
-
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		try {
-			if (this.getAbbreviation(this.getPrefLabel(concept)) != null || !map.get("abbreviation").isEmpty()) {
-				file = file + "abbreviation ; ";
-				try {
-					if (!map.get("abbreviation").isEmpty()) {
-						List<String> u = map.get("abbreviation");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-
-							file = file + " abbreviation modif" + cpt + v + " "
-									+ this.getVote(concept, TraitVocTemp.abbreviation, v) + " \n";
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		cj = 0;
-		cpt = 0;
-		try {
-			if (this.getAltLabel(concept) != null || !map.get("synonym").isEmpty()) {
-				if (cj == 0) {
-					file = file + "synonyms : ";
-					cj++;
-				} else {
-					file = file + "synonyms : ";
-				}
-				try {
-					if (!map.get("synonym").isEmpty()) {
-						List<String> u = map.get("synonym");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-							file = file + "synonym modif" + cpt + " " + v + " "
-									+ this.getVote(concept, SkosXLVoc.altLabel, v) + " \n";
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		try {
-			if (this.getAllRelated(concept).hasNext() || !map.get("related").isEmpty()) {
-				if (cj == 0) {
-					file = file + "related : ";
-					cj++;
-				} else {
-					file = file + "related : ";
-				}
-				try {
-					if (!map.get("related").isEmpty()) {
-						List<String> u = map.get("related");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-
-							file = file + "related modif" + cpt + " " + v + " "
-									+ this.getVote(concept, SkosVoc.related, v) + " \n";
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		try {
-			if (this.getUnit(concept) != null || !map.get("prefUnit").isEmpty()) {
-				if (cj == 0) {
-					file = file + "pref unit : ";
-				} else {
-					file = file + "pref unit : ";
-				}
-				try {
-					this.getValue(this.getUnit(concept));
-					file = file + "current one : " + this.getValue(this.getUnit(concept)) + " "
-							+ this.getVote(concept, TraitVocTemp.prefUnit, this.getValue(this.getUnit(concept)))
-							+ " \n";
-				} catch (Exception e) {
-
-				}
-				try {
-					if (!map.get("prefUnit").isEmpty()) {
-						List<String> u = map.get("prefUnit");
-						Iterator<String> ut = u.iterator();
-						cpt = 0;
-						while (ut.hasNext()) {
-							String v = ut.next();
-							cpt++;
-
-							file = file + "pref unit modfif" + cpt + " " + v + " "
-									+ this.getVote(concept, TraitVocTemp.prefUnit, v) + " \n";
-						}
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		if (cj == 0) {
-			file = file + "category : ";
-			cj++;
-		} else {
-			file = file + "category : ";
-		}
-		try {
-			this.getLabelLiteralForm(this.getPrefLabel(this.getCategory(concept)));
-			file = file + "current one : " + this.getLabelLiteralForm(this.getPrefLabel(this.getCategory(concept)))
-					+ " " + this.getVote(concept, SkosVoc.broaderTransitive,
-							this.getLabelLiteralForm(this.getPrefLabel(this.getCategory(concept))))
-					+ " \n";
-		} catch (Exception e) {
-
-		}
-		try {
-			if (!map.get("broaderTransitive").isEmpty()) {
-				List<String> u = map.get("broaderTransitive");
-				Iterator<String> ut = u.iterator();
-				cpt = 0;
-				while (ut.hasNext()) {
-					String v = ut.next();
-					cpt++;
-
-					file = file + "category modif" + cpt + " " + v + " "
-							+ this.getVote(concept, SkosVoc.broaderTransitive, v) + " \n";
-
-				}
-			}
-		} catch (Exception e) {
-
-		}
-		file = file
-				+ "---------------------------------------------------------------------------------------------------------- \n";
-		return file;
 	}
 
 	public void removeSubject(Resource r) {

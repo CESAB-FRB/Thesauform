@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,13 +64,13 @@ public class ExpertAdministration extends HttpServlet {
 						List<String> insertedTraitList;
 						List<String> modifiedTraitList;
 						List<String> deletedTraitList;
-						Iterator allTraitIterator = traitMap.entrySet().iterator();
+						Iterator<Entry<String, List<String>>> allTraitIterator = traitMap.entrySet().iterator();
 						if (allTraitIterator.hasNext()) {
 							while (allTraitIterator.hasNext()) {
-								Map.Entry traitPair = (Map.Entry) allTraitIterator.next();
-								List<String> traitList = (List<String>) traitPair.getValue();
-								String typeModif = (String) traitPair.getKey();
-								Iterator traitIterator = traitList.iterator();
+								Entry<String, List<String>> traitPair = allTraitIterator.next();
+								List<String> traitList = traitPair.getValue();
+								String typeModif = traitPair.getKey();
+								Iterator<String> traitIterator = traitList.iterator();
 								List<String> tmpList;
 								String namePara;
 								if (typeModif.equals(TYPE_INSERT)) {
@@ -141,13 +143,13 @@ public class ExpertAdministration extends HttpServlet {
 						List<String> insertedTraitList;
 						List<String> modifiedTraitList;
 						List<String> deletedTraitList;
-						Iterator allTraitIterator = traitMap.entrySet().iterator();
+						Iterator<Entry<String, List<String>>> allTraitIterator = traitMap.entrySet().iterator();
 						if (allTraitIterator.hasNext()) {
 							while (allTraitIterator.hasNext()) {
-								Map.Entry traitPair = (Map.Entry) allTraitIterator.next();
-								List<String> traitList = (List<String>) traitPair.getValue();
-								String typeModif = (String) traitPair.getKey();
-								Iterator traitIterator = traitList.iterator();
+								Entry<String, List<String>> traitPair = allTraitIterator.next();
+								List<String> traitList = traitPair.getValue();
+								String typeModif = traitPair.getKey();
+								Iterator<String> traitIterator = traitList.iterator();
 								List<String> tmpList;
 								String namePara;
 								if (typeModif.equals(TYPE_INSERT)) {

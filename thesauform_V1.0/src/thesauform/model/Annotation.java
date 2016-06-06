@@ -86,7 +86,6 @@ public class Annotation {
 						// test if the posted definition is the same than
 						// existing
 						if (!valueDef.trim().equalsIgnoreCase(param.get("def")[0].trim())) {
-							// add as annotation
 							Resource modif = m.createUpdate(modifConcept);
 							m.sethasProperty(modif, SkosVoc.definition);
 							m.sethasValue(modif, param.get("def")[0].trim());
@@ -118,7 +117,7 @@ public class Annotation {
 									// definition annotation
 									m.setReference(modif, param.get("ref")[0].trim());
 								} else {
-									// do nothing, avoid doublon
+									// do nothing, avoid double
 								}
 							} else {
 								// add reference directly to the concept
@@ -150,7 +149,7 @@ public class Annotation {
 						throw new Exception(ERROR_REFERENCE);
 					}
 				}
-				// abbr
+				// abbreviation
 				if (!param.get("abbr")[0].isEmpty() || !param.get("abbr")[0].trim().equalsIgnoreCase("")) {
 					if (m.getAbbreviation(m.getPrefLabel(modifConcept)) != null) {
 						Resource abbr = m.getAbbreviation(m.getPrefLabel(modifConcept));

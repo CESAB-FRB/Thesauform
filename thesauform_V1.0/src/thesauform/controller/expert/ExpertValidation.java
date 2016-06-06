@@ -25,12 +25,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
+/*
+ * TODO definition selection should be done with reference
+ * @Patch1: definition with reference would be on form def__ref for annotation : check if ref associated -> for selection, for the view, for printing
+ */
+
 
 /**
  * Servlet implementation class servletExpertValidation
@@ -55,8 +64,8 @@ public class ExpertValidation extends HttpServlet {
 	private static final String ERROR_SYNONYMS = "synonyms";
 	private static final String EMPTY_SYNONYM = "No synonym";
 	private static final String ERROR_RELATEDS = "relateds";
-	private static final String EMPTY_RELATED = "No related concept";
-
+	private static final String EMPTY_RELATED = "No related concept";	
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// manage errors messages
@@ -110,7 +119,7 @@ public class ExpertValidation extends HttpServlet {
 						// get all insert members
 						Map<String, List<String>> insertMap = traitModel.getAnnotation(Format.formatName(traitName),
 								"insert");
-						Iterator insertIt = insertMap.entrySet().iterator();
+						Iterator<Entry<String, List<String>>> insertIt = insertMap.entrySet().iterator();
 						try {
 							// test if the concept is inserted
 							if (insertIt.hasNext()) {
@@ -127,7 +136,7 @@ public class ExpertValidation extends HttpServlet {
 						//// get delete annotation with people if any
 						// get all delete members
 						deleteList = traitModel.getAllDelete(traitName);
-						Iterator deleteIt = deleteList.iterator();
+						Iterator<String> deleteIt = deleteList.iterator();
 						try {
 							// test if the concept is deleted
 							if (deleteIt.hasNext()) {
@@ -145,7 +154,7 @@ public class ExpertValidation extends HttpServlet {
 						// get all update properties vote
 						Map<String, List<String>> updateMap = traitModel.getAnnotation(Format.formatName(traitName),
 								"update");
-						Iterator updateIt = updateMap.entrySet().iterator();
+						Iterator<Entry<String, List<String>>> updateIt = updateMap.entrySet().iterator();
 						// set current name
 						try {
 							String name = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(concept));
@@ -301,15 +310,15 @@ public class ExpertValidation extends HttpServlet {
 								// update property value/list
 								Map<String, Map<String, Integer>> propertyVoteMap = new HashMap<>();
 								// get the properties lists
-								Map.Entry updatePair = (Map.Entry) updateIt.next();
-								String property = (String) updatePair.getKey();
+								Entry<String, List<String>> updatePair = updateIt.next();
+								String property = updatePair.getKey();
 								List<String> valueList = (List<String>) updatePair.getValue();
-								Iterator valueIt = valueList.iterator();
+								Iterator<String> valueIt = valueList.iterator();
 								try {
 									Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 									while (valueIt.hasNext()) {
 										// get property value
-										String value = (String) valueIt.next();
+										String value = valueIt.next();
 										// get vote number for each value
 										Integer propertyVote = 0;
 										switch (property) {
@@ -372,11 +381,13 @@ public class ExpertValidation extends HttpServlet {
 									}
 								} catch (Exception e) {
 									// @TODO manage exception
+									System.out.println(e.getMessage());
 								}
 							}
 						} else {
 
 						}
+
 						// set bean vote
 						try {
 							String property = "name";
