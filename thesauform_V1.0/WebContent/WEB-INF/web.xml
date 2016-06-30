@@ -21,7 +21,7 @@
   </filter>
   <filter-mapping>
     <filter-name>thesauform_admin</filter-name>
-    <url-pattern>/administration*</url-pattern>
+    <url-pattern>/administration/*</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>thesauform_expert</filter-name>
@@ -29,6 +29,6 @@
   </filter>
   <filter-mapping>
     <filter-name>thesauform_expert</filter-name>
-    <url-pattern>/expert*</url-pattern>
+    <url-pattern>/expert/*</url-pattern>
   </filter-mapping>
 </web-app>

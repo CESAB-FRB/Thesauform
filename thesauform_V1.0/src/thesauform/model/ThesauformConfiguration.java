@@ -1,9 +1,12 @@
 package thesauform.model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Properties;
 import org.apache.logging.log4j.Logger;
-
 import org.apache.logging.log4j.LogManager;
 
 public final class ThesauformConfiguration {
@@ -90,6 +93,8 @@ public final class ThesauformConfiguration {
 	public static final String CACHE_ERROR_PARAMETER = "errors";
 	public static final String CACHE_MESSAGE = "cache flushing failed";
 
+	private static String filename = "thesauform.properties";
+
 	public static Logger thesauform_logger;
 
 	/**
@@ -100,10 +105,9 @@ public final class ThesauformConfiguration {
 		Properties prop = new Properties();
 		InputStream input = null;
 		try {
-			String filename = "thesauform.properties";
-			input = getClass().getClassLoader().getResourceAsStream(filename);
+			input = getClass().getClassLoader().getResourceAsStream(ThesauformConfiguration.filename);
 			if (input == null) {
-				thesauform_logger.error("No file " + filename);
+				thesauform_logger.error("No file " + ThesauformConfiguration.filename);
 			}
 			prop.load(input);
 			tab_title = prop.getProperty("tab_title");
@@ -126,6 +130,7 @@ public final class ThesauformConfiguration {
 			facet_file = prop.getProperty("facet_file");
 			facet_list = prop.getProperty("facet_list");
 			ThesauformConfiguration.prop = prop;
+			input.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,5 +139,23 @@ public final class ThesauformConfiguration {
 	public String getMyProperty(String key) {
 		return (ThesauformConfiguration.prop.getProperty(key));
 	}
-
+	
+	/**
+	 * Update property
+	 */
+	public boolean setMyProperty(String key, String value) {
+		boolean success = false;
+		try {
+			ThesauformConfiguration.prop.setProperty(key, value);
+			URL resource = getClass().getClassLoader().getResource(ThesauformConfiguration.filename);
+			BufferedWriter out = new BufferedWriter(new FileWriter(Paths.get(resource.toURI()).toFile()));
+			ThesauformConfiguration.prop.store(out, null);
+			out.close();
+			success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+	
 }

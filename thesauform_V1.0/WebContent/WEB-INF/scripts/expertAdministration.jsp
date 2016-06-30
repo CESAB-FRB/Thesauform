@@ -20,14 +20,14 @@
 <div id="content">
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1">Modified traits</a></li>
-			<li><a href="#tabs-2">Inserted traits</a></li>
-			<li><a href="#tabs-3">Deleted traits</a></li>
+			<li><a href="#tabs-1">Modified concepts</a></li>
+			<li><a href="#tabs-2">Inserted concepts</a></li>
+			<li><a href="#tabs-3">Deleted concepts</a></li>
 		</ul>
 		<div id="tabs-1">
 			<c:choose>
 				<c:when test="${empty my_updated_list}">
-					No trait modified
+					No concept modified
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_updated_list}" var="name">
@@ -43,7 +43,7 @@
 		<div id="tabs-2">
 			<c:choose>
 				<c:when test="${empty my_inserted_list}">
-					No trait modified
+					No concept modified
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_inserted_list}" var="name">
@@ -59,7 +59,7 @@
 		<div id="tabs-3">
 			<c:choose>
 				<c:when test="${empty my_deleted_list}">
-					No trait modified
+					No concept modified
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_deleted_list}" var="name">

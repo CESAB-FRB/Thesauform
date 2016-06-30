@@ -33,7 +33,7 @@
 					name="${my_logo_header_prop[1]}" />
 				<h1
 					style="float: left; display: inline; width: 800px; margin-left: 1.2em;">${_software_title_}</h1>
-				<h3>${_explanation_title_}</h3>
+				<h3 style="float: left; display: inline; width: 800px; margin-left: 1.2em;">${_explanation_title_}</h3>
 			</div>
 		</div>
 		<div id="navigation-container">
@@ -45,6 +45,8 @@
 					<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
 					<li><a href="${pageContext.request.contextPath}/references">References</a></li>
 					<li><a href="${pageContext.request.contextPath}/api">API</a></li>
+					<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
+					<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
 					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>
 				</ul>
 			</div>

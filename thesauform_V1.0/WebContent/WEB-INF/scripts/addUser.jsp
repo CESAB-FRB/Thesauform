@@ -21,7 +21,7 @@
 				<strong><c:out value="${success}"/></strong>
 			</div>
 		</c:if>
-		<form id="userform" method="post" action="/administration/userAdd" >
+		<form id="userform" method="post" action="${pageContext.request.contextPath}/administration/userAdd" >
 			<div class="user_row">
 				<div id="name">Name:</div>
 				<div id="user_name">

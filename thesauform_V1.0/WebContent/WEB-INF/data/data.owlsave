@@ -1,10 +1,10 @@
 <rdf:RDF
     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-    xmlns:trait="http://thesaurus.cesab.org/trait#"
-    xmlns:unit="http://thesaurus.cesab.org/trait/unit#"
-    xmlns:change="http://thesaurus.cesab.org/trait/change#"
+    xmlns:trait="http://thesaurus.cesab.org/concept#"
+    xmlns:unit="http://thesaurus.cesab.org/concept/unit#"
+    xmlns:change="http://thesaurus.cesab.org/concept/change#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:ref="http://thesaurus.cesab.org/trait/reference#"
+    xmlns:ref="http://thesaurus.cesab.org/concept/reference#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:foaf="http://xmlns.com/foaf/0.1/"
     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
@@ -41,20 +41,20 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A11">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht and Specht 2002</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A12">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The amount of water that can be held within a soil by matric potential after drainage has ceased (at -0.1 hectopascals). </rdf:value>
     <trait:reference rdf:nodeID="A13"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ordinal_scale">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ordinal_scale">
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <change:insert rdf:nodeID="A14"/>
     <skosxl:altLabel rdf:nodeID="A15"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ordinal_scale</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A16"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -78,24 +78,24 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A22">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht and Specht 2002</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A23">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Protocol">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Protocol">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skos:definition rdf:nodeID="A24"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A25"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A26"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protocol</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A27">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
@@ -113,13 +113,13 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Depth">
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Depth">
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Depth</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A32"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A33"/>
     <change:insert rdf:nodeID="A34"/>
@@ -131,7 +131,7 @@
     <trait:reference rdf:nodeID="A37"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A13">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht and Specht 2002</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A38">
@@ -160,15 +160,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Scales_of_measurement">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Scales_of_measurement">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:prefLabel rdf:nodeID="A47"/>
     <change:insert rdf:nodeID="A48"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A49"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skos:definition rdf:nodeID="A50"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Scales_of_measurement</rdfs:label>
@@ -177,30 +177,30 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Spatial_coordinates">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Spatial_coordinates">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A30"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <skosxl:prefLabel rdf:nodeID="A2"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial_coordinates</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A51">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht A.</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Measurement_station">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Measurement_station">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A52"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skosxl:prefLabel rdf:nodeID="A53"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Measurement_station</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A54">
@@ -243,7 +243,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A65">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STSM Manual, Specht 2000</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A66">
@@ -282,17 +282,17 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Observation">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Observation">
     <change:update rdf:nodeID="A74"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Observation</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:insert rdf:nodeID="A75"/>
     <skosxl:prefLabel rdf:nodeID="A76"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A77"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A78">
@@ -311,14 +311,14 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Elevation">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Elevation">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Elevation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A83"/>
     <skos:definition rdf:nodeID="A84"/>
     <change:insert rdf:nodeID="A85"/>
@@ -339,15 +339,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial_entities</skosxl:literalForm>
     <change:insert rdf:nodeID="A89"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Point">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Point">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A90"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <skosxl:prefLabel rdf:nodeID="A41"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Point</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A91">
@@ -378,32 +378,32 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ecosystem</skosxl:literalForm>
     <change:insert rdf:nodeID="A97"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Stand">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Stand">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A98"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stand</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skosxl:prefLabel rdf:nodeID="A55"/>
     <change:insert rdf:nodeID="A99"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A100"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A26">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Protocol</skosxl:literalForm>
     <change:insert rdf:nodeID="A101"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Experiment">
     <change:update rdf:nodeID="A102"/>
     <skosxl:prefLabel rdf:nodeID="A103"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A104"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:update rdf:nodeID="A105"/>
     <change:update rdf:nodeID="A106"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Experiment</rdfs:label>
@@ -422,13 +422,13 @@
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">not of biota, e.g. plants and animals</rdf:value>
     <trait:reference rdf:nodeID="A113"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Sub_plot">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Sub_plot">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skosxl:prefLabel rdf:nodeID="A114"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sub_plot</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Point"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Point"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Point"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Point"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A115"/>
     <change:insert rdf:nodeID="A116"/>
@@ -438,15 +438,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Quadrat">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Quadrat">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A118"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
     <skosxl:prefLabel rdf:nodeID="A119"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quadrat</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A120">
@@ -465,47 +465,47 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Data">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Data">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A123"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data</rdfs:label>
     <change:insert rdf:nodeID="A124"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <change:update rdf:nodeID="A125"/>
     <skos:definition rdf:nodeID="A126"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A127">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soil_ph</skosxl:literalForm>
     <change:insert rdf:nodeID="A54"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Fluxtower_station">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Fluxtower_station">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A128"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <skosxl:prefLabel rdf:nodeID="A129"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FluxTower_station</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Microhabitat">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Microhabitat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:insert rdf:nodeID="A130"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:update rdf:nodeID="A131"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A36"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Microhabitat</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A0"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A132">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Equal amount of some chemical</rdf:value>
@@ -514,33 +514,33 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Soil_salinity">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Soil_salinity">
     <skos:definition rdf:nodeID="A134"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A135"/>
     <change:insert rdf:nodeID="A136"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soil_salinity</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A113">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht A.</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Plot">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Plot">
     <skos:definition rdf:nodeID="A69"/>
     <change:insert rdf:nodeID="A93"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <skosxl:prefLabel rdf:nodeID="A71"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plot</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A5">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
@@ -552,21 +552,21 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data_record</skosxl:literalForm>
     <change:insert rdf:nodeID="A138"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Experiment_on_long-lived_native_plant_communities">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Experiment_on_long-lived_native_plant_communities">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skos:definition rdf:nodeID="A8"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Experiment on long-lived native plant communities</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A6"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#experiment"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#experiment"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A38"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Meteorological">
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Meteorological">
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A61"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meteorological</rdfs:label>
@@ -574,18 +574,18 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A139"/>
     <skosxl:prefLabel rdf:nodeID="A78"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:update rdf:nodeID="A140"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Tissue">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Tissue">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A141"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A142"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tissue</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A143">
@@ -615,15 +615,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Country">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Country">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A149"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <skosxl:prefLabel rdf:nodeID="A150"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Country</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A151">
@@ -639,51 +639,51 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Test">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Test">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:update rdf:nodeID="A154"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Test</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A155"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A156"/>
     <change:insert rdf:nodeID="A157"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A158">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Statistical replication of all treatments, including control, in an experiment</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Mensurative_experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Mensurative_experiment">
     <skos:definition rdf:nodeID="A159"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A160"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mensurative_experiment</rdfs:label>
     <change:insert rdf:nodeID="A161"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Treatment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Treatment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A162"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Treatment</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skos:definition rdf:nodeID="A163"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A164"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A77">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Measurement of a particular attribute of an ecosystem in situ</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A165">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1800.0</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A166">
@@ -692,22 +692,22 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Macrohabitat">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Habitat"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Macrohabitat">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Habitat"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A167"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Habitat"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Habitat"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Macrohabitat</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A168"/>
     <skos:definition rdf:nodeID="A169"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A170"/>
     <skosxl:altLabel rdf:nodeID="A171"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A172">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht and Specht 2002</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A90">
@@ -735,17 +735,17 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Random">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Random">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skos:definition rdf:nodeID="A29"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Random</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A179"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:insert rdf:nodeID="A180"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A161">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -813,15 +813,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Spatial_entities">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Spatial_entities">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A197"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A88"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial_entities</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A198">
@@ -838,8 +838,8 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Update">
-    <skos:member rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Update">
+    <skos:member rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A179">
@@ -952,15 +952,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Administrative_delimitation">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Administrative_delimitation">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A221"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <skosxl:prefLabel rdf:nodeID="A222"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Administrative_delimitation</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A223">
@@ -968,7 +968,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A224">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht RL and Specht A</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A225">
@@ -978,31 +978,31 @@
   <rdf:Description rdf:nodeID="A226">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The mean value of a collection of data, calculated by totaling all the data and dividing by the number of items</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Abiotic">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Abiotic">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abiotic</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A227"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A112"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A228"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A229">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Continent">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Continent">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A73"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <skosxl:prefLabel rdf:nodeID="A230"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Continent</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A184">
@@ -1010,7 +1010,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A37">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht RL and Specht A</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A231">
@@ -1027,41 +1027,41 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Multistage_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Multistage_sampling">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A235"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <skosxl:prefLabel rdf:nodeID="A236"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistage_sampling</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Replicated_experiment">
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Replicated_experiment">
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
     <skos:definition rdf:nodeID="A158"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A144"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Replicated_experiment</rdfs:label>
     <change:insert rdf:nodeID="A111"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Aliquot">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Aliquot">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aliquot</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A132"/>
     <change:update rdf:nodeID="A166"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:insert rdf:nodeID="A68"/>
     <skosxl:prefLabel rdf:nodeID="A237"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A97">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -1074,31 +1074,31 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Level_of_replication">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Level_of_replication">
     <skos:definition rdf:nodeID="A152"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:prefLabel rdf:nodeID="A240"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A241"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Level_of_replication</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A242">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Level_of_biological_organization">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Level_of_biological_organization">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A243"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skosxl:prefLabel rdf:nodeID="A244"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Level_of_biological_organization</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A100">
@@ -1121,10 +1121,10 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Environmental_factor">
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Environmental_factor">
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Environmental_factor</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:insert rdf:nodeID="A214"/>
@@ -1132,7 +1132,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:update rdf:nodeID="A247"/>
     <skosxl:prefLabel rdf:nodeID="A57"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A245">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -1143,15 +1143,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average_value</skosxl:literalForm>
     <change:insert rdf:nodeID="A249"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Hydrological_station">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Hydrological_station">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A250"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <skosxl:prefLabel rdf:nodeID="A251"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrological_station</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A63">
@@ -1184,16 +1184,16 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Water_holding_capacity">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Water_holding_capacity">
     <change:insert rdf:nodeID="A258"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Water_holding_capacity</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A95"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A259"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A249">
@@ -1216,15 +1216,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Raw_data">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Raw_data">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raw_data</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A264"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:prefLabel rdf:nodeID="A265"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
     <skos:definition rdf:nodeID="A266"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:insert rdf:nodeID="A198"/>
@@ -1232,45 +1232,45 @@
   <rdf:Description rdf:nodeID="A163">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Experimental applications, usually to test responses of an organism or group of organisms</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Random_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Random_sampling">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A267"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <skosxl:prefLabel rdf:nodeID="A268"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Random_sampling</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#City">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#City">
     <skosxl:altLabel rdf:nodeID="A269"/>
     <skosxl:prefLabel rdf:nodeID="A270"/>
     <change:insert rdf:nodeID="A271"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">City</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A272">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Experimental_design">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Experimental_design">
     <skosxl:prefLabel rdf:nodeID="A273"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skos:definition rdf:nodeID="A274"/>
     <change:insert rdf:nodeID="A60"/>
     <change:update rdf:nodeID="A275"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Experimental_design</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A275">
     <change:hasProperty rdf:resource="http://www.w3.org/2004/02/skos/core#definition"/>
@@ -1278,27 +1278,27 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Soil_depth">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Soil_depth">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soil depth</rdfs:label>
     <skos:definition rdf:nodeID="A276"/>
     <skosxl:prefLabel rdf:nodeID="A277"/>
     <change:insert rdf:nodeID="A278"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#depth"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#depth"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#depth"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#depth"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Altitude">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Altitude">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A279"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <skosxl:prefLabel rdf:nodeID="A185"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Altitude</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A222">
@@ -1319,15 +1319,15 @@
   <rdf:Description rdf:nodeID="A282">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Record of some attribute</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Region">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Region">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A283"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <skosxl:prefLabel rdf:nodeID="A183"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Region</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A284">
@@ -1366,15 +1366,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ecosystem_type">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ecosystem_type">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A290"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skosxl:prefLabel rdf:nodeID="A291"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ecosystem_type</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A292">
@@ -1402,17 +1402,17 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Interval_ratio_scales">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Interval_ratio_scales">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Interval ratio_scales</rdfs:label>
     <skos:definition rdf:nodeID="A296"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A188"/>
     <change:insert rdf:nodeID="A242"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A99">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -1431,7 +1431,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A298">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht A.</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A299">
@@ -1452,16 +1452,16 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Paddock">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Paddock">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A302"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paddock</rdfs:label>
     <skos:definition rdf:nodeID="A303"/>
     <skosxl:prefLabel rdf:nodeID="A304"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A305">
@@ -1470,15 +1470,15 @@
   <rdf:Description rdf:nodeID="A32">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ecoregion">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ecoregion">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A306"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <skosxl:prefLabel rdf:nodeID="A307"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ecoregion</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A228">
@@ -1513,15 +1513,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Terrestrial_ecosystem">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Terrestrial_ecosystem">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A313"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <skosxl:prefLabel rdf:nodeID="A314"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Terrestrial_ecosystem</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A315">
@@ -1535,18 +1535,18 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Data_record">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Data_record">
     <change:update rdf:nodeID="A317"/>
     <skos:definition rdf:nodeID="A282"/>
     <skosxl:prefLabel rdf:nodeID="A137"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A294"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data_record</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A318">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
@@ -1558,15 +1558,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unreplicated_experiment</skosxl:literalForm>
     <change:insert rdf:nodeID="A253"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Latitude">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Latitude">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A122"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <skosxl:prefLabel rdf:nodeID="A320"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Latitude</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A110">
@@ -1594,15 +1594,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Longitude">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Longitude">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A70"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <skosxl:prefLabel rdf:nodeID="A324"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_coordinates"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_coordinates"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Longitude</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A302">
@@ -1642,15 +1642,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A94"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <skosxl:prefLabel rdf:nodeID="A331"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial_unit_of_experiment</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A332">
@@ -1672,15 +1672,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#County">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#County">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A334"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <skosxl:prefLabel rdf:nodeID="A335"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">County</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A336">
@@ -1692,15 +1692,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raw_data</skosxl:literalForm>
     <change:insert rdf:nodeID="A330"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Meteorological_station">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Meteorological_station">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A337"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <skosxl:prefLabel rdf:nodeID="A338"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Measurement_station"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Measurement_station"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meteorological_station</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A339">
@@ -1722,30 +1722,30 @@
   <rdf:Description rdf:nodeID="A139">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Measurements of temperature, humidity, wind-speed, rainfall (climate data)</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Stratified_random_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Stratified_random_sampling">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A87"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Random_sampling"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Random_sampling"/>
     <skosxl:prefLabel rdf:nodeID="A341"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Random_sampling"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Random_sampling"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stratified_random_sampling</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A45">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Biosphere">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Biosphere">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A342"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A181"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biosphere</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A123">
@@ -1758,43 +1758,43 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soil_salinity</skosxl:literalForm>
     <change:insert rdf:nodeID="A343"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Stratification">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Stratification">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stratification</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A27"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:insert rdf:nodeID="A344"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skos:definition rdf:nodeID="A66"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Stand_height">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Stand_height">
     <change:insert rdf:nodeID="A345"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stand height</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#stand"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#stand"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#stand"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#stand"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A346"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skosxl:prefLabel rdf:nodeID="A233"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A268">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Random_sampling</skosxl:literalForm>
     <change:insert rdf:nodeID="A218"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Adaptive">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Adaptive">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A347"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A182"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adaptive</rdfs:label>
     <change:insert rdf:nodeID="A348"/>
@@ -1813,14 +1813,14 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Community</skosxl:literalForm>
     <change:insert rdf:nodeID="A21"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Transect">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Transect">
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:update rdf:nodeID="A351"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transect</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_method"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_method"/>
     <change:insert rdf:nodeID="A207"/>
     <skos:definition rdf:nodeID="A238"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1833,14 +1833,14 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Field_capacity_of_soil">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Field_capacity_of_soil">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Field_capacity_of_soil</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A354"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A12"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A355"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
@@ -1875,28 +1875,28 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Systematic_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Systematic_sampling">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A260"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <skosxl:prefLabel rdf:nodeID="A289"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Systematic_sampling</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Park_reserve">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Park_reserve">
     <skos:definition rdf:nodeID="A43"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A299"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A19"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Park_reserve</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A361">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -1907,16 +1907,16 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abiotic</skosxl:literalForm>
     <change:insert rdf:nodeID="A362"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Sample">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Sample">
     <skos:definition rdf:nodeID="A363"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sample</rdfs:label>
     <change:update rdf:nodeID="A199"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A364"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A357"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
@@ -1939,16 +1939,16 @@
   <rdf:Description rdf:nodeID="A126">
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">measurements or pieces of information about a subject or object</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Station">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Station">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A366"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Station</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A361"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A349"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A134">
@@ -1972,16 +1972,16 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Data_collection">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Data_collection">
     <change:update rdf:nodeID="A151"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A370"/>
     <change:insert rdf:nodeID="A59"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Data"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Data"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data_collection</rdfs:label>
     <skos:definition rdf:nodeID="A371"/>
   </rdf:Description>
@@ -2010,9 +2010,9 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Meteorological_station</skosxl:literalForm>
     <change:insert rdf:nodeID="A64"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Thesaurus">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Thesaurus">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A375"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">testing</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A203"/>
@@ -2023,16 +2023,16 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Habitat">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Habitat">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A376"/>
     <change:insert rdf:nodeID="A17"/>
     <skosxl:prefLabel rdf:nodeID="A377"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habitat</rdfs:label>
     <change:update rdf:nodeID="A378"/>
   </rdf:Description>
@@ -2044,26 +2044,26 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paddock</skosxl:literalForm>
     <change:insert rdf:nodeID="A284"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Adaptive_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Adaptive_sampling">
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <skosxl:prefLabel rdf:nodeID="A379"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adaptive_sampling</rdfs:label>
     <change:insert rdf:nodeID="A380"/>
     <skos:definition rdf:nodeID="A208"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Macro-habitat">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Macro-habitat">
     <skosxl:prefLabel rdf:nodeID="A261"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Macro-habitat</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skos:definition rdf:nodeID="A326"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A46"/>
@@ -2096,51 +2096,51 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Community">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Community">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A365"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A350"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Community</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Micohabitat">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Micohabitat">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Micohabitat</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:altLabel rdf:nodeID="A388"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Habitat"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Habitat"/>
     <change:insert rdf:nodeID="A301"/>
     <skosxl:prefLabel rdf:nodeID="A201"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Habitat"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Habitat"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Soil_water_storage">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Soil_water_storage">
     <change:insert rdf:nodeID="A239"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soil_water_storage</rdfs:label>
     <skosxl:prefLabel rdf:nodeID="A389"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A390"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Simple_random_sampling">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Simple_random_sampling">
     <skosxl:prefLabel rdf:nodeID="A328"/>
     <skos:definition rdf:nodeID="A340"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Random_sampling"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Random_sampling"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Simple_random_sampling</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Random_sampling"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Random_sampling"/>
     <change:insert rdf:nodeID="A391"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A392">
@@ -2183,24 +2183,24 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Sampling_method">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Sampling_method">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A353"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <skosxl:prefLabel rdf:nodeID="A395"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sampling_method</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Individual">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Individual">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Individual</rdfs:label>
     <skos:definition rdf:nodeID="A219"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <change:insert rdf:nodeID="A396"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
@@ -2252,30 +2252,30 @@
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ranking_scale</skosxl:literalForm>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Oceanic_basin">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Oceanic_basin">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A81"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <skosxl:prefLabel rdf:nodeID="A399"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oceanic_basin</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A400">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Field_experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Field_experiment">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A394"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Field_experiment</rdfs:label>
     <skos:definition rdf:nodeID="A120"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A384"/>
   </rdf:Description>
@@ -2293,40 +2293,40 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Method">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Method">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:update rdf:nodeID="A323"/>
     <skosxl:prefLabel rdf:nodeID="A192"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Method</rdfs:label>
     <skos:definition rdf:nodeID="A305"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A288"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ocean">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ocean">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A10"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <skosxl:prefLabel rdf:nodeID="A209"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Geographic_location"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Geographic_location"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ocean</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Field">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Field">
     <skos:definition rdf:nodeID="A381"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skosxl:prefLabel rdf:nodeID="A372"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <change:insert rdf:nodeID="A402"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Field</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A232">
@@ -2337,15 +2337,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Marine_ecosystem">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Marine_ecosystem">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A143"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <skosxl:prefLabel rdf:nodeID="A403"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine_ecosystem</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A364">
@@ -2353,15 +2353,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sample</skosxl:literalForm>
     <change:insert rdf:nodeID="A336"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Nominal_scale">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Nominal_scale">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <change:insert rdf:nodeID="A383"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nominal_scale</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A121"/>
     <skos:definition rdf:nodeID="A404"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:update rdf:nodeID="A385"/>
@@ -2370,7 +2370,7 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ThesaurusBiodiversity</rdfs:label>
     <change:insert rdf:nodeID="A405"/>
@@ -2396,7 +2396,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A9">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">(Specht &amp; Specht 1999</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A259">
@@ -2424,14 +2424,14 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ratio_scale">
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ratio_scale">
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ratio_scale</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A39"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A411"/>
     <change:insert rdf:nodeID="A412"/>
@@ -2448,15 +2448,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Landscape">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Landscape">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A67"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A91"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Landscape</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A258">
@@ -2482,17 +2482,17 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quadrat</skosxl:literalForm>
     <change:insert rdf:nodeID="A369"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Manipulative_experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Manipulative_experiment">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manipulative_experiment</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:prefLabel rdf:nodeID="A147"/>
     <skos:definition rdf:nodeID="A80"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <change:insert rdf:nodeID="A416"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A408">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -2534,14 +2534,14 @@
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Micro-habitat</skosxl:literalForm>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Sampling_design">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Sampling_design">
     <change:update rdf:nodeID="A300"/>
     <skosxl:prefLabel rdf:nodeID="A359"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sampling_design</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A204"/>
@@ -2574,7 +2574,7 @@
     <change:insert rdf:nodeID="A310"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A421">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STSM Manual, Specht 2000</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A344">
@@ -2591,31 +2591,31 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Supra-national">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Supra-national">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A420"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <skosxl:prefLabel rdf:nodeID="A392"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Administrative_delimitation"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Administrative_delimitation"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Supra-national</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A297">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">STSM Manual, Specht 2000</rdf:value>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Average_value">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Average_value">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Average_value</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A226"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skosxl:prefLabel rdf:nodeID="A248"/>
     <change:insert rdf:nodeID="A211"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A416">
@@ -2630,30 +2630,30 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Organ">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Organ">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A281"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A397"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organ</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A79">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Micro-habitat">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Micro-habitat">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <change:insert rdf:nodeID="A406"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <skos:definition rdf:nodeID="A175"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Micro-habitat</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A386"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
@@ -2705,14 +2705,14 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Interval_scale">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Interval_scale">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:definition rdf:nodeID="A422"/>
     <skosxl:prefLabel rdf:nodeID="A205"/>
     <change:insert rdf:nodeID="A400"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Scales_of_measurement"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Scales_of_measurement"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Interval_scale</rdfs:label>
@@ -2722,7 +2722,7 @@
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A382">
-    <rdf:type rdf:resource="http://thesaurus.cesab.org/trait/reference#Reference"/>
+    <rdf:type rdf:resource="http://thesaurus.cesab.org/concept/reference#Reference"/>
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specht R.L. pers comm. 2016</rdf:value>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A155">
@@ -2734,15 +2734,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ranking_scale">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ranking_scale">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:update rdf:nodeID="A425"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ranking_scale</rdfs:label>
     <skos:definition rdf:nodeID="A356"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <change:insert rdf:nodeID="A148"/>
     <skosxl:prefLabel rdf:nodeID="A415"/>
@@ -2764,15 +2764,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">County</skosxl:literalForm>
     <change:insert rdf:nodeID="A410"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Site">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Site">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A427"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <skosxl:prefLabel rdf:nodeID="A428"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_unit_of_experiment"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_unit_of_experiment"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A377">
@@ -2780,24 +2780,24 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habitat</skosxl:literalForm>
     <change:insert rdf:nodeID="A429"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Biogeographical_region">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Biogeographical_region">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A424"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <skosxl:prefLabel rdf:nodeID="A430"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biogeographical_region</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A431">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Delete">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Delete">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
-    <skos:member rdf:resource="http://thesaurus.cesab.org/trait#Experiment"/>
+    <skos:member rdf:resource="http://thesaurus.cesab.org/concept#Experiment"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A251">
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
@@ -2820,31 +2820,31 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Population">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Population">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A312"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A293"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Population</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A355">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Biogeoraphy">
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Biogeoraphy">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A23"/>
     <skos:definition rdf:nodeID="A215"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A286"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biogeoraphy</rdfs:label>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A202">
@@ -2860,15 +2860,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine_ecosystem</skosxl:literalForm>
     <change:insert rdf:nodeID="A435"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Systematic">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Systematic">
     <skos:definition rdf:nodeID="A262"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Systematic</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A285"/>
     <skosxl:prefLabel rdf:nodeID="A231"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
@@ -2901,15 +2901,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Ecosystem">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Ecosystem">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A419"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A96"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ecosystem</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A390">
@@ -2950,12 +2950,12 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Replicate">
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Replicate">
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A252"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Sampling_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Sampling_design"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <skosxl:prefLabel rdf:nodeID="A195"/>
@@ -2984,15 +2984,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Geographic_location">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Geographic_location">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A401"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <skosxl:prefLabel rdf:nodeID="A441"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Spatial_entities"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Spatial_entities"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geographic_location</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A425">
@@ -3011,15 +3011,15 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Level_of_biological_organization</skosxl:literalForm>
     <change:insert rdf:nodeID="A442"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Cell">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Cell">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A216"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <skosxl:prefLabel rdf:nodeID="A254"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Level_of_biological_organization"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Level_of_biological_organization"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A443">
@@ -3067,31 +3067,31 @@
     <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mensurative_experiment</skosxl:literalForm>
     <change:insert rdf:nodeID="A178"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Unreplicated_experiment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Unreplicated_experiment">
     <skosxl:prefLabel rdf:nodeID="A319"/>
     <change:insert rdf:nodeID="A438"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skos:definition rdf:nodeID="A177"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unreplicated_experiment</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A447">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Soil_ph">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Soil_ph">
     <skos:definition rdf:nodeID="A443"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <skosxl:prefLabel rdf:nodeID="A127"/>
     <change:insert rdf:nodeID="A257"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Soil_ph</rdfs:label>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
   </rdf:Description>
@@ -3154,14 +3154,14 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Experimental_treatment">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Experimental_treatment">
     <skosxl:prefLabel rdf:nodeID="A433"/>
     <skos:definition rdf:nodeID="A311"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Experimental_design"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Experimental_design"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Experimental_treatment</rdfs:label>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skosxl:altLabel rdf:nodeID="A440"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -3199,15 +3199,15 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Estuarine_ecosystem">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Estuarine_ecosystem">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <change:insert rdf:nodeID="A263"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <skosxl:prefLabel rdf:nodeID="A417"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Ecosystem_type"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Ecosystem_type"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Estuarine_ecosystem</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A449">
@@ -3224,17 +3224,17 @@
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
     <dc:creator rdf:nodeID="A5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Stand_density">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Stand_density">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Stand density</rdfs:label>
     <change:insert rdf:nodeID="A426"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#stand"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#stand"/>
     <skosxl:prefLabel rdf:nodeID="A318"/>
     <skos:definition rdf:nodeID="A332"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#stand"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#stand"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="A412">
     <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-16T16:29:28.636Z</dct:created>
@@ -3252,16 +3252,16 @@
     <rdf:value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> A scientific analysis of a hypothesis against a control</rdf:value>
     <trait:reference rdf:nodeID="A165"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://thesaurus.cesab.org/trait#Forest">
+  <rdf:Description rdf:about="http://thesaurus.cesab.org/concept#Forest">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skosxl:prefLabel rdf:nodeID="A315"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forest</rdfs:label>
     <change:update rdf:nodeID="A449"/>
-    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/trait#Thesaurusbiodiversity"/>
+    <skos:inScheme rdf:resource="http://thesaurus.cesab.org/concept#Thesaurusbiodiversity"/>
     <skos:definition rdf:nodeID="A352"/>
-    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/trait#Thesaurus"/>
+    <rdfs:subClassOf rdf:resource="http://thesaurus.cesab.org/concept#Thesaurus"/>
     <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
     <change:insert rdf:nodeID="A327"/>
   </rdf:Description>

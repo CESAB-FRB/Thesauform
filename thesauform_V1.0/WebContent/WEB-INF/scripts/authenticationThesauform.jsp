@@ -103,9 +103,9 @@
 </div>
 <div id="aside">
 	<h3>Identification help :</h3>
-	<p>To read and/or to annotate the trait thesaurus, sign in the
+	<p>To read and/or to annotate the thesaurus, sign in the
 		"Thesaurus annotation" tab</p>
-	<p>To validate the annotations suggested in the trait thesaurus,
+	<p>To validate the annotations suggested in the thesaurus,
 		sign in the "Thesaurus validation" tab (restricted acces)</p>
 	<p>To manage the application, sign in "Thesaurus administration"
 		tab(restricted acces)</p>

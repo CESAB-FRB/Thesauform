@@ -8,7 +8,7 @@
 </c:if>
 <div class="row">
 	<label id="l_name" for="name">Pref Name:&nbsp;</label>
-	<input type="text" name="nameAnn" id="nameAnn" value=<c:out value="${my_trait.name}"/>>
+	<input type="text" name="nameAnn" id="nameAnn" value="<c:out value="${my_trait.name}"/>">
 </div>
 <div class="row">
 	<label id="l_def" for="def">Definition:&nbsp;</label>
@@ -16,11 +16,11 @@
 </div>
 <div class="row">
 	<label id="l_ref" for="ref">Reference:&nbsp;</label>
-	<input type="text"  name="ref" id="ref" value=<c:out value="${my_trait.reference}"/>>
+	<input type="text"  name="ref" id="ref" value="<c:out value="${my_trait.reference}"/>">
 </div>
 <div class="row">
 	<label id="l_abbr" for="abbr">Abbreviation:&nbsp;</label>
-	<input type="text"  name="abbr" id="abbr"  value=<c:out value="${my_trait.abbreviation}"/>>
+	<input type="text"  name="abbr" id="abbr"  value="<c:out value="${my_trait.abbreviation}"/>">
 </div>
 <c:choose>
 	<c:when test="${empty my_trait.synonymsList}">
@@ -34,7 +34,7 @@
 		<c:forEach items="${my_trait.synonymsList}" var="synonym">
 			<div class="row" id="toto">
 				<label id="l_syn" for="syn">Synonym:&nbsp;</label>
-				<input type="text"  name="syn" id="syn" value=<c:out value="${synonym.realName}"/>>
+				<input type="text"  name="syn" id="syn" value="<c:out value="${synonym.realName}"/>">
 				<span class="ui-icon ui-icon-circle-plus" style="float: left; margin-right: 0.3em;" onclick=" $('#toto').clone().insertAfter('#toto'); "></span>
 			</div>
 		</c:forEach>        
@@ -52,7 +52,7 @@
 		<c:forEach items="${my_trait.relatedsList}" var="related">
 			<div class="row" id="relclone">
 				<label id="l_rel" for="related">Related :&nbsp;</label>
-				<input type="text"  name="related" id="related "  value=<c:out value="${related.realName}"/>>
+				<input type="text"  name="related" id="related "  value="<c:out value="${related.realName}"/>">
 				<span class="ui-icon ui-icon-circle-plus" style="float: left; margin-right: 0.3em;" onclick=" $('#relclone').clone().insertAfter('#relclone'); "></span>
 			</div>
 		</c:forEach>        
@@ -62,19 +62,19 @@
 	<c:if test="${my_display eq 'unit'}">
 		<div class="row">
 			<label id="l_unit" for="unit">Pref Unit:&nbsp;</label>
-			<input type="text" name="unit" id="unit" value=<c:out value="${my_trait.unit}"/>>
+			<input type="text" name="unit" id="unit" value="<c:out value="${my_trait.unit}"/>">
 		</div>
 	</c:if>
 	<c:if test="${my_display eq 'realName'}">
 		<div class="row">
 			<label id="l_name" for="name">Real Name:&nbsp;</label>
-			<input type="text" name="nameAnn" id="nameAnn" value=<c:out value="${my_trait.realName}"/>>
+			<input type="text" name="nameAnn" id="nameAnn" value="<c:out value="${my_trait.realName}"/>">
 		</div>
 	</c:if>
 </c:forTokens>
 <div class="row">
 	<label id="l_cat" for="cat">Category:&nbsp;</label>
-	<input type="text" name="cat" id="cat" value=<c:out value="${my_trait.parent.name}"/>>
+	<input type="text" name="cat" id="cat" value="<c:out value="${my_trait.parent.name}"/>">
 </div>
 <div class="row">
 	<label id="l_comment" for="commment">Comment:&nbsp;</label>

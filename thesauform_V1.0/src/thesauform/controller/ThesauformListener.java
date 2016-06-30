@@ -17,7 +17,6 @@ public class ThesauformListener implements ServletContextListener {
 	 * Default constructor.
 	 */
 	public ThesauformListener() {
-		new ThesauformConfiguration();
 	}
 
 	/**
@@ -31,7 +30,7 @@ public class ThesauformListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
+		new ThesauformConfiguration();
 	}
 
 }

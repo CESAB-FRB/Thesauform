@@ -252,7 +252,7 @@ public class Annotation {
 					}
 				}
 				// unit
-				if (!param.get("unit")[0].isEmpty() || !param.get("unit")[0].trim().equalsIgnoreCase("")) {
+				if (param.get("unit")!=null && (!param.get("unit")[0].trim().isEmpty() || !param.get("unit")[0].trim().equalsIgnoreCase(""))) {
 					if (m.getUnit(modifConcept) != null) {
 						Resource unit = m.getUnit(modifConcept);
 						String valueUnit = m.getValue(unit);
@@ -367,7 +367,7 @@ public class Annotation {
 						}
 					}
 				}
-				if (!param.get("unit")[0].trim().isEmpty() || !param.get("unit")[0].trim().equalsIgnoreCase("")) {
+				if (param.get("unit")!=null && (!param.get("unit")[0].trim().isEmpty() || !param.get("unit")[0].trim().equalsIgnoreCase(""))) {
 					Resource unit = m.setUnit(newConcept, param.get("unit")[0].trim());
 					Resource note = m.createInsert(unit);
 					m.setResource(note, DCTerms.created, date);

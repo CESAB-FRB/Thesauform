@@ -35,12 +35,12 @@
 <div id="content">
 	<h2
 		class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">Vote
-		for the trait: ${myTraitVote.uri}</h2>
+		for the concept: ${myTraitVote.uri}</h2>
 	<table id="modif1">
 		<c:if test="${myTraitVote.isInserted}">
 			<tr>
 				<td colspan="2">
-					<h3>Validation of trait insertion :</h3>
+					<h3>Validation of concept insertion :</h3>
 				</td>
 				<td>
 					<div id="ajout">${myTraitVote.nbInsertVote}</div>
@@ -60,7 +60,7 @@
 				<c:set var="count" value="1" scope="page" />
 				<tr>
 					<td colspan="4">
-						<h3>Validation of trait deletetion :</h3>
+						<h3>Validation of concept deletion :</h3>
 					</td>
 				</tr>
 				<tr>
@@ -75,7 +75,7 @@
 								</c:otherwise>
 							</c:choose>
 							<c:set var="count" value="${count + 1}" scope="page" />
-						</c:forEach> propose to delete this trait</td>
+						</c:forEach> propose to delete this concept</td>
 					<td>
 						<div id="delete">${myTraitVote.nbDeleteVote}</div>
 					</td>
@@ -92,7 +92,7 @@
 			test="${!(empty myTraitVote.nameList)||!(empty myTraitVote.definitionList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.abbreviationList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.synonymList)||!(empty myTraitVote.relatedList)||!(empty myTraitVote.categoryList)||!(empty myTraitVote.unitList)||!(empty myTraitVote.commentList)}">
 			<tr>
 				<td colspan="4">
-					<h3>Validation of trait update :</h3>
+					<h3>Validation of concept update :</h3>
 				</td>
 			</tr>
 			<c:choose>

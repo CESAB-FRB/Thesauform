@@ -46,7 +46,7 @@ public class AdminAuthenticationFilter implements Filter {
 			Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 			String rank = user.getRight();
 			boolean authentificationStatus = user.getAuthenticated()
-					&& (rank == ThesauformConfiguration.ADMIN_RANK);
+					&& (rank.equals(ThesauformConfiguration.ADMIN_RANK));
 			if (authentificationStatus) {
 				// pass the request along the filter chain
 				chain.doFilter(request, response);
