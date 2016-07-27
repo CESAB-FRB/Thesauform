@@ -108,8 +108,8 @@
 <div id="content">
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1">To modify a concept</a></li>
-			<li><a href="#tabs-2">To add a concept</a></li>
+			<li><a href="#tabs-1">To modify a term</a></li>
+			<li><a href="#tabs-2">To add a term</a></li>
 		</ul>
 		<div id="tabs-1">
 			<div id="description" class="resourcebox ui-widget-content" data-jowl="owl:Class" >
@@ -124,7 +124,7 @@
 		</div>
 		<div id="tabs-2">
 			<div align="left" class="row">
-				Select the new concept's category in the tree above
+				Select the new term's category in the tree above
 			</div>
 			<div id="description1" class="resourcebox ui-widget-content" data-jowl="owl:Class">
 				<h4 class="ui-dialog-titlebar  ui-state-default propertybox" data-jowl="rdfs:label">Description </h4>

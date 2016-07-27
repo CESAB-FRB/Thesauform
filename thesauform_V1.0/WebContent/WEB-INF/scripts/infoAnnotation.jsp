@@ -88,8 +88,8 @@
 <input type="submit" id="" value="Submit" class="button" />
 <div style="clear: both"></div>
 <c:if test="${!empty my_trait.annotationsList}">
-	<div id="plus" onclick ="$('#modif').toggle();$('#plus').toggle();$('#moins').toggle();"><span class="ui-icon ui-icon-circle-plus" style="float: left; margin-right: 0.3em;"></span><h3 align="left">Annotations proposed : click to see</h3> </div>
-	<div id="moins" onclick ="$('#modif').toggle();$('#plus').toggle();$('#moins').toggle();" style="display:none;"><span class="ui-icon ui-icon-circle-minus" style="float: left; margin-right: 0.3em;"></span><h3 align="left">Annotations proposed : click to hide</h3> </div>
+	<div id="plus" onclick ="$('#modif').toggle();$('#plus').toggle();$('#moins').toggle();"><span class="ui-icon ui-icon-circle-plus" style="float: left; margin-right: 0.3em;"></span><h3 align="left">Proposed edits: click to see</h3> </div>
+	<div id="moins" onclick ="$('#modif').toggle();$('#plus').toggle();$('#moins').toggle();" style="display:none;"><span class="ui-icon ui-icon-circle-minus" style="float: left; margin-right: 0.3em;"></span><h3 align="left">Proposed edits: click to hide</h3> </div>
 </c:if>
 <table id="modif" style="display:none;">
 	<c:forEach items="${my_trait.annotationsList}" var="annotationTmp">

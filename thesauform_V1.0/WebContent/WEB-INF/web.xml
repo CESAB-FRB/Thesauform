@@ -23,6 +23,10 @@
     <filter-name>thesauform_admin</filter-name>
     <url-pattern>/administration/*</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>thesauform_admin</filter-name>
+    <url-pattern>/administration</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>thesauform_expert</filter-name>
     <filter-class>thesauform.controller.expert.ExpertAuthenticationFilter</filter-class>
@@ -30,5 +34,9 @@
   <filter-mapping>
     <filter-name>thesauform_expert</filter-name>
     <url-pattern>/expert/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>thesauform_expert</filter-name>
+    <url-pattern>/expert</url-pattern>
   </filter-mapping>
 </web-app>

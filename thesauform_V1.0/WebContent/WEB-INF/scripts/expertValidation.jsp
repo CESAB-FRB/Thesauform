@@ -15,16 +15,20 @@
 			});
 		});
 		
-		function addVote(id, name, prop, value){
-			var json = $.ajax({ url: "vote?action=add&trait_name="+name+"&property="+prop+"&value="+value, async: false }).responseText;
-			var obj = JSON.parse(json);
-			if(!obj.error) {
-				$("#"+id).html(obj.nb);				
+		//add note
+		function addVote(id, name, prop, value, vote){
+			delVote(id, name, prop, value)
+			if(vote!=0) {
+				var json = $.ajax({ url: "vote?action=add&trait_name="+name+"&property="+prop+"&value="+value+"&vote_value="+vote, async: false }).responseText;
+				var obj = JSON.parse(json);
+				if(!obj.error) {
+					$("#"+id).html(obj.nb);				
+				}
 			}
 		}
 	
 		function delVote(id, name, prop, value){
-			var json = $.ajax({ url: "vote?action=del&trait_name="+name+"&property="+prop+"&&value="+value, async: false }).responseText;
+			var json = $.ajax({ url: "vote?action=del&trait_name="+name+"&property="+prop+"&value="+value+"&vote_value="+0, async: false }).responseText;
 			var obj = JSON.parse(json);
 			if(!obj.error) {
 				$("#"+id).html(obj.nb);				
@@ -35,21 +39,22 @@
 <div id="content">
 	<h2
 		class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">Vote
-		for the concept: ${myTraitVote.uri}</h2>
+		for the term: ${myTraitVote.uri}</h2>
 	<table id="modif1">
 		<c:if test="${myTraitVote.isInserted}">
 			<tr>
 				<td colspan="2">
-					<h3>Validation of concept insertion :</h3>
+					<h3>Validation of term insertion :</h3>
 				</td>
 				<td>
-					<div id="ajout">${myTraitVote.nbInsertVote}</div>
-				</td>
-				<td><span title="ajout" class="ui-icon ui-icon-circle-plus"
-					onclick="addVote(this.title, '${myTraitVote.uri}', 'insert',  'insert');"></span>
-				</td>
-				<td><span title="ajout" class="ui-icon ui-icon-circle-minus"
-					onclick="delVote(this.title, '${myTraitVote.uri}', 'insert',  'insert');"></span>
+					<select title="ajout" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'insert',  'insert', this.options[this.selectedIndex].value);">
+						<option <c:if test="${myTraitVote.nbInsertVote==0}">selected="selected"</c:if> value="0">no response</option>
+						<option <c:if test="${myTraitVote.nbInsertVote==1}">selected="selected"</c:if> value="1">don't like at all</option>
+						<option <c:if test="${myTraitVote.nbInsertVote==2}">selected="selected"</c:if> value="2">like a bit</option>
+						<option <c:if test="${myTraitVote.nbInsertVote==3}">selected="selected"</c:if> value="3">ambivalent</option>
+						<option <c:if test="${myTraitVote.nbInsertVote==4}">selected="selected"</c:if> value="4">like</option>
+						<option <c:if test="${myTraitVote.nbInsertVote==5}">selected="selected"</c:if> value="5">like a lot</option>
+					</select>
 				</td>
 			</tr>
 		</c:if>
@@ -60,7 +65,7 @@
 				<c:set var="count" value="1" scope="page" />
 				<tr>
 					<td colspan="4">
-						<h3>Validation of concept deletion :</h3>
+						<h3>Validation of term deletion :</h3>
 					</td>
 				</tr>
 				<tr>
@@ -75,15 +80,16 @@
 								</c:otherwise>
 							</c:choose>
 							<c:set var="count" value="${count + 1}" scope="page" />
-						</c:forEach> propose to delete this concept</td>
+						</c:forEach> propose to delete this term</td>
 					<td>
-						<div id="delete">${myTraitVote.nbDeleteVote}</div>
-					</td>
-					<td><span title="delete" class="ui-icon ui-icon-circle-plus"
-						onclick="addVote(this.title, '${myTraitVote.uri}', 'delete',  'delete');"></span>
-					</td>
-					<td><span title="delete" class="ui-icon ui-icon-circle-minus"
-						onclick="delVote(this.title, '${myTraitVote.uri}', 'delete',  'delete');"></span>
+						<select title="delete" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'delete',  'delete', this.options[this.selectedIndex].value);">
+							<option <c:if test="${myTraitVote.nbDeleteVote==0}">selected="selected"</c:if> value="0">no response</option>
+							<option <c:if test="${myTraitVote.nbDeleteVote==1}">selected="selected"</c:if> value="1">don't like at all</option>
+							<option <c:if test="${myTraitVote.nbDeleteVote==2}">selected="selected"</c:if> value="2">like a bit</option>
+							<option <c:if test="${myTraitVote.nbDeleteVote==3}">selected="selected"</c:if> value="3">ambivalent</option>
+							<option <c:if test="${myTraitVote.nbDeleteVote==4}">selected="selected"</c:if> value="4">like</option>
+							<option <c:if test="${myTraitVote.nbDeleteVote==5}">selected="selected"</c:if> value="5">like a lot</option>
+						</select>
 					</td>
 				</tr>
 			</c:otherwise>
@@ -92,7 +98,7 @@
 			test="${!(empty myTraitVote.nameList)||!(empty myTraitVote.definitionList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.abbreviationList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.synonymList)||!(empty myTraitVote.relatedList)||!(empty myTraitVote.categoryList)||!(empty myTraitVote.unitList)||!(empty myTraitVote.commentList)}">
 			<tr>
 				<td colspan="4">
-					<h3>Validation of concept update :</h3>
+					<h3>Validation of term update :</h3>
 				</td>
 			</tr>
 			<c:choose>
@@ -111,15 +117,14 @@
 										<td>Current name</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="prefLabel${count}">${prop.value}</div>
-										</td>
-										<td><span title="prefLabel${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}');"></span>
-										</td>
-										<td><span title="prefLabel${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}');"></span>
+											<select title="prefLabel${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -129,15 +134,14 @@
 										<td>Proposition ${count}</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="prefLabel${count}">${prop.value}</div>
-										</td>
-										<td><span title="prefLabel${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}');"></span>
-										</td>
-										<td><span title="prefLabel${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}');"></span>
+											<select title="prefLabel${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'prefLabel', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -174,15 +178,14 @@
 											</c:if>
 										</td>			
 										<td>
-											<div id="def${count}">${prop.value}</div>
-										</td>
-										<td><span title="def${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}');"></span>
-										</td>
-										<td><span title="def${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}');"></span>
+											<select title="def${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -204,15 +207,14 @@
 											</c:choose>
 										</td>
 										<td>
-											<div id="def${count}">${prop.value}</div>
-										</td>
-										<td><span title="def${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}');"></span>
-										</td>
-										<td><span title="def${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}');"></span>
+											<select title="def${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'definition', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -238,15 +240,14 @@
 										<td>Current abbreviation</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="abbrev${count}">${prop.value}</div>
-										</td>
-										<td><span title="abbrev${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}');"></span>
-										</td>
-										<td><span title="abbrev${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}');"></span>
+											<select title="abbrev${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -256,15 +257,14 @@
 										<td>Proposition ${count}</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="abbrev${count}">${prop.value}</div>
-										</td>
-										<td><span title="abbrev${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}');"></span>
-										</td>
-										<td><span title="abbrev${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}');"></span>
+											<select title="abbrev${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'abbreviation', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -290,15 +290,14 @@
 										<td>Current abbreviation</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="syn${count}">${prop.value}</div>
-										</td>
-										<td><span title="syn${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}');"></span>
-										</td>
-										<td><span title="syn${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}');"></span>
+											<select title="syn${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -308,15 +307,14 @@
 										<td>Proposition ${count}</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="syn${count}">${prop.value}</div>
-										</td>
-										<td><span title="syn${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}');"></span>
-										</td>
-										<td><span title="syn${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}');"></span>
+											<select title="syn${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -339,15 +337,14 @@
 							<td>Proposition ${count}</td>
 							<td><c:out value="${prop.key}" /></td>
 							<td>
-								<div id="rel${count}">{prop.value}</div>
-							</td>
-							<td><span title="rel${count}"
-								class="ui-icon ui-icon-circle-plus"
-								onclick="addVote(this.title, '${myTraitVote.uri}', 'related', '${prop.key}');"></span>
-							</td>
-							<td><span title="rel${count}"
-								class="ui-icon ui-icon-circle-minus"
-								onclick="delVote(this.title, '${myTraitVote.uri}', 'related', '${prop.key}');"></span>
+								<select title="rel${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'related', '${prop.key}', this.options[this.selectedIndex].value);">
+									<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+									<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+									<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+									<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+									<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+									<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+								</select>
 							</td>
 						</tr>
 						<c:set var="count" value="${count + 1}" scope="page" />
@@ -370,15 +367,14 @@
 										<td>Current abbreviation</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="unit${count}">${prop.value}</div>
-										</td>
-										<td><span title="unit${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}');"></span>
-										</td>
-										<td><span title="unit${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}');"></span>
+											<select title="unit${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -388,15 +384,14 @@
 										<td>Proposition ${count}</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="unit${count}">${prop.value}</div>
-										</td>
-										<td><span title="unit${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}');"></span>
-										</td>
-										<td><span title="unit${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}');"></span>
+											<select title="unit${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -422,15 +417,14 @@
 										<td>Current abbreviation</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="category${count}">${prop.value}</div>
-										</td>
-										<td><span title="category${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}');"></span>
-										</td>
-										<td><span title="category${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}');"></span>
+											<select title="category${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />
@@ -440,15 +434,14 @@
 										<td>Proposition ${count}</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td>
-											<div id="category${count}">${prop.value}</div>
-										</td>
-										<td><span title="category${count}"
-											class="ui-icon ui-icon-circle-plus"
-											onclick="addVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}');"></span>
-										</td>
-										<td><span title="category${count}"
-											class="ui-icon ui-icon-circle-minus"
-											onclick="delVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}');"></span>
+											<select title="category${count}" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}', this.options[this.selectedIndex].value);">
+												<option <c:if test="${prop.value==0}">selected="selected"</c:if> value="0">no response</option>
+												<option <c:if test="${prop.value==1}">selected="selected"</c:if> value="1">don't like at all</option>
+												<option <c:if test="${prop.value==2}">selected="selected"</c:if> value="2">like a bit</option>
+												<option <c:if test="${prop.value==3}">selected="selected"</c:if> value="3">ambivalent</option>
+												<option <c:if test="${prop.value==4}">selected="selected"</c:if> value="4">like</option>
+												<option <c:if test="${prop.value==5}">selected="selected"</c:if> value="5">like a lot</option>
+											</select>
 										</td>
 									</tr>
 									<c:set var="count" value="${count + 1}" scope="page" />

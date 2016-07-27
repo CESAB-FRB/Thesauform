@@ -29,6 +29,8 @@ public class Vote extends HttpServlet {
 	private final String EMPTY_TRAIT_NAME_MESSAGE = "Empty parameter trait name";
 	private final String EMPTY_PROPERTY_MESSAGE = "Empty parameter property";
 	private final String EMPTY_VALUE_MESSAGE = "Empty parameter value";
+	private final String EMPTY_VOTE_VALUE_MESSAGE = "Empty parameter vote_value";
+	private final String WRONG_VOTE_VALUE_MESSAGE = "Wrong parameter vote_value";
 	private final String EMPTY_ACTION_MESSAGE = "Empty parameter action";
 	private final String WRONG_ACTION_MESSAGE = "Wrong parameter action";
 
@@ -67,12 +69,25 @@ public class Vote extends HttpServlet {
 						if (value == null || value.isEmpty()) {
 							throw new Exception(EMPTY_VALUE_MESSAGE);
 						}
+						Integer voteValue;
+						String voteValueString = request.getParameter("vote_value");
+						if (voteValueString == null || voteValueString.isEmpty()) {
+							throw new Exception(EMPTY_VOTE_VALUE_MESSAGE);
+						}
+						else {
+							if(voteValueString.matches("[012345]")) {
+								voteValue = Integer.parseInt(voteValueString);
+							}
+							else {
+								throw new Exception(WRONG_VOTE_VALUE_MESSAGE);
+							}
+						}
 						traitModel = new SkosTraitModel(
 								getServletContext().getRealPath(ThesauformConfiguration.data_file));
 						VotesModel myVote = new VotesModel(traitModel,
 								getServletContext().getRealPath(ThesauformConfiguration.data_file),
 								getServletContext().getRealPath(ThesauformConfiguration.data_file_tmp), traitName,
-								property, user.getName(), value);
+								property, user.getName(), value, voteValue);
 						// do vote
 						if (action.equals("add")) {
 							countNb = myVote.addVote();

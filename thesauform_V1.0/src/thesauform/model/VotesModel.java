@@ -18,6 +18,7 @@ public class VotesModel {
 	public static final String ERROR_PROP_EMPTY = "No propriety given";
 	public static final String ERROR_PERSON_EMPTY = "No person given";
 	public static final String ERROR_VALUE_EMPTY = "No value given";
+	public static final String ERROR_VOTE_VALUE_EMPTY = "No vote value given";
 	public static final String ERROR_DATABASE_EMPTY = "No trait dabatabase given";
 	public static final String ERROR_TMP_DATABASE_EMPTY = "No trait temporary dabatabase given";
 	public static final String ERROR_MODEL_EMPTY = "No model given";
@@ -31,6 +32,7 @@ public class VotesModel {
 	private String property;
 	private String person;
 	private String value;
+	private Integer voteValue;
 	private String database;
 	private String tmp_database;
 
@@ -46,7 +48,7 @@ public class VotesModel {
 	 * @param value
 	 */
 	public VotesModel(SkosModel myModel, String traitFile, String traitTmpFile, String traitName, String property,
-			String person, String value) {
+			String person, String value, Integer voteValue) {
 		try {
 			// initialize properties
 			if (!(traitName == null || traitName.isEmpty())) {
@@ -68,6 +70,11 @@ public class VotesModel {
 				this.value = value;
 			} else {
 				throw new Exception(ERROR_VALUE_EMPTY);
+			}
+			if (voteValue != null) {
+				this.voteValue = voteValue;
+			} else {
+				throw new Exception(ERROR_VOTE_VALUE_EMPTY);
 			}
 			if (!(traitFile == null || traitFile.isEmpty())) {
 				this.database = traitFile;
@@ -111,7 +118,7 @@ public class VotesModel {
 	 */
 	public Integer addVote() throws Exception {
 		Integer cptVote = null;
-		if (myModel.addVote(this.traitName, this.property, this.person, this.value)) {
+		if (myModel.addVote(this.traitName, this.property, this.person, this.value, this.voteValue)) {
 			this.saveModel();
 			cptVote = this.countVote();
 		} else {

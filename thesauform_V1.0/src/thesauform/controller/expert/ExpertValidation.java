@@ -83,11 +83,11 @@ public class ExpertValidation extends HttpServlet {
 					//// do treatment
 					// bean for the view
 					TraitConceptVote myTraitVote = new TraitConceptVote();
-					// insert vote number
+					// insert vote note
 					Integer insertVote = null;
 					// existence of delete
 					List<String> deleteList = null;
-					// delete vote number
+					// delete vote note
 					Integer deleteVote = null;
 					Map<String, Map<String, Integer>> nameVoteMap = new HashMap<String, Map<String, Integer>>();
 					Map<String, Map<String, Integer>> definitionVoteMap = new HashMap<String, Map<String, Integer>>();
@@ -124,8 +124,8 @@ public class ExpertValidation extends HttpServlet {
 							// test if the concept is inserted
 							if (insertIt.hasNext()) {
 								myTraitVote.setIsInserted(true);
-								// get vote number
-								insertVote = traitModel.countVote(concept, ChangeVoc.insert, "insert");
+								// get vote note by user
+								insertVote = traitModel.countVote(concept, ChangeVoc.insert, user.getName(), "insert");
 								myTraitVote.setNbInsertVote(insertVote);
 							} else {
 								myTraitVote.setIsInserted(false);
@@ -142,8 +142,8 @@ public class ExpertValidation extends HttpServlet {
 							if (deleteIt.hasNext()) {
 								// set the list of contributors
 								myTraitVote.setDeleteList(deleteList);
-								// get vote number
-								deleteVote = traitModel.countVote(concept, ChangeVoc.delete, "delete");
+								// get vote note by user
+								deleteVote = traitModel.countVote(concept, ChangeVoc.delete, user.getName(), "delete");
 								myTraitVote.setNbDeleteVote(deleteVote);
 							} else {
 							}
@@ -160,7 +160,7 @@ public class ExpertValidation extends HttpServlet {
 							String name = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(concept));
 							// test if not empty
 							if (name != null && !name.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, SkosXLVoc.prefLabel, name);
+								Integer propertyVote = traitModel.countVote(concept, SkosXLVoc.prefLabel, user.getName(), name);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								voteMapTmp.put(name, propertyVote);
 								nameVoteMap.put("current", voteMapTmp);
@@ -172,7 +172,7 @@ public class ExpertValidation extends HttpServlet {
 							String definition = traitModel.getValue(traitModel.getDefinition(concept));
 							// test if not empty
 							if (definition != null && !definition.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, definition);
+								Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), definition);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								voteMapTmp.put(definition, propertyVote);
 								definitionVoteMap.put("current", voteMapTmp);
@@ -185,7 +185,7 @@ public class ExpertValidation extends HttpServlet {
 									.getValue(traitModel.getReference(traitModel.getDefinition(concept)));
 							// test if not empty
 							if (reference != null && !reference.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, reference);
+								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, user.getName(), reference);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								voteMapTmp.put(reference, propertyVote);
 								referenceVoteMap.put("current", voteMapTmp);
@@ -198,7 +198,7 @@ public class ExpertValidation extends HttpServlet {
 									.getLabelLiteralForm(traitModel.getAbbreviation(traitModel.getPrefLabel(concept)));
 							// test if not empty
 							if (abbreviation != null && !abbreviation.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.abbreviation,
+								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.abbreviation, user.getName(), 
 										abbreviation);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								voteMapTmp.put(abbreviation, propertyVote);
@@ -211,7 +211,7 @@ public class ExpertValidation extends HttpServlet {
 							String unit = traitModel.getValue(traitModel.getUnit(concept));
 							// test if not empty
 							if (unit != null && !unit.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.prefUnit, unit);
+								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.prefUnit, user.getName(), unit);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								voteMapTmp.put(unit, propertyVote);
 								unitVoteMap.put("current", voteMapTmp);
@@ -225,7 +225,7 @@ public class ExpertValidation extends HttpServlet {
 							// test if not empty
 							if (category != null && !category.isEmpty()) {
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
-								Integer propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive,
+								Integer propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive, user.getName(), 
 										category);
 								voteMapTmp.put(category, propertyVote);
 								categoryVoteMap.put("current", voteMapTmp);
@@ -270,7 +270,7 @@ public class ExpertValidation extends HttpServlet {
 									Statement st = synonymIt.next();
 									Resource AltLabel = st.getObject().as(Resource.class);
 									String synonym = traitModel.getLabelLiteralForm(AltLabel);
-									Integer propertyVote = traitModel.countVote(concept, SkosXLVoc.altLabel, synonym);
+									Integer propertyVote = traitModel.countVote(concept, SkosXLVoc.altLabel, user.getName(), synonym);
 									voteMapTmp.put(synonym, propertyVote);
 								}
 								synonymVoteMap.put("proposed", voteMapTmp);
@@ -291,7 +291,7 @@ public class ExpertValidation extends HttpServlet {
 									Statement st = RelatedIt.next();
 									Resource Related = st.getObject().as(Resource.class);
 									String related = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(Related));
-									Integer propertyVote = traitModel.countVote(concept, SkosVoc.related, related);
+									Integer propertyVote = traitModel.countVote(concept, SkosVoc.related, user.getName(), related);
 									voteMapTmp.put(related, propertyVote);
 								}
 								// set bean property
@@ -319,32 +319,32 @@ public class ExpertValidation extends HttpServlet {
 									while (valueIt.hasNext()) {
 										// get property value
 										String value = valueIt.next();
-										// get vote number for each value
+										// get vote note by user for each value
 										Integer propertyVote = 0;
 										switch (property) {
 										case "name":
-											propertyVote = traitModel.countVote(concept, SkosXLVoc.prefLabel, value);
+											propertyVote = traitModel.countVote(concept, SkosXLVoc.prefLabel, user.getName(), value);
 											break;
 										case "unit":
-											propertyVote = traitModel.countVote(concept, TraitVocTemp.prefUnit, value);
+											propertyVote = traitModel.countVote(concept, TraitVocTemp.prefUnit, user.getName(), value);
 											break;
 										case "reference":
-											propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, value);
+											propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, user.getName(), value);
 											break;
 										case "definition":
-											propertyVote = traitModel.countVote(concept, SkosVoc.definition, value);
+											propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), value);
 											break;
 										case "abbreviation":
-											propertyVote = traitModel.countVote(concept, TraitVocTemp.abbreviation,
+											propertyVote = traitModel.countVote(concept, TraitVocTemp.abbreviation, user.getName(), 
 													value);
 											break;
 										case "category":
-											propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive,
+											propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive, user.getName(), 
 													value);
 											break;
 										default:
 											propertyVoteMap.put("proposed", voteMapTmp);
-											propertyVote = traitModel.countVote(concept, ChangeVoc.update, value);
+											propertyVote = traitModel.countVote(concept, ChangeVoc.update, user.getName(), value);
 											break;
 										}
 										voteMapTmp.put(value, propertyVote);
