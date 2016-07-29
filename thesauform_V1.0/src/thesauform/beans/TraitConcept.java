@@ -12,7 +12,7 @@ public class TraitConcept {
 	private String abbreviation;
 	private String realName;
 	private String category; //manage super class if multiple	
-	private TraitConcept parent; //parent trait  (vertical link)
+	private List<TraitConcept> parent; //parent trait  (vertical link)
 	private List<AnnotationConcept> commentsList; //all comments link to the trait
 	private Map<Integer,List<AnnotationConcept>> annotationsList; //all annotations link to the trait, could be comments
 	private List<TraitConcept> synonymsList; //all synonyms trait link to the trait
@@ -128,9 +128,9 @@ public class TraitConcept {
 		return (returnVal);
 	}
 
-	public boolean valideParent(TraitConcept parent) throws Exception {
+	public boolean valideParent(List<TraitConcept> parent) throws Exception {
 		boolean returnVal = false;
-		if (parent != null && (parent instanceof TraitConcept)) {
+		if (parent != null && !parent.isEmpty()) {
 			returnVal = true;
 		} else {
 			throw new Exception(MISSING_CATEGORY);
@@ -230,7 +230,7 @@ public class TraitConcept {
 		return (this.category);
 	}
 
-	public TraitConcept getParent() {
+	public List<TraitConcept> getParent() {
 		return (this.parent);
 	}
 
@@ -338,7 +338,7 @@ public class TraitConcept {
 		}
 	}
 
-	public void setParent(TraitConcept parent) throws Exception {
+	public void setParent(List<TraitConcept> parent) throws Exception {
 		try {
 			if (valideParent(parent)) {
 				this.parent = parent;

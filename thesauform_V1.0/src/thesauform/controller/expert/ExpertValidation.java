@@ -220,14 +220,20 @@ public class ExpertValidation extends HttpServlet {
 						}
 						// get parent/category
 						try {
-							String category = traitModel
-									.getLabelLiteralForm(traitModel.getPrefLabel(traitModel.getCategory(concept)));
-							// test if not empty
-							if (category != null && !category.isEmpty()) {
+							StmtIterator parentIt = traitModel.getAllParent(concept);
+							if (parentIt.hasNext()) {
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
-								Integer propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive, user.getName(), 
-										category);
-								voteMapTmp.put(category, propertyVote);
+								while (parentIt.hasNext()) {
+									Statement st = parentIt.next();
+									Resource parent = st.getObject().as(Resource.class);
+									String category = parent.getLocalName();
+									// test if not empty
+									if (category != null && !category.isEmpty()) {
+										Integer propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive, user.getName(), 
+												category);
+										voteMapTmp.put(category, propertyVote);
+									}
+								}
 								categoryVoteMap.put("current", voteMapTmp);
 							}
 						} catch (Exception e) {

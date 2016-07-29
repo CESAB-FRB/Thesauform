@@ -44,7 +44,7 @@
 		<c:if test="${myTraitVote.isInserted}">
 			<tr>
 				<td colspan="2">
-					<h3>Validation of term insertion :</h3>
+					<h3>What do you think of the suggested term?</h3>
 				</td>
 				<td>
 					<select title="ajout" class="notation" onchange="addVote(this.title, '${myTraitVote.uri}', 'insert',  'insert', this.options[this.selectedIndex].value);">
@@ -65,7 +65,7 @@
 				<c:set var="count" value="1" scope="page" />
 				<tr>
 					<td colspan="4">
-						<h3>Validation of term deletion :</h3>
+						<h3>Do you think the term should be removed?</h3>
 					</td>
 				</tr>
 				<tr>
@@ -98,7 +98,7 @@
 			test="${!(empty myTraitVote.nameList)||!(empty myTraitVote.definitionList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.abbreviationList)||!(empty myTraitVote.referenceList)||!(empty myTraitVote.synonymList)||!(empty myTraitVote.relatedList)||!(empty myTraitVote.categoryList)||!(empty myTraitVote.unitList)||!(empty myTraitVote.commentList)}">
 			<tr>
 				<td colspan="4">
-					<h3>Validation of term update :</h3>
+					<h3>Evaluation :</h3>
 				</td>
 			</tr>
 			<c:choose>

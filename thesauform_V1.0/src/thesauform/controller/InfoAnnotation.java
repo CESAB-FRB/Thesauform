@@ -152,6 +152,27 @@ public class InfoAnnotation extends HttpServlet {
 					errors.put(ERROR_UNIT, e.getMessage() + " for " + traitName);
 				}
 				// get parent
+				//@PATCH : multi parent
+				try {
+					StmtIterator parentIt = traitModel.getAllParent(concept);
+					if (parentIt.hasNext()) {
+						List<TraitConcept> myParentList = new ArrayList<>();
+						while (parentIt.hasNext()) {
+							TraitConcept myTraitTmp = new TraitConcept();
+							Statement st = parentIt.next();
+							Resource parent = st.getObject().as(Resource.class);
+							myTraitTmp.setRealName(parent.getLocalName());
+							myTraitTmp.setName(parent.getLocalName());
+							myParentList.add(myTraitTmp);
+						}
+						myTrait.setParent(myParentList);
+					} else {
+						throw new Exception(EMPTY_CATEGORY);
+					}
+				} catch (Exception e) {
+					errors.put(ERROR_CATEGORIES, e.getMessage() + " for " + traitName);
+				}
+				/*
 				try {
 					TraitConcept myTraitTmp = new TraitConcept();
 					myTraitTmp.setName(
@@ -177,7 +198,7 @@ public class InfoAnnotation extends HttpServlet {
 					} else {
 						errors.put("category", "no cat");
 					}
-				}
+				}*/
 				// get comments in a list
 				try {
 					// get all comments in a list
@@ -243,12 +264,12 @@ public class InfoAnnotation extends HttpServlet {
 				}
 				// get all categories in a list of TraitConcept
 				try {
-					StmtIterator synonymIt = traitModel.getListStatement(concept.getLocalName());
-					if (synonymIt.hasNext()) {
+					StmtIterator categoriesIt = traitModel.getListStatement(concept.getLocalName());
+					if (categoriesIt.hasNext()) {
 						List<TraitConcept> myCategoryList = new ArrayList<>();
-						while (synonymIt.hasNext()) {
+						while (categoriesIt.hasNext()) {
 							TraitConcept myTraitTmp = new TraitConcept();
-							Statement st = synonymIt.next();
+							Statement st = categoriesIt.next();
 							if (st.getPredicate().getLocalName().equalsIgnoreCase("cat")) {
 								Resource cat = st.getObject().as(Resource.class);
 								myTraitTmp.setRealName(cat.getLocalName());

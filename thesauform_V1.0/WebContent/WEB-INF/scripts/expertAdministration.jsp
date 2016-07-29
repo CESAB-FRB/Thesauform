@@ -20,9 +20,9 @@
 <div id="content">
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1">Modified concepts</a></li>
-			<li><a href="#tabs-2">Inserted concepts</a></li>
-			<li><a href="#tabs-3">Deleted concepts</a></li>
+			<li><a href="#tabs-1">Modified terms</a></li>
+			<li><a href="#tabs-2">Suggested terms</a></li>
+			<li><a href="#tabs-3">Deleted terms</a></li>
 		</ul>
 		<div id="tabs-1">
 			<c:choose>

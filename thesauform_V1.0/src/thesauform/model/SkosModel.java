@@ -1296,7 +1296,7 @@ public class SkosModel implements AnnotationModel {
 					} else if (prop.getLocalName().equalsIgnoreCase("altLabel")) {
 						tab.put("synonym", anno.asNode().getLiteralValue().toString());
 					} else if (prop.getLocalName().equalsIgnoreCase("broaderTransitive")) {
-						tab.put("trait category", anno.asNode().getLiteralValue().toString());
+						tab.put("term category", anno.asNode().getLiteralValue().toString());
 					} else {
 						tab.put(prop.getLocalName(), anno.asNode().getLiteralValue().toString());
 					}
@@ -1476,14 +1476,18 @@ public class SkosModel implements AnnotationModel {
 		StmtIterator i = this.SimpleSelector(null, RDF.type, SkosVoc.Concept);
 		while (i.hasNext()) {
 			Resource s = i.next().getSubject();
+			StmtIterator stmtIt = null;
 			Statement stmt = null;
 			try {
-				stmt = s.listProperties(SkosVoc.broaderTransitive).next();
+				stmtIt = s.listProperties(SkosVoc.broaderTransitive);
+				while (stmtIt.hasNext()) {
+					stmt = stmtIt.next();
+					if (stmt != null) {
+						m.add(stmt.getObject().as(Resource.class), SkosVoc.narrowerTransitive, stmt.getSubject());
+					}
+				}
 			} catch (Exception e) {
 				// TODO: handle exception
-			}
-			if (stmt != null) {
-				m.add(stmt.getObject().as(Resource.class), SkosVoc.narrowerTransitive, stmt.getSubject());
 			}
 		}
 		NodeIterator it = null;

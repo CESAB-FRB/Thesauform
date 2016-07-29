@@ -1,4 +1,24 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script type="text/javascript">
+	$( "#cat" ).autocomplete({
+		source : function(requete, reponse){ 
+			$.ajax({
+				url : 'annotationSearch', 
+				dataType : 'json', 
+				data : {
+					trait : $('#cat').val(), 
+					maxRows : 15
+				},
+				success : function(data){
+					reponse($.map($.parseJSON(JSON.stringify(data)),
+					function(objet){
+						return objet; // on retourne cette forme de suggestion
+					}));
+					}
+				});
+			}
+	});
+</script>
 
 <c:if test="${not empty my_errors['parent']}">
 	<div id="errorloginName" class="ui-state-error ui-corner-all">
@@ -72,13 +92,22 @@
 		</div>
 	</c:if>
 </c:forTokens>
-<div class="row">
-	<label id="l_cat" for="cat">Category:&nbsp;</label>
-	<input type="text" name="cat" id="cat" value="<c:out value="${my_trait.parent.name}"/>">
+<c:forEach items="${my_trait.parent}" var="parent" varStatus="parent_cpt">
+	<div class="row" id="parent<c:out value="${parent_cpt.index}" />">
+		<label id="l_cat<c:out value="${parent_cpt.index}" />" for="cat<c:out value="${parent_cpt.index}" />">Category:&nbsp;</label>
+		<input style="color: black;" disabled="disabled" type="text" name="cat<c:out value="${parent_cpt.index}" />" id="cat<c:out value="${parent_cpt.index}" />" value="<c:out value="${parent.name}"/>">
+		<c:if test="${parent_cpt.index==0}">
+			<span class="ui-icon ui-icon-circle-plus" style="float: left; margin-right: 0.3em;" onclick="document.getElementById('parent').style.display='block'; "></span>
+		</c:if>
+	</div>
+</c:forEach>        
+<div class="row" id="parent" style="display: none;">
+	<label id="l_cat" for="cat">Proposed new category:&nbsp;</label>
+	<input type="text" name="cat" id="cat">
 </div>
 <div class="row">
 	<label id="l_comment" for="commment">Comment:&nbsp;</label>
-	<textarea type="text" name="comment" id="comment" ></textarea>
+	<textarea name="comment" id="comment" ></textarea>
 </div>
 <div class="row">
         <label id="delete" for="commment">Delete:&nbsp;</label>
