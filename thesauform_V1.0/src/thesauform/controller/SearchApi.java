@@ -68,7 +68,12 @@ public class SearchApi extends HttpServlet {
 		String paramAllTraits = request.getParameter("allTraits");
 
 		// set public file
-		traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+		if(ThesauformConfiguration.database) {
+			traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
+		}
+		else {
+			traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+		}
 		if (param != null) {
 			Resource trait = traitModel.getResource(Format.formatName(param));
 			// Query get Trait Info

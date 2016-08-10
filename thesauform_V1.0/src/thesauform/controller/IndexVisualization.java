@@ -42,34 +42,41 @@ public class IndexVisualization extends HttpServlet {
 		// trait model
 		SkosTraitModel traitModel = null;
 		// set public file
-		traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
-		// treatment
-		if (traitModel != null) {
-			// TODO create object trait in separating code into model
-			TraitConcept myTrait = new TraitConcept();
-			//// query model
-			// get all trait concept
-			try {
-				StmtIterator it = traitModel.SimpleSelector(null, RDF.type, SkosVoc.Concept);
-				if (it.hasNext()) {
-					List<TraitConcept> myConceptList = new ArrayList<>();
-					while (it.hasNext()) {
-						TraitConcept myTraitTmp = new TraitConcept();
-						Resource concept = it.next().getSubject();
-						myTraitTmp.setName(traitModel.getLabelLiteralForm(traitModel.getPrefLabel(concept)));
-						myConceptList.add(myTraitTmp);
-					}
-					myTrait.setSonsList(myConceptList);
-				} else {
-					throw new Exception(EMPTY_LIST);
-				}
-			} catch (Exception e) {
-				errors.put(ERROR_LIST, e.getMessage() + " for Model");
+		if(!ThesauformConfiguration.public_data_file.isEmpty()) {
+			if(ThesauformConfiguration.database) {
+				traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
 			}
-			request.setAttribute("my_trait", myTrait);
-			request.setAttribute("my_errors", errors);
-			traitModel.close();
+			else {
+				traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+			}
+			// treatment
+			if (traitModel != null) {
+				// TODO create object trait in separating code into model
+				TraitConcept myTrait = new TraitConcept();
+				//// query model
+				// get all trait concept
+				try {
+					StmtIterator it = traitModel.SimpleSelector(null, RDF.type, SkosVoc.Concept);
+					if (it.hasNext()) {
+						List<TraitConcept> myConceptList = new ArrayList<>();
+						while (it.hasNext()) {
+							TraitConcept myTraitTmp = new TraitConcept();
+							Resource concept = it.next().getSubject();
+							myTraitTmp.setName(traitModel.getLabelLiteralForm(traitModel.getPrefLabel(concept)));
+							myConceptList.add(myTraitTmp);
+						}
+						myTrait.setSonsList(myConceptList);
+					} else {
+						throw new Exception(EMPTY_LIST);
+					}
+				} catch (Exception e) {
+					errors.put(ERROR_LIST, e.getMessage() + " for Model");
+				}
+				request.setAttribute("my_trait", myTrait);
+				request.setAttribute("my_errors", errors);
+				traitModel.close();
+			}
+			this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 		}
-		this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 	}
 }

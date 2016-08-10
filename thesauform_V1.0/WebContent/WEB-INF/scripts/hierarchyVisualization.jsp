@@ -104,13 +104,24 @@
 	</div>
 	<div id="down">
 		<h4>Browse the Hierarchy</h4>
-		<div id="" class="ui-widget-content" style="text-align: left;">
-			<h4 class="ui-dialog-titlebar ui-state-default">Treeview</h4>
-			<div id="jtree" class="jstree-classic">
-			</div>
-		</div>
-		<input id="owlauto" type="text" size="40" style="display:block;width:99%;margin:5px 0px;" title="enter a search term"/>
-		<div class="info" style="color: rgb(195, 195 ,195);">Enter Search Terms here</div>
-		<hr>
+		<c:choose>
+			<c:when test="${empty my_error}">
+				<div id="" class="ui-widget-content" style="text-align: left;">
+					<h4 class="ui-dialog-titlebar ui-state-default">Treeview</h4>
+					<div id="jtree" class="jstree-classic">
+					</div>
+				</div>
+				<input id="owlauto" type="text" size="40" style="display:block;width:99%;margin:5px 0px;" title="enter a search term"/>
+				<div class="info" style="color: rgb(195, 195 ,195);">Enter Search Terms here</div>
+				<hr>			
+			</c:when>
+			<c:otherwise>
+				<div id="errorloginLogin" class="ui-state-error ui-corner-all">
+					<span class="ui-icon ui-icon-alert"
+						style="float: left; margin-right: 0.3em;"></span> <strong>${my_error}</strong>
+				</div>
+			
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>

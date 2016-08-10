@@ -144,7 +144,7 @@
 	<c:forEach items="${my_trait.commentsList}" var="comment">
 		<c:set var="cptComment" value="${cptComment + 1}" scope="page"/>
 		<tr>
-			<td>Comment<c:out value="${cptComment}"/></td>
+			<td>Comment <c:out value="${cptComment}"/></td>
 			<td>by <c:out value="${comment.creator}"/></td>
 		</tr>
 		<tr>

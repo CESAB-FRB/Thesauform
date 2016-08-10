@@ -35,7 +35,13 @@ public class Annotation {
 
 	private static void setModif(HttpSession session, HttpServletRequest request) throws Exception {
 		String parameter = (String) request.getServletContext().getAttribute(ThesauformConfiguration.TRAIT_FILE);
-		String file = (String) request.getServletContext().getRealPath(parameter);
+		String file = "";
+		if(request.getServletContext().getAttribute(ThesauformConfiguration.DATABASE)=="false") {
+			file = (String) request.getServletContext().getRealPath(parameter);
+		}
+		else {
+			file = (String) parameter;
+		}
 		Calendar date = Calendar.getInstance();
 		// test if session is correct
 		if (session.getAttribute(ThesauformConfiguration.USR_SESSION) instanceof Person) {
@@ -305,7 +311,13 @@ public class Annotation {
 
 	public static void addNewConcept(HttpServletRequest request, HttpSession session) throws Exception {
 		String parameter = (String) request.getServletContext().getAttribute(ThesauformConfiguration.TRAIT_FILE);
-		String file = (String) request.getServletContext().getRealPath(parameter);
+		String file = "";
+		if(request.getServletContext().getAttribute(ThesauformConfiguration.DATABASE)=="false") {
+			file = (String) request.getServletContext().getRealPath(parameter);
+		}
+		else {
+			file = (String) parameter;
+		}
 		Calendar date = Calendar.getInstance();
 		// test if session is correct
 		if (session.getAttribute(ThesauformConfiguration.USR_SESSION) instanceof Person) {

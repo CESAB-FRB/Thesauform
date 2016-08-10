@@ -335,7 +335,7 @@ public class SkosModel implements AnnotationModel {
 		}
 		return person;
 	}
-
+	
 	public Map<String, List<String>> getAllTraitWithAnn() {
 		Map<String, List<String>> map = new TreeMap<>();
 		NodeIterator insert = this.getAllMember(m.getResource(ThesauformConfiguration.term_uri + "#Insert"));

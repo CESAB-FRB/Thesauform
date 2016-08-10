@@ -181,7 +181,7 @@
 	</div>
 </div>
 <div id="aside">
-		<div id="" class="ui-widget-content" style="text-align: left">
+		<div id="" class="ui-widget-content">
 			<h4 class="ui-dialog-titlebar ui-state-default">Treeview</h4>
 			<div id="jtree" class="jstree-classic"></div>
 		</div>

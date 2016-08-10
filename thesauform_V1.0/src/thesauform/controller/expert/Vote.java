@@ -82,12 +82,23 @@ public class Vote extends HttpServlet {
 								throw new Exception(WRONG_VOTE_VALUE_MESSAGE);
 							}
 						}
-						traitModel = new SkosTraitModel(
-								getServletContext().getRealPath(ThesauformConfiguration.data_file));
-						VotesModel myVote = new VotesModel(traitModel,
-								getServletContext().getRealPath(ThesauformConfiguration.data_file),
-								getServletContext().getRealPath(ThesauformConfiguration.data_file_tmp), traitName,
-								property, user.getName(), value, voteValue);
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
+						VotesModel myVote;
+						if(ThesauformConfiguration.database) {
+							myVote = new VotesModel(traitModel, ThesauformConfiguration.data_file, ThesauformConfiguration.data_file_tmp, traitName,
+									property, user.getName(), value, voteValue);
+						}
+						else {
+							myVote = new VotesModel(traitModel,
+									getServletContext().getRealPath(ThesauformConfiguration.data_file),
+									getServletContext().getRealPath(ThesauformConfiguration.data_file_tmp), traitName,
+									property, user.getName(), value, voteValue);
+						}
 						// do vote
 						if (action.equals("add")) {
 							countNb = myVote.addVote();

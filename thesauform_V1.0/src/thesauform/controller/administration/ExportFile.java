@@ -50,13 +50,28 @@ public class ExportFile extends HttpServlet {
 				File file = null;
 				switch (fileType) {
 					case PERSON_TYPE:
-						file = new File(getServletContext().getRealPath(ThesauformConfiguration.person_file));
+						if(ThesauformConfiguration.database) {
+							file = new File(ThesauformConfiguration.person_file);
+						}
+						else {
+							file = new File(getServletContext().getRealPath(ThesauformConfiguration.person_file));
+						}
 						break;
 					case DATA_TYPE:
-						file = new File(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						if(ThesauformConfiguration.database) {
+							file = new File(ThesauformConfiguration.data_file);
+						}
+						else {
+							file = new File(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 						break;
 					case DATA_PUBLIC_TYPE:
-						file = new File(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+						if(ThesauformConfiguration.database) {
+							file = new File(ThesauformConfiguration.public_data_file);
+						}
+						else {
+							file = new File(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+						}
 						break;
 					default:
 						errors.put(TYPE_ERROR, TYPE_ERROR_MESSAGE);

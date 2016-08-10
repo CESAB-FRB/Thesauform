@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/administration/clearCache")
 public class CacheClear extends HttpServlet {
-
 	/**
 	 * 
 	 */
@@ -44,12 +43,24 @@ public class CacheClear extends HttpServlet {
 					// do treatment
 					// clear cache
 					try {
-						PrintWriter cleanerF = new PrintWriter(
-								getServletContext().getRealPath(ThesauformConfiguration.data_file_tmp));
+						PrintWriter cleanerF;
+						if(ThesauformConfiguration.database) {
+							cleanerF = new PrintWriter(ThesauformConfiguration.data_file_tmp);
+						}
+						else {
+							cleanerF = new PrintWriter(
+									getServletContext().getRealPath(ThesauformConfiguration.data_file_tmp));
+						}
 						cleanerF.print("");
 						cleanerF.close();
-						PrintWriter cleanerP = new PrintWriter(
-								getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+						PrintWriter cleanerP;
+						if(ThesauformConfiguration.database) {
+							cleanerP = new PrintWriter(ThesauformConfiguration.person_file_tmp);
+						}
+						else {
+							cleanerP = new PrintWriter(
+									getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+						}
 						cleanerP.print("");
 						cleanerP.close();
 						this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);

@@ -6,12 +6,11 @@
 <html>
 	<head>
 		<title>${_tab_title_}</title>
-	
 		<link rel="stylesheet" type="text/css"
 			href="${pageContext.request.contextPath}/CSS/start/jquery-ui-1.7.3.custom.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/layout.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/main.css" />
-		
+		<link rel="icon" href="${pageContext.request.contextPath}/IMG/favicon.ico" />		
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/jquery.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/jquery-ui-1.7.2.custom.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/authentificationAnnotation.js"></script>
@@ -40,11 +39,15 @@
 			<div id="navigation">
 				<ul id="menu">
 					<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/visualizationFacet">Faceted search</a></li>
-					<li><a href="${pageContext.request.contextPath}/visualizationHierarchy">Hierarchy search</a></li>
-					<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
-					<li><a href="${pageContext.request.contextPath}/references">References</a></li>
-					<li><a href="${pageContext.request.contextPath}/api">API</a></li>
+					<c:if test="${not empty _facet_list_}">
+						<li><a href="${pageContext.request.contextPath}/visualizationFacet">Faceted search</a></li>
+					</c:if>
+					<c:if test="${not empty _public_data_file_}">
+						<li><a href="${pageContext.request.contextPath}/visualizationHierarchy">Hierarchy search</a></li>
+						<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
+						<li><a href="${pageContext.request.contextPath}/references">References</a></li>
+						<li><a href="${pageContext.request.contextPath}/api">API</a></li>
+					</c:if>
 					<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
 					<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
 					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>

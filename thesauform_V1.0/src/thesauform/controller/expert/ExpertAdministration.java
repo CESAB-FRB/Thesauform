@@ -54,11 +54,21 @@ public class ExpertAdministration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					if(ThesauformConfiguration.database) {
+						session.setAttribute(PERSON_FILE, ThesauformConfiguration.person_file);
+					}
+					else {
+						session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					}
 					// do treatment
 					try {
-						// set public file
-						traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						// set file
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 						// pass list of all name of modified trait to the view
 						Map<String, List<String>> traitMap = traitModel.getAllTraitWithAnn();
 						List<String> insertedTraitList;
@@ -133,11 +143,21 @@ public class ExpertAdministration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					if(ThesauformConfiguration.database) {
+						session.setAttribute(PERSON_FILE, ThesauformConfiguration.person_file);
+					}
+					else {
+						session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					}
 					// do treatment
 					try {
-						// set public file
-						traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						// set protected file
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 						// pass list of all name of modified trait to the view
 						Map<String, List<String>> traitMap = traitModel.getAllTraitWithAnn();
 						List<String> insertedTraitList;

@@ -20,6 +20,7 @@ import thesauform.model.vocabularies.TraitVocTemp;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 import com.hp.hpl.jena.vocabulary.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -81,7 +82,12 @@ public class InfoAnnotation extends HttpServlet {
 		if (request.getParameter(ThesauformConfiguration.GET_VIZ) != null
 				&& request.getParameter(ThesauformConfiguration.GET_VIZ).equals("1")) {
 			// set public file
-			traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+			if(ThesauformConfiguration.database) {
+				traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
+			}
+			else {
+				traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+			}
 		} else {
 			if (session != null) {
 				if (session.getAttribute(ThesauformConfiguration.USR_SESSION) instanceof Person) {
@@ -89,8 +95,12 @@ public class InfoAnnotation extends HttpServlet {
 					boolean authentificationStatus = user.getAuthenticated();
 					if (authentificationStatus) {
 						// set protected file
-						traitModel = new SkosTraitModel(
-								getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 					} else {
 						// re-authenticate
 						this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED)
@@ -216,7 +226,7 @@ public class InfoAnnotation extends HttpServlet {
 							// get comment model object
 							Resource commentRawObject = commentRawList.next().getObject().as(Resource.class);
 							myAnnotationTmp.setProperty(COMMENT_NAME + cpt);
-							// myAnnotationTmp.setCreator(commentRawObject.listProperties(DC.creator).next().getObject().as(Resource.class).listProperties(FOAF.name).next().getObject().asNode().getLiteralLexicalForm());
+							myAnnotationTmp.setCreator(commentRawObject.listProperties(DC.creator).next().getObject().as(Resource.class).listProperties(FOAF.name).next().getObject().asNode().getLiteralLexicalForm());
 							myAnnotationTmp.setValue(Format.printDef(commentRawObject.listProperties(RDF.value).next()
 									.getObject().asNode().getLiteralLexicalForm()));
 							myCommentList.add(myAnnotationTmp);

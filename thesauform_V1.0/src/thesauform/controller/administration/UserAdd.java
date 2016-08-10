@@ -74,8 +74,15 @@ public class UserAdd extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					UsersModel usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
-							getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					UsersModel usersMap = null;					
+					if(ThesauformConfiguration.database) {
+						usersMap = new UsersModel(ThesauformConfiguration.person_file,
+								ThesauformConfiguration.person_file_tmp);
+					}
+					else {
+						usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
+								getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					}
 					// do treatment
 					String userName = request.getParameter("user_name");
 					if (userName != null && !userName.isEmpty()) {
@@ -114,8 +121,13 @@ public class UserAdd extends HttpServlet {
 							try {
 								usersMap.addUser(newUser);
 								// add user in trait model too
-								SkosTraitModel traitModel = new SkosTraitModel(
-										getServletContext().getRealPath(ThesauformConfiguration.data_file));
+								SkosTraitModel traitModel;
+								if(ThesauformConfiguration.database) {
+									traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+								}
+								else {
+									traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+								}
 								// add user in trait model if not existing
 								traitModel.getPerson(userName, userMail);
 								traitModel.save(getServletContext().getRealPath(ThesauformConfiguration.data_file));

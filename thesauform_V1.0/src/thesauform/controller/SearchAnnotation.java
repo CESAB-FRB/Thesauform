@@ -47,7 +47,14 @@ public class SearchAnnotation extends HttpServlet {
 		if (request.getParameter(ThesauformConfiguration.GET_VIZ) != null
 				&& request.getParameter(ThesauformConfiguration.GET_VIZ).equals("1")) {
 			// set public file
-			traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+			if(!ThesauformConfiguration.public_data_file.isEmpty()) {
+				if(ThesauformConfiguration.database) {
+					traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
+				}
+				else {
+					traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+				}
+			}
 		} else {
 			if (session != null) {
 				if (session.getAttribute(ThesauformConfiguration.USR_SESSION) instanceof Person) {
@@ -55,8 +62,12 @@ public class SearchAnnotation extends HttpServlet {
 					boolean authentificationStatus = user.getAuthenticated();
 					if (authentificationStatus) {
 						// set protected file
-						traitModel = new SkosTraitModel(
-								getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 					} else {
 						if (request.getParameter(ThesauformConfiguration.GET_VIZ) != null
 								&& request.getParameter(ThesauformConfiguration.GET_VIZ).equals("1")) {

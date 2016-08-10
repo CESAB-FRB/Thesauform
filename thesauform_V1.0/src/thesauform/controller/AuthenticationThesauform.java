@@ -28,9 +28,12 @@ public class AuthenticationThesauform extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		getServletContext().setAttribute("_database_", ThesauformConfiguration.database);
+		getServletContext().setAttribute("_database_path_", ThesauformConfiguration.database_path);
 		getServletContext().setAttribute("_tab_title_", ThesauformConfiguration.tab_title);
 		getServletContext().setAttribute("_data_file_", ThesauformConfiguration.data_file);
 		getServletContext().setAttribute("_data_file_tmp_", ThesauformConfiguration.data_file_tmp);
+		getServletContext().setAttribute("_public_data_file_", ThesauformConfiguration.public_data_file);
 		getServletContext().setAttribute("_person_file_", ThesauformConfiguration.person_file);
 		getServletContext().setAttribute("_person_file_tmp_", ThesauformConfiguration.person_file_tmp);
 		getServletContext().setAttribute("_term_uri_", ThesauformConfiguration.term_uri);
@@ -44,6 +47,7 @@ public class AuthenticationThesauform extends HttpServlet {
 		getServletContext().setAttribute("_trait_display_", ThesauformConfiguration.trait_display);
 		getServletContext().setAttribute("_logos_", ThesauformConfiguration.logos);
 		getServletContext().setAttribute("_logo_header_", ThesauformConfiguration.logo);
+		getServletContext().setAttribute("_facet_list_", ThesauformConfiguration.facet_list);
 		// test if a session is initialized
 		HttpSession session = request.getSession(false);
 		// get the mode
@@ -115,9 +119,15 @@ public class AuthenticationThesauform extends HttpServlet {
 		// authentication would no success if an error is set before
 		if (isAuthentificationProcess) {
 			// test if person exist in data file
-			UsersModel usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
-					getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
-
+			UsersModel usersMap = null;					
+			if(ThesauformConfiguration.database) {
+				usersMap = new UsersModel(ThesauformConfiguration.person_file,
+						ThesauformConfiguration.person_file_tmp);
+			}
+			else {
+				usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
+						getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+			}
 			boolean authentificationStatus = false;
 			try {
 				switch (action) {

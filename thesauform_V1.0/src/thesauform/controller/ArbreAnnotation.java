@@ -42,6 +42,8 @@ public class ArbreAnnotation extends HttpServlet {
 	public static final String GET_PARAMETER = "trait";
 	public static final String ERROR_PARAMETER = "parameter";
 	public static final String ERROR_MESSAGE_PARAMETER = "parameter " + GET_PARAMETER + " empty";
+	public static final String ERROR_PUBLIC_FILE = "public_file";
+	public static final String ERROR_MESSAGE_PUBLIC_FILE = "public file is  empty";
 	public static final String ERROR_CONCEPT = "concept";
 	public static final String ERROR_MESSAGE_CONCEPT = "Cannot find trait in model";
 	public static final String ERROR_SONS = "sons";
@@ -61,8 +63,17 @@ public class ArbreAnnotation extends HttpServlet {
 		if (request.getParameter(ThesauformConfiguration.GET_VIZ) != null
 				&& request.getParameter(ThesauformConfiguration.GET_VIZ).equals("1")) {
 			// set public file
-			traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
-			request.setAttribute(ThesauformConfiguration.GET_VIZ, "1");
+			if(!ThesauformConfiguration.public_data_file.isEmpty()) {
+				if(ThesauformConfiguration.database) {
+					traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
+				}
+				else {
+					traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+				}
+				request.setAttribute(ThesauformConfiguration.GET_VIZ, "1");
+			} else {
+				errors.put(ERROR_PUBLIC_FILE, ERROR_MESSAGE_PUBLIC_FILE);
+			}
 		} else {
 			if (session != null) {
 				if (session.getAttribute(ThesauformConfiguration.USR_SESSION) instanceof Person) {
@@ -70,8 +81,12 @@ public class ArbreAnnotation extends HttpServlet {
 					boolean authentificationStatus = user.getAuthenticated();
 					if (authentificationStatus) {
 						// set protected file
-						traitModel = new SkosTraitModel(
-								getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						if(ThesauformConfiguration.database) {
+							traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+						}
+						else {
+							traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+						}
 					} else {
 						// re-authenticate
 						this.getServletContext().getRequestDispatcher(ThesauformConfiguration.VUE_FAILED)

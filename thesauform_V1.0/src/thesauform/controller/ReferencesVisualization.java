@@ -37,7 +37,14 @@ public class ReferencesVisualization extends HttpServlet {
 		// trait model
 		SkosTraitModel traitModel = null;
 		// set public file
-		traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+		if(!ThesauformConfiguration.public_data_file.isEmpty()) {
+			if(ThesauformConfiguration.database) {
+				traitModel = new SkosTraitModel(ThesauformConfiguration.public_data_file);
+			}
+			else {
+				traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.public_data_file));
+			}
+		}
 		// Treatment
 		if (traitModel != null) {
 			try {

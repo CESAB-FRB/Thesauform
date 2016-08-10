@@ -79,7 +79,12 @@ public class ExpertValidation extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+					if(ThesauformConfiguration.database) {
+						traitModel = new SkosTraitModel(ThesauformConfiguration.data_file);
+					}
+					else {
+						traitModel = new SkosTraitModel(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+					}
 					//// do treatment
 					// bean for the view
 					TraitConceptVote myTraitVote = new TraitConceptVote();

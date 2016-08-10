@@ -26,7 +26,12 @@ public class HierarchyVisualization extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String error = "";
 		// set visualization request
+		if(ThesauformConfiguration.public_data_file.isEmpty()) {
+			error = "public file empty";
+		}
+		request.setAttribute("my_error", error);
 		request.setAttribute(ThesauformConfiguration.GET_VIZ, "1");
 		this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 	}

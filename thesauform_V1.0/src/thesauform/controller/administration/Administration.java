@@ -35,8 +35,12 @@ public class Administration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					session.setAttribute(PERSON_FILE,
-							getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					if(ThesauformConfiguration.database) {
+						session.setAttribute(PERSON_FILE, ThesauformConfiguration.person_file);						
+					}
+					else {
+						session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					}
 					// do treatment
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 				} else {
@@ -65,8 +69,12 @@ public class Administration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					session.setAttribute(PERSON_FILE,
-							getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					if(ThesauformConfiguration.database) {
+						session.setAttribute(PERSON_FILE, ThesauformConfiguration.person_file);
+					}
+					else {
+						session.setAttribute(PERSON_FILE, getServletContext().getRealPath(ThesauformConfiguration.person_file));
+					}
 					// do treatment
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 				} else {

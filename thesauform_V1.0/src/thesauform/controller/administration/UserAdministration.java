@@ -48,8 +48,15 @@ public class UserAdministration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					UsersModel usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
-							getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					UsersModel usersMap = null;
+					if(ThesauformConfiguration.database) {
+						usersMap = new UsersModel(ThesauformConfiguration.person_file,
+								ThesauformConfiguration.person_file_tmp);
+					}
+					else {
+						usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
+								getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					}
 					// do treatment
 					// test if required parameter is present
 					String userName = request.getParameter("user_name");
@@ -96,8 +103,15 @@ public class UserAdministration extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					UsersModel usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
-							getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					UsersModel usersMap = null;					
+					if(ThesauformConfiguration.database) {
+						usersMap = new UsersModel(ThesauformConfiguration.person_file,
+								ThesauformConfiguration.person_file_tmp);
+					}
+					else {
+						usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
+								getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					}
 					// TODO not here
 					session.setAttribute(ThesauformConfiguration.PERSON_FILE,
 							getServletContext().getRealPath(ThesauformConfiguration.person_file));

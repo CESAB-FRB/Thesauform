@@ -36,9 +36,16 @@ public class UsersList extends HttpServlet {
 				Person user = (Person) session.getAttribute(ThesauformConfiguration.USR_SESSION);
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
-					UsersModel usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
-							getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
-						//TODO not here
+					UsersModel usersMap = null;					
+					if(ThesauformConfiguration.database) {
+						usersMap = new UsersModel(ThesauformConfiguration.person_file,
+								ThesauformConfiguration.person_file_tmp);
+					}
+					else {
+						usersMap = new UsersModel(getServletContext().getRealPath(ThesauformConfiguration.person_file),
+								getServletContext().getRealPath(ThesauformConfiguration.person_file_tmp));
+					}
+					//TODO not here
 					session.setAttribute(PERSON_FILE,
 							getServletContext().getRealPath(ThesauformConfiguration.person_file));
 					// do treatment
