@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/jquery.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/jquery-ui-1.7.2.custom.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/authentificationAnnotation.js"></script>
-		
+
 		<decorator:getProperty property="page.local_script"></decorator:getProperty>
 		
 	</head>

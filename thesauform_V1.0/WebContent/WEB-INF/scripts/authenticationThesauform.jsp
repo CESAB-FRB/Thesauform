@@ -12,7 +12,7 @@
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Thesaurus annotation</a></li>
-			<li><a href="#tabs-2">Thesaurus validation</a></li>
+			<li><a href="#tabs-2">Thesaurus vote</a></li>
 			<li><a href="#tabs-3">Thesaurus administration</a></li>
 		</ul>
 		<div id="tabs-1">
@@ -102,12 +102,9 @@
 	</div>
 </div>
 <div id="aside">
-	<h3>Identification help :</h3>
-	<p>To read and/or to annotate the thesaurus, sign in the
-		"Thesaurus annotation" tab</p>
-	<p>To validate the annotations suggested in the thesaurus,
-		sign in the "Thesaurus validation" tab (restricted acces)</p>
-	<p>To manage the application, sign in "Thesaurus administration"
-		tab(restricted acces)</p>
+	<h3>Information :</h3>
+	<p>To read and/or to annotate (make comments on) the thesaurus, click on the "Thesaurus annotation" tab</p>
+	<p>To vote on the proposals suggested in the thesaurus, sign in the "Thesaurus vote" tab</p>
+	<p>If you are an administrator, sign in using the "Thesaurus administration" tab (restricted access)</p>
 </div>
 

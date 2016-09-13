@@ -175,28 +175,32 @@ public class ExpertValidation extends HttpServlet {
 						// get current definition
 						try {
 							String definition = traitModel.getValue(traitModel.getDefinition(concept));
+							// get current reference linked to definition
+							String reference  = traitModel.getValue(traitModel.getReference(traitModel.getDefinition(concept)));
 							// test if not empty
 							if (definition != null && !definition.isEmpty()) {
 								Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), definition);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
-								voteMapTmp.put(definition, propertyVote);
+								voteMapTmp.put(definition + " (ref: " + reference + ")", propertyVote);
 								definitionVoteMap.put("current", voteMapTmp);
 							}
 						} catch (Exception e) {
 						}
-						// get current reference
-						try {
-							String reference = traitModel
-									.getValue(traitModel.getReference(traitModel.getDefinition(concept)));
-							// test if not empty
-							if (reference != null && !reference.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, user.getName(), reference);
-								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
-								voteMapTmp.put(reference, propertyVote);
-								referenceVoteMap.put("current", voteMapTmp);
-							}
-						} catch (Exception e) {
-						}
+						/*						
+ 						 * // get current reference
+						 * try {
+						 * 	String reference = traitModel
+						 * 			.getValue(traitModel.getReference(traitModel.getDefinition(concept)));
+						 * 	// test if not empty
+						 * 	if (reference != null && !reference.isEmpty()) {
+						 * 		Integer propertyVote = traitModel.countVote(concept, TraitVocTemp.reference, user.getName(), reference);
+						 * 		Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
+						 * 		voteMapTmp.put(reference, propertyVote);
+						 * 		referenceVoteMap.put("current", voteMapTmp);
+						 * 	}
+						 * } catch (Exception e) {
+						 * }
+						 */
 						// get abbreviation
 						try {
 							String abbreviation = traitModel

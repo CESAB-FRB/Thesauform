@@ -50,6 +50,7 @@ public class ExportFileXls extends HttpServlet {
 	private static final String ANNOTATION_NAME = "pref name";
 	private static final String ANNOTATION_UNIT = "prefUnit";
 	private static final String ANNOTATION_DEF = "definition";
+	private static final String ANNOTATION_REF = "reference";
 	private static final String ANNOTATION_ABB = "abbreviation";
 	private static final String ANNOTATION_PARENT = "term category";
 	private static final String XLS_TITLE_NAME = "Name";
@@ -428,7 +429,6 @@ public class ExportFileXls extends HttpServlet {
 				//read all annotations
 				String proposedName = "";
 				String proposedUnit = "";
-				String proposedReference = "";
 				String proposedDefinition = "";
 				String proposedAbbreviation = "";
 				String proposedCategory = "";
@@ -441,25 +441,42 @@ public class ExportFileXls extends HttpServlet {
 							Entry<Integer, List<AnnotationConcept>> annotationsPair = annotationsIt.next();
 							List<AnnotationConcept> annotationsList = annotationsPair.getValue();
 							if(annotationsList!=null&&!annotationsList.isEmpty()) {
+								String tmpDefRef = "";
 								for (AnnotationConcept myAnnotationConcept : annotationsList) {
 									switch (myAnnotationConcept.getProperty()) {
-									case ANNOTATION_NAME:
-										proposedName = proposedName.concat(myAnnotationConcept.getValue()) + " / ";
-										break;
-									case ANNOTATION_UNIT:
-										proposedUnit = proposedUnit.concat(myAnnotationConcept.getValue()) + " / ";
-										break;
-									case ANNOTATION_DEF:
-										proposedDefinition = proposedDefinition.concat(myAnnotationConcept.getValue()) + " / ";
-										break;
-									case ANNOTATION_ABB:
-										proposedAbbreviation = proposedAbbreviation.concat(myAnnotationConcept.getValue()) + " / ";
-										break;
-									case ANNOTATION_PARENT:
-										proposedCategory = proposedCategory.concat(myAnnotationConcept.getValue()) + " / ";
-									default:
-										break;
+										case ANNOTATION_NAME:
+											proposedName = proposedName.concat(myAnnotationConcept.getValue()) + " / ";
+											break;
+										case ANNOTATION_UNIT:
+											proposedUnit = proposedUnit.concat(myAnnotationConcept.getValue()) + " / ";
+											break;
+										case ANNOTATION_DEF:
+											if(tmpDefRef.equals("")) {
+												tmpDefRef = myAnnotationConcept.getValue();
+											}
+											else {
+												tmpDefRef = myAnnotationConcept.getValue().concat(tmpDefRef);
+											}
+											break;
+										case ANNOTATION_REF:
+											if(tmpDefRef.equals("")) {
+												tmpDefRef = myAnnotationConcept.getValue();											
+											}
+											else {
+												tmpDefRef = tmpDefRef.concat("(" + myAnnotationConcept.getValue() + ")");
+											}
+											break;
+										case ANNOTATION_ABB:
+											proposedAbbreviation = proposedAbbreviation.concat(myAnnotationConcept.getValue()) + " / ";
+											break;
+										case ANNOTATION_PARENT:
+											proposedCategory = proposedCategory.concat(myAnnotationConcept.getValue()) + " / ";
+										default:
+											break;
 									}
+								}
+								if(!tmpDefRef.equals("")) {
+									proposedDefinition = proposedDefinition.concat(tmpDefRef) + " / ";
 								}
 							}
 						}
@@ -474,7 +491,7 @@ public class ExportFileXls extends HttpServlet {
 						if(proposedDefinition.length()>2) {
 							proposedDefinition = proposedDefinition.substring(0, proposedDefinition.length()-3);
 						}
-						cell2a.setCellValue(proposedDefinition + " (" + proposedReference + ")");
+						cell2a.setCellValue(proposedDefinition);
 						if(proposedUnit.length()>2) {
 							proposedUnit = proposedUnit.substring(0, proposedUnit.length()-3);
 						}

@@ -69,6 +69,10 @@ public class Vote extends HttpServlet {
 						if (value == null || value.isEmpty()) {
 							throw new Exception(EMPTY_VALUE_MESSAGE);
 						}
+						//@PATCH for def + ref
+						if(value.matches("(ref: .*)")) {
+							
+						}
 						Integer voteValue;
 						String voteValueString = request.getParameter("vote_value");
 						if (voteValueString == null || voteValueString.isEmpty()) {

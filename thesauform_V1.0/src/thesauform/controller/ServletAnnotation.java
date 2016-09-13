@@ -3,7 +3,6 @@ package thesauform.controller;
 import java.io.IOException;
 
 import thesauform.beans.Person;
-import thesauform.model.Annotation;
 import thesauform.model.ThesauformConfiguration;
 
 import javax.servlet.ServletException;

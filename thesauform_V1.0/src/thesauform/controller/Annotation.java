@@ -1,4 +1,4 @@
-package thesauform.model;
+package thesauform.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +14,10 @@ import com.hp.hpl.jena.vocabulary.DC;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
 import thesauform.beans.Person;
+import thesauform.model.Format;
+import thesauform.model.SkosModel;
+import thesauform.model.SkosTraitModel;
+import thesauform.model.ThesauformConfiguration;
 import thesauform.model.vocabularies.SkosVoc;
 import thesauform.model.vocabularies.SkosXLVoc;
 import thesauform.model.vocabularies.TraitVoc;
@@ -50,6 +54,16 @@ public class Annotation {
 			if (authentificationStatus) {
 				// Treatment if user is logged
 				Map<String, String[]> param = request.getParameterMap();
+				//remove line break during insertion
+				for (Map.Entry<?, String[]> e : param.entrySet()) {
+					String[] valArray = e.getValue();
+					if (valArray != null && valArray.length>0) {
+						for (int i = 0; i < valArray.length; i++) {
+							valArray[i] = valArray[i].replaceAll("[\r\n\t]", " ");
+						}
+						e.setValue(valArray);
+					}
+				}
 				String concept = param.get("inputAnn")[0];
 				String del = "";
 				if (param.get("del") != null) {
@@ -105,14 +119,13 @@ public class Annotation {
 							}
 						} else {
 							// test if reference not empty
-							if (m.getReference(m.getDefinition(modifConcept)) != null) {
+							if (m.getReference(m.getDefinition(modifConcept)) != null&&!m.getValue(m.getReference(m.getDefinition(modifConcept))).isEmpty()) {
 								Resource ref = m.getReference(m.getDefinition(modifConcept));
 								String valueRef = m.getValue(ref);
 								// test if reference already exists for
 								// existing definition
 								if (!valueRef.trim().equalsIgnoreCase(param.get("ref")[0].trim())) {
-									// duplicate definition as annotation
-									// too
+									// duplicate definition as annotation too
 									// add as annotation
 									Resource modif = m.createUpdate(modifConcept);
 									m.sethasProperty(modif, SkosVoc.definition);
@@ -326,6 +339,16 @@ public class Annotation {
 			if (authentificationStatus) {
 				// Treatment if user is logged
 				Map<String, String[]> param = request.getParameterMap();
+				//remove line break during insertion
+				for (Map.Entry<?, String[]> e : param.entrySet()) {
+					String[] valArray = e.getValue();
+					if (valArray != null && valArray.length>0) {
+						for (int i = 0; i < valArray.length; i++) {
+							valArray[i] = valArray[i].replaceAll("[\r\n\t]", " ");
+						}
+						e.setValue(valArray);
+					}
+				}
 				String concept = param.get("nameAdd")[0];
 				String pere = param.get("hpere")[0];
 				SkosTraitModel m = new SkosTraitModel(file);

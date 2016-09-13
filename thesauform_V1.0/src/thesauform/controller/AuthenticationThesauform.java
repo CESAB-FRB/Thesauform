@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class servetAnnotation
  */
-@WebServlet("/authentication")
+@WebServlet({"/authentication","/expert/authentication","/administration/authentication"})
 public class AuthenticationThesauform extends HttpServlet {
 
 	/**

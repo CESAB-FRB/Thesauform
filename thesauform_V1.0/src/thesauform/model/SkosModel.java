@@ -364,6 +364,8 @@ public class SkosModel implements AnnotationModel {
 	
 	public int countVote(Resource c, Property p, String person, String value) {
 		int cpt = 0;
+		//replace value special character
+		value = value.replaceAll("[\r\n]", "\\r");
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
 				+ ">";
@@ -377,8 +379,8 @@ public class SkosModel implements AnnotationModel {
 				+ "?vote change:hasProperty <" + p + "> . " + "?vote change:hasValue ?val . "
 				+ "?vote change:hasVote ?vote_val . "
 				+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
-				+ "?creator foaf:name ?cname ." + "FILTER (regex(?val,\"" + value
-				+ "\") && NOT EXISTS { ?vote trait:reference ?ref } "
+				+ "?creator foaf:name ?cname ." + "FILTER (?val=\"" + value
+				+ "\" && NOT EXISTS { ?vote trait:reference ?ref } "
 				+ "&& (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\"" + person.toLowerCase().replace(" ", "_")
 				+ "\"))." + " }";
 		if (p == SkosVoc.definition && value.contains("__")) {
@@ -392,8 +394,8 @@ public class SkosModel implements AnnotationModel {
 					+ "?vote change:hasVote ?vote_val . " + "?vote change:hasValue ?val . " 
 					+ "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
 					+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
-					+ "?creator foaf:name ?cname ." + "FILTER (regex(?val,\"" + refDef[0] + "\") && regex(?refval,\""
-					+ refDef[1] + "\") && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\""
+					+ "?creator foaf:name ?cname ." + "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\""
+					+ refDef[1] + "\" && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\""
 					+ person.toLowerCase().replace(" ", "_") + "\"))." + " }";
 		}
 		Query query = QueryFactory.create(queryString);
