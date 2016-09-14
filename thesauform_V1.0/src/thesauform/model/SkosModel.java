@@ -938,8 +938,7 @@ public class SkosModel implements AnnotationModel {
 		this.setResource(concept, StatusVoc.term_status, "testing");
 		this.setResource(concept, SkosVoc.broaderTransitive, father); // RDFS.subClass
 		// XL Label
-		this.setPrefLabel(concept, cl);
-		Resource Label = this.getPrefLabel(concept);
+		Resource Label = this.setPrefLabel(concept, cl);
 		note = this.createInsert(Label);
 		this.setResource(note, DCTerms.created, date);
 		this.setResource(note, DC.creator, person);
