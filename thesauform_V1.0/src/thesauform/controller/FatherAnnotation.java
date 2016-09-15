@@ -93,12 +93,12 @@ public class FatherAnnotation extends HttpServlet {
 						concept = traitModel.getConceptFromSyn(Format.formatName(traitName));
 					}
 					String var = "[";
-					Resource pere = traitModel.getSuperclass(concept);
-					var = var + "\"#" + pere.getLocalName() + "\",";
+					Resource pere = traitModel.getResource(traitModel.getSuperclass(concept).getLocalName());
+					var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
 					while (pere != null) {
 						pere = traitModel.getSuperclass(pere);
 						if (pere != null) {
-							var = var + "\"#" + pere.getLocalName() + "\",";
+							var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
 						}
 					}
 					var = var.substring(0, var.length() - 1);

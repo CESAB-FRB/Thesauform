@@ -35,7 +35,7 @@
 	</div>
 	<div id="special_thanks">
 		<span id="thanks_sentence">Special thanks to date are due to:</span>
-		<span id="thanks_person">Orlane Anneville (INRA), Pierre-Luigi Buttigieg
+		<span id="thanks_person">Orlane Anneville (INRA), Pier-Luigi Buttigieg
 		(Alfred-Wegener-Institut), Aurelie Delavaud (FRB), Bruno Fady (INRA,
 		CESAB), Eric Garnier (CESAB, CNRS), Mickaël Hedde (INRA), Michel
 		Kublicki (IRD), Baptiste Laporte (CESAB), Marie-Angelique Laporte
