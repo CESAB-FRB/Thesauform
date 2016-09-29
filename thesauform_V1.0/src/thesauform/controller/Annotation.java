@@ -90,7 +90,7 @@ public class Annotation {
 					} else {
 						Resource modif = m.createUpdate(modifConcept);
 						m.sethasProperty(modif, SkosXLVoc.prefLabel);
-						m.sethasValue(modif, pere);
+						m.sethasValue(modif, Format.formatLabel(pere));
 						m.setResource(modif, DCTerms.created, date);
 						m.setResource(modif, DC.creator, person);
 					}
@@ -354,7 +354,7 @@ public class Annotation {
 				SkosTraitModel m = new SkosTraitModel(file);
 				Resource person = m.getPerson(user.getName(), user.getMail());
 				Resource scheme = m.getScheme();
-				Resource newConcept = m.setConcept(concept, scheme, m.getResource(Format.formatName(pere)), person,
+				Resource newConcept = m.setConcept(Format.formatLabel(concept), scheme, m.getResource(Format.formatName(pere)), person,
 						date);
 				Resource insertlist = m.createCollection("Insert");
 				m.addMember(insertlist, newConcept);

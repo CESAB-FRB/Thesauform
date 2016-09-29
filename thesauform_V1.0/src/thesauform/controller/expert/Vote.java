@@ -70,8 +70,8 @@ public class Vote extends HttpServlet {
 							throw new Exception(EMPTY_VALUE_MESSAGE);
 						}
 						//@PATCH for def + ref
-						if(value.matches("(ref: .*)")) {
-							
+						if(value.matches(".*\\(ref: .+\\)")) {
+							value = value.replaceAll("(.*)\\(ref: (.*)\\)", "$1__$2");
 						}
 						Integer voteValue;
 						String voteValueString = request.getParameter("vote_value");

@@ -1,21 +1,23 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <content tag="logout"> <jsp:include page="logout.jsp" /> </content>
 
 <content tag="local_script">
-<link rel="stylesheet" href="CSS/annotation.css" type="text/css" />
-<link rel="stylesheet" href="CSS/jquery.qtip.css" />
-<script src="//code.jquery.com/jquery-1.10.2.js"></script> <script
-	src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <script
-	type="text/javascript" src="JS/jquery.jstree.js"></script> <script
-	type="text/javascript" src="JS/jquery.elastic.js"></script> <script
-	type="text/javascript" src="JS/jquery.qtip.js"></script> <script
-	type="text/javascript">
-		$(function() {
-			$("#tabs").tabs();
-			$('#def').elastic();
-		});
-	</script> <script>
+	<link rel="stylesheet" href="CSS/annotation.css" type="text/css" />
+	<link rel="stylesheet" href="CSS/jquery.qtip.css" />
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script> <script
+		src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <script
+		type="text/javascript" src="JS/jquery.jstree.js"></script> <script
+		type="text/javascript" src="JS/jquery.elastic.js"></script> <script
+		type="text/javascript" src="JS/jquery.qtip.js"></script> <script
+		type="text/javascript">
+			$(function() {
+				$("#tabs").tabs();
+				$('#def').elastic();
+			});
+	</script> 
+	<script>
 		$(function() {
 			$( "#owlauto" ).autocomplete({
 				source : function(requete, reponse){ 
@@ -40,7 +42,8 @@
 				minLength : 3 
 			});
 		});
-	</script> <script type="text/javascript">
+	</script> 
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('a[title]').qtip({
 				position: {
@@ -64,7 +67,7 @@
 					"html_data" : {
 						"correct_state": false,
 						//changer ici 
-						"data": "<c:forTokens items="${_term_root_}" delims="," var="root"><li class='jstree-closed' id='${root}'><a href='#' onclick='getInfo(\"<c:out value="${_term_uri_}"/>#${root}\")'><b>${root}</b></a></li></c:forTokens>",
+						"data": "<c:forTokens items="${_term_root_}" delims="," var="root"><li class='jstree-closed' id='${fn:replace(root, ' ', '_')}'><a href='#' onclick='getInfo(\"<c:out value="${_term_uri_}"/>#${root}\")'><b>${fn:replace(root, '_', ' ')}</b></a></li></c:forTokens>",
 						"ajax" : {
 							"url" : "annotationArbre",
 							"data" : function (n) { 
@@ -84,7 +87,7 @@
 						"case_insensitive" : true,
 						"ajax" : {
 							"url" : "annotationFather",
-							"data" : function (n) { 
+							"data" : function (n) {
 								return { trait : n }; 
 							}
 						}
@@ -115,7 +118,8 @@
 			$("#bodygrid").html(html);
 			$("#jtree").jstree("toggle_node","#"+item);
 		}
-	</script> </content>
+	</script> 
+</content>
 
 <div id="content">
 	<div id="tabs">

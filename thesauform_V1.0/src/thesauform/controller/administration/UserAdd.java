@@ -130,7 +130,12 @@ public class UserAdd extends HttpServlet {
 								}
 								// add user in trait model if not existing
 								traitModel.getPerson(userName, userMail);
-								traitModel.save(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+								if(ThesauformConfiguration.database) {
+									traitModel.save(ThesauformConfiguration.data_file);
+								}
+								else {
+									traitModel.save(getServletContext().getRealPath(ThesauformConfiguration.data_file));
+								}
 								traitModel.close();
 								request.setAttribute("my_user", usersMap.getUser(userName));
 								request.setAttribute(SUCCESS_PARAMETER, SUCCESS_MESSAGE);

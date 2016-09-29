@@ -95,7 +95,7 @@ public class SearchAnnotation extends HttpServlet {
 					String var = "[";
 					while (itTrait.hasNext()) {
 						Resource trait = itTrait.next().getSubject();
-						String traitLabel = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(trait));
+						String traitLabel = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(trait)).replace("_", " ");
 						if (traitLabel.toLowerCase().startsWith(traitName.toLowerCase())) {
 							var = var + "\"" + traitLabel + "\" , ";
 						}

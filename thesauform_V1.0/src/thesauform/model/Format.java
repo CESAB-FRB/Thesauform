@@ -5,6 +5,17 @@ public class Format {
 		
 	}
 	
+	public static String formatLabel(String name){
+		name = name.trim();
+		name = name.replace(" ", "_");
+		name = name.replace(":", "_");
+		name = name.replaceAll("[()/]", "");
+		name = name.replace("<", "");name = name.replace(">", "");
+		name = name.replace("_&_", " ");
+		name = name.replace("&", " ");
+		return name;
+	}
+	
 	public static String formatName(String name){
 		name = name.trim();
 		name = name.toLowerCase();
