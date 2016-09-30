@@ -157,8 +157,7 @@ public class ExpertValidation extends HttpServlet {
 						}
 						//// get update annotation
 						// get all update properties vote
-						Map<String, List<String>> updateMap = traitModel.getAnnotation(Format.formatName(traitName),
-								"update");
+						Map<String, List<String>> updateMap = traitModel.getAnnotation(Format.formatName(traitName), "update");
 						Iterator<Entry<String, List<String>>> updateIt = updateMap.entrySet().iterator();
 						// set current name
 						try {

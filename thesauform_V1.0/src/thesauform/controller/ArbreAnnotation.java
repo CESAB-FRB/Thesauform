@@ -109,7 +109,13 @@ public class ArbreAnnotation extends HttpServlet {
 			}
 			//// interrogate model
 			// get trait concept from form parameter
-			Resource concept = traitModel.getResource(Format.formatName(myTrait.getName()));
+			Resource concept = null;
+			try {
+				concept = traitModel.getResource(Format.formatName(myTrait.getName()));
+			}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			if (concept != null) {
 				// get trait real name
 				try {

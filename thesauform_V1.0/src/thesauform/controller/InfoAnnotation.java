@@ -249,6 +249,7 @@ public class InfoAnnotation extends HttpServlet {
 						Map<Integer, List<AnnotationConcept>> myAnnotationMap = new HashMap<Integer, List<AnnotationConcept>>();
 						Integer cpt = 0;
 						// treat each annotation
+						
 						for (Iterator<String> i = mapAnnotationsRaw.keySet().iterator(); i.hasNext();) {
 							List<AnnotationConcept> myAnnotationList = new ArrayList<AnnotationConcept>();
 							cpt++;
@@ -260,8 +261,10 @@ public class InfoAnnotation extends HttpServlet {
 								String prop = j.next();
 								myAnnotationTmp.setProperty(prop);
 								String value = map2.get(prop);
-								myAnnotationTmp.setValue(value);
-								myAnnotationList.add(myAnnotationTmp);
+								if(value!=null && !value.isEmpty()) {
+									myAnnotationTmp.setValue(value);
+									myAnnotationList.add(myAnnotationTmp);
+								}
 							}
 							myAnnotationMap.put(cpt, myAnnotationList);
 						}

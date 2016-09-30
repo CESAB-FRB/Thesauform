@@ -385,7 +385,7 @@ public class SkosModel implements AnnotationModel {
 				+ "\"))." + " }";
 		if (p == SkosVoc.definition && value.contains("__")) {
 			String prolog6 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
-			String[] refDef = value.split("__");
+			String[] refDef = value.split("__",-1);
 			// change queryString
 			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
