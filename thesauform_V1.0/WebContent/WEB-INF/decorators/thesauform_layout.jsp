@@ -51,7 +51,7 @@
 					<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
 					<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
 					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>
-					<li><a href="${pageContext.request.contextPath}/help">Help</a></li>
+					<li><a href="${pageContext.request.contextPath}/help">Guidelines</a></li>
 				</ul>
 			</div>
 		</div>

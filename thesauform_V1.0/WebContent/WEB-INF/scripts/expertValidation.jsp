@@ -415,7 +415,7 @@
 						<th colspan="1"><b>Synonym</b>
 							<div style='float: right; padding-right: 20px;'>
 								<a
-									title='Please indicate your preference using the combo-box. If more than one abbreviation has been proposed, you will be asked to comment on each.'><img
+									title='Please indicate your preference using the combo-box. If more than one synonym has been proposed, you will be asked to comment on each.'><img
 									src="../IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a>
 							</div></th>
@@ -427,7 +427,7 @@
 							<c:choose>
 								<c:when test="${myTypeList.key=='current'}">
 									<tr>
-										<td>Current abbreviation</td>
+										<td>Current synonym</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td><select title="syn${count}" class="notation"
 											onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${prop.key}', this.options[this.selectedIndex].value);">
@@ -494,7 +494,7 @@
 						<th colspan="1"><b>Related</b>
 							<div style='float: right; padding-right: 20px;'>
 								<a
-									title='Please indicate your preference using the combo-box. If more than one abbreviation has been proposed, you will be asked to comment on each.'><img
+									title='Please indicate your preference using the combo-box. If more than one related has been proposed, you will be asked to comment on each.'><img
 									src="../IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a>
 							</div></th>
@@ -539,7 +539,7 @@
 						<th colspan="1"><b>Unit</b>
 							<div style='float: right; padding-right: 20px;'>
 								<a
-									title='Please indicate your preference using the combo-box. If more than one abbreviation has been proposed, you will be asked to comment on each.'><img
+									title='Please indicate your preference using the combo-box. If more than one unit has been proposed, you will be asked to comment on each.'><img
 									src="../IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a>
 							</div></th>
@@ -551,7 +551,7 @@
 							<c:choose>
 								<c:when test="${myTypeList.key=='current'}">
 									<tr>
-										<td>Current abbreviation</td>
+										<td>Current unit</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td><select title="unit${count}" class="notation"
 											onchange="addVote(this.title, '${myTraitVote.uri}', 'prefUnit', '${prop.key}', this.options[this.selectedIndex].value);">
@@ -618,7 +618,7 @@
 						<th colspan="1">Category
 							<div style='float: right; padding-right: 20px;'>
 								<a
-									title='Please indicate your preference using the combo-box. If more than one abbreviation has been proposed, you will be asked to comment on each.'><img
+									title='Please indicate your preference using the combo-box. If more than one category has been proposed, you will be asked to comment on each.'><img
 									src="../IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a>
 							</div>
@@ -631,7 +631,7 @@
 							<c:choose>
 								<c:when test="${myTypeList.key=='current'}">
 									<tr>
-										<td>Current abbreviation</td>
+										<td>Current category</td>
 										<td><c:out value="${prop.key}" /></td>
 										<td><select title="category${count}" class="notation"
 											onchange="addVote(this.title, '${myTraitVote.uri}', 'broaderTransitive', '${prop.key}', this.options[this.selectedIndex].value);">

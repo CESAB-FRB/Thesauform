@@ -178,12 +178,13 @@ public class ExpertValidation extends HttpServlet {
 							String reference  = traitModel.getValue(traitModel.getReference(traitModel.getDefinition(concept)));
 							// test if not empty
 							if (definition != null && !definition.isEmpty()) {
-								Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), definition);
 								Map<String, Integer> voteMapTmp = new HashMap<String, Integer>();
 								if(reference != null && !reference.isEmpty()) {
+									Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), definition + "__" + reference);
 									voteMapTmp.put(definition + " (ref: " + reference + ")", propertyVote);
 								}
 								else {
+									Integer propertyVote = traitModel.countVote(concept, SkosVoc.definition, user.getName(), definition);
 									voteMapTmp.put(definition, propertyVote);
 								}
 								definitionVoteMap.put("current", voteMapTmp);

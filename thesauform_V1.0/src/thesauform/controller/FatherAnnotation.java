@@ -105,6 +105,7 @@ public class FatherAnnotation extends HttpServlet {
 					var = var + "]";
 					traitModel.close();
 					pw.println(var);
+					pw.close();
 				} else {
 					throw new Exception(ERROR_MESSAGE_PARAMETER);
 				}

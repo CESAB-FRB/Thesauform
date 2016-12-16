@@ -242,6 +242,70 @@ public class SkosModel implements AnnotationModel {
 		return returnMap;
 	}
 
+	/**
+	 * Get all concept in the database
+	 * @return List of name
+	 */
+	public List<String> getAllConcept() {
+		List<String> returnList = new ArrayList<String>();
+		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+		String prolog3 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog4 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
+		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		//Query string.
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT DISTINCT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+				+ "?trait rdfs:label ?name " + "}";
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				returnList.add(rb.get("?name").asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return returnList;
+	}
+
+	/**
+	 * Get all concept with at least one definition
+	 * @return List of concept name
+	 */
+	public List<String> getAllConceptWithDef() {
+		List<String> returnList = new ArrayList<String>();
+		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+		String prolog3 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog4 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
+		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		// Query string.
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT DISTINCT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+				+ "?trait rdfs:label ?name . ?trait skos:definition ?def " + "}";
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				returnList.add(rb.get("?name").asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return returnList;
+	}
+	
 	public Resource getPerson(String name, String email) {
 		// TODO Auto-generated method stub
 		Resource person = null;
@@ -336,6 +400,63 @@ public class SkosModel implements AnnotationModel {
 		return person;
 	}
 	
+	/**
+	 * Get all 
+	 * @param typeCollection Should be in delete, insert, update
+	 * @return
+	 * @throws Exception 
+	 */
+	public List<String> getInCollection(String typeCollection) throws Exception {
+		List<String> inCollectionList = new ArrayList<String>();
+		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+		String prolog3 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog4 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
+		String prolog5 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange + ">";
+		String queryString = "";
+		switch (typeCollection) {
+			case "insert":
+				queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL 
+					+ "SELECT DISTINCT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+					+ "?trait rdfs:label ?name ." + "?trait change:insert ?ins }";
+				break;
+			case "update":
+				queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL 
+					+ "SELECT DISTINCT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+					+ "?trait rdfs:label ?name ." + "?trait change:update ?upt }";
+				break;
+			case "delete":
+				queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+					+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL 
+					+ "SELECT DISTINCT ?name WHERE {" + "?trait rdf:type skos:Concept ."
+					+ "?trait rdfs:label ?name ." + "?trait change:delete ?del }";
+				break;
+			default:
+				throw new Exception("Collection type "+ typeCollection +"not managed.");
+		}
+		// Query string.
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				inCollectionList.add(rb.get("?name").asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return inCollectionList;
+	}
+	
+	/**
+	 * Return list in collection
+	 * @return
+	 */
 	public Map<String, List<String>> getAllTraitWithAnn() {
 		Map<String, List<String>> map = new TreeMap<>();
 		NodeIterator insert = this.getAllMember(m.getResource(ThesauformConfiguration.term_uri + "#Insert"));
@@ -658,7 +779,7 @@ public class SkosModel implements AnnotationModel {
 			m.add(vote, ChangeVoc.hasProperty, p);
 			if (p == SkosVoc.definition && value.contains("__")) {
 				String[] refDef = value.split("__");
-				m.add(vote, ChangeVoc.hasValue, refDef[0]);
+				m.add(vote, ChangeVoc.hasValue, refDef[0].trim());
 				Resource refR = createResource();
 				m.add(refR,RDF.value,refDef[1]);
 				m.add(refR,RDF.type,RefVoc.Reference);
