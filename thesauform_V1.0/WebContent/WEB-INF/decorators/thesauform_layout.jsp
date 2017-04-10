@@ -16,7 +16,6 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/JS/authentificationAnnotation.js"></script>
 
 		<decorator:getProperty property="page.local_script"></decorator:getProperty>
-		
 	</head>
 	
 	<body>
@@ -51,7 +50,7 @@
 					<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
 					<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
 					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>
-					<li><a href="${pageContext.request.contextPath}/help">Guidelines</a></li>
+					<li><a href="${pageContext.request.contextPath}/DOC/thesauform_manual.pdf" target="_blank">Manual</a></li>
 				</ul>
 			</div>
 		</div>

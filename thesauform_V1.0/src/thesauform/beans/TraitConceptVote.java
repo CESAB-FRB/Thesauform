@@ -45,8 +45,8 @@ public class TraitConceptVote {
 
 	public String toString() {
 		return ("(uri: " + getUri() + " name: " + getNameList() + " unit: " + getUnitList() + " definition: "
-				+ getDefinitionList() + " reference: " + getReferenceList() + " abbreviation: " + getAbbreviationList()
-				+ " category :" + getCategoryList() + ")");
+				+ getDefinitionList() + " reference: " + getReferenceList() + " synonym: " + getSynonymList() 
+				+ " abbreviation: " + getAbbreviationList() + " category :" + getCategoryList() + ")");
 	}
 
 	public boolean valideUri(String uri) throws Exception {

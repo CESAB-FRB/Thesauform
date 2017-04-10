@@ -258,7 +258,7 @@ public class Annotation {
 							} else {
 								relconcept = m.setConcept(Format.formatName(param.get("related")[i]), scheme, father,
 										person, date);
-								m.setDefinition(relconcept, "related for the trait " + modifConcept.getLocalName());
+								m.setDefinition(relconcept, "related to the term " + modifConcept.getLocalName());
 								Resource insertlist = m.createCollection("Insert");
 								m.addMember(insertlist, relconcept);
 							}
@@ -391,7 +391,7 @@ public class Annotation {
 							m.setResource(ConceptLabel, TraitVocTemp.synonym, Label);
 							m.setResource(Label, TraitVocTemp.synonym, newConcept);
 							m.setResource(newConcept, SkosXLVoc.altLabel, ConceptLabel);
-							m.setDefinition(synConcept, "Synonym for the trait " + newConcept.getLocalName());
+							m.setDefinition(synConcept, "Synonym of the term " + newConcept.getLocalName());
 						} else {
 							ConceptLabel = m
 									.getPrefLabel(m.getResource((Format.formatName(param.get("syn")[i].trim()))));
@@ -418,7 +418,7 @@ public class Annotation {
 							Resource relConcept = m.getResource((Format.formatName(param.get("related")[i]).trim()));
 							m.setResource(relConcept, SkosVoc.related, newConcept);
 							m.setResource(newConcept, SkosVoc.related, relConcept);
-							m.setDefinition(relConcept, "Related to the trait " + newConcept.getLocalName());
+							m.setDefinition(relConcept, "Related to the term " + newConcept.getLocalName());
 						} else {
 							ConceptLabel = m.getResource((Format.formatName(param.get("related")[i]).trim()));
 							m.setResource(newConcept, SkosVoc.related, ConceptLabel);

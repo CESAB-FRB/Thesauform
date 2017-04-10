@@ -5,6 +5,7 @@
 </content>
 
 <content tag="local_script">
+	<link rel="stylesheet" href="CSS/expertAdministration.css" />
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript">
@@ -18,6 +19,11 @@
 
 
 <div id="content">
+	<div id="legend">
+		<img class="smiley" src="IMG/vote_unhappy.png"/> 0 evaluation;
+		<img class="smiley" src="IMG/vote_mitiged.png"/> 1-3 evaluation(s);
+		<img class="smiley" src="IMG/vote_happy.png"/> &gt;3 evaluations
+	</div>
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Modified terms</a></li>
@@ -27,14 +33,29 @@
 		<div id="tabs-1">
 			<c:choose>
 				<c:when test="${empty my_updated_list}">
-					No concept modified
+					No term modified
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_updated_list}" var="name">
-						<div>
-							<a
-								href="expert/validation?change=Update&&trait=<c:out value="${name}"/>"><c:out
-									value="${name}" /></a>
+						<div class="concept_line">
+							<c:choose>
+								<c:when test="${definition_count[name]==0}">
+									<img class="smiley" src="IMG/vote_unhappy.png"/>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${definition_count[name]<4}">
+											<img class="smiley" src="IMG/vote_mitiged.png"/>
+										</c:when>
+										<c:otherwise>
+											<img class="smiley" src="IMG/vote_happy.png"/>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+							<a href="expert/validation?change=Update&&trait=<c:out value="${name}"/>">
+								<c:out value="${name}" />
+							</a>
 						</div>
 					</c:forEach>
 				</c:otherwise>
@@ -43,14 +64,29 @@
 		<div id="tabs-2">
 			<c:choose>
 				<c:when test="${empty my_inserted_list}">
-					No concept modified
+					No term suggested
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_inserted_list}" var="name">
-						<div>
-							<a
-								href="expert/validation?change=Insert&&trait=<c:out value="${name}"/>"><c:out
-									value="${name}" /></a>
+						<div class="concept_line">
+							<c:choose>
+								<c:when test="${definition_count[name]==0}">
+									<img class="smiley" src="IMG/vote_unhappy.png"/>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${definition_count[name]<4}">
+											<img class="smiley" src="IMG/vote_mitiged.png"/>
+										</c:when>
+										<c:otherwise>
+											<img class="smiley" src="IMG/vote_happy.png"/>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+							<a href="expert/validation?change=Insert&&trait=<c:out value="${name}"/>">
+								<c:out value="${name}" />
+							</a>
 						</div>
 					</c:forEach>
 				</c:otherwise>
@@ -59,14 +95,29 @@
 		<div id="tabs-3">
 			<c:choose>
 				<c:when test="${empty my_deleted_list}">
-					No concept modified
+					No term deleted
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${my_deleted_list}" var="name">
-						<div>
-							<a
-								href="expert/validation?change=Delete&&trait=<c:out value="${name}"/>"><c:out
-									value="${name}" /></a>
+						<div class="concept_line">
+							<c:choose>
+								<c:when test="${definition_count[name]==0}">
+									<img class="smiley" src="IMG/vote_unhappy.png"/>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${definition_count[name]<4}">
+											<img class="smiley" src="IMG/vote_mitiged.png"/>
+										</c:when>
+										<c:otherwise>
+											<img class="smiley" src="IMG/vote_happy.png"/>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+							<a href="expert/validation?change=Delete&&trait=<c:out value="${name}"/>">
+								<c:out value="${name}" />
+							</a>
 						</div>
 					</c:forEach>
 				</c:otherwise>

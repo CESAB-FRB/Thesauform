@@ -34,6 +34,7 @@
   <filter-mapping>
     <filter-name>thesauform_expert</filter-name>
     <url-pattern>/expert/*</url-pattern>
+    <url-pattern>/DOC/*</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>thesauform_expert</filter-name>

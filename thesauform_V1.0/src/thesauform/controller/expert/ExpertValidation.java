@@ -94,6 +94,7 @@ public class ExpertValidation extends HttpServlet {
 					List<String> deleteList = null;
 					// delete vote note
 					Integer deleteVote = null;
+					//get vote for each property
 					Map<String, Map<String, Integer>> nameVoteMap = new HashMap<String, Map<String, Integer>>();
 					Map<String, Map<String, Integer>> definitionVoteMap = new HashMap<String, Map<String, Integer>>();
 					Map<String, Map<String, Integer>> referenceVoteMap = new HashMap<String, Map<String, Integer>>();
@@ -103,6 +104,10 @@ public class ExpertValidation extends HttpServlet {
 					Map<String, Map<String, Integer>> synonymVoteMap = new HashMap<String, Map<String, Integer>>();
 					Map<String, Map<String, Integer>> relatedVoteMap = new HashMap<String, Map<String, Integer>>();
 					List<AnnotationConcept> commentList = new ArrayList<AnnotationConcept>();
+					//count vote number for the user
+					Integer countNbVote = 0;
+					//count number of concept the user have voted for
+					Integer countNbConceptVoted = 0;
 					// get parameter
 					String traitName = request.getParameter(GET_PARAMETER);
 					try {
@@ -120,6 +125,11 @@ public class ExpertValidation extends HttpServlet {
 						} catch (Exception e) {
 							errors.put(ERROR_URI, e.getMessage() + " for " + traitName);
 						}
+						//set vote number for the user
+						countNbVote = traitModel.countVotePerson(concept,user.getName());
+						//set concept voted number for the user
+						countNbConceptVoted = traitModel.countConceptVotedPerson(user.getName());
+
 						//// get insert annotation if exists
 						// get all insert members
 						Map<String, List<String>> insertMap = traitModel.getAnnotation(Format.formatName(traitName),
@@ -362,6 +372,10 @@ public class ExpertValidation extends HttpServlet {
 											propertyVote = traitModel.countVote(concept, SkosVoc.broaderTransitive, user.getName(), 
 													value);
 											break;
+										case "synonym":
+											propertyVote = traitModel.countVote(concept, SkosXLVoc.altLabel, user.getName(), 
+													value);
+											break;
 										default:
 											propertyVoteMap.put("proposed", voteMapTmp);
 											propertyVote = traitModel.countVote(concept, ChangeVoc.update, user.getName(), value);
@@ -393,6 +407,10 @@ public class ExpertValidation extends HttpServlet {
 									case "category":
 										categoryVoteMap.put("proposed", voteMapTmp);
 										propertyVoteMap = categoryVoteMap;
+										break;
+									case "synonym":
+										synonymVoteMap.put("proposed", voteMapTmp);
+										propertyVoteMap = synonymVoteMap;
 										break;
 									default:
 										propertyVoteMap.put("proposed", voteMapTmp);
@@ -452,7 +470,13 @@ public class ExpertValidation extends HttpServlet {
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
 							System.out.println(e.getMessage());
-
+						}
+						try {
+							String property = "synonym";
+							Map<String, Map<String, Integer>> propertyVoteMap = synonymVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
 						}
 					} else {
 						errors.put(ERROR_CONCEPT, ERROR_MESSAGE_CONCEPT + ": " + traitName);
@@ -460,6 +484,8 @@ public class ExpertValidation extends HttpServlet {
 					// set parameter for view
 					request.setAttribute("myTraitVote", myTraitVote);
 					request.setAttribute("user", user.getName());
+					request.setAttribute("count", countNbVote);
+					request.setAttribute("countVoted", countNbConceptVoted);
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 				} else {
 					// re-authenticate

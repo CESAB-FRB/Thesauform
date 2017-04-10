@@ -16,6 +16,7 @@ public class VotesModel {
 	protected ThesauformConfiguration conf = new ThesauformConfiguration();
 	public static final String ERROR_TRAIT_EMPTY = "No trait given";
 	public static final String ERROR_PROP_EMPTY = "No propriety given";
+	public static final String ERROR_COMMENT_EMPTY = "No comment given";
 	public static final String ERROR_PERSON_EMPTY = "No person given";
 	public static final String ERROR_VALUE_EMPTY = "No value given";
 	public static final String ERROR_VOTE_VALUE_EMPTY = "No vote value given";
@@ -32,6 +33,7 @@ public class VotesModel {
 	private String property;
 	private String person;
 	private String value;
+	private String comment;
 	private Integer voteValue;
 	private String database;
 	private String tmp_database;
@@ -95,6 +97,22 @@ public class VotesModel {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Set comment
+	 * @param comment
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean setComment(String comment) throws Exception{
+		boolean returnValue = false;
+		if (!(comment == null || comment.isEmpty())) {
+			this.comment = comment;
+		} else {
+			throw new Exception(ERROR_PROP_EMPTY);
+		}
+		return(returnValue);
+	}
 
 	/**
 	 * Test existence of a personal vote
@@ -140,6 +158,24 @@ public class VotesModel {
 		}
 		return (cptVote);
 	}
+	
+	/**
+	 * Change vote
+	 * 
+	 * @return
+	 * @throws java.lang.Exception
+	 */
+	public Integer changeVote() throws Exception {
+		Integer cptVote = null;
+		if (myModel.changeVote(this.traitName, this.property, this.person, this.value, this.voteValue, this.comment)) {
+			this.saveModel();
+			cptVote = this.countVote();
+		} else {
+			throw new Exception(ERROR_ADD_VOTE);
+		}
+		return (cptVote);
+	}
+
 
 	/**
 	 * Get vote number for a propriety

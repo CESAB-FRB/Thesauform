@@ -29,13 +29,21 @@ public class Vote extends HttpServlet {
 	private final String EMPTY_TRAIT_NAME_MESSAGE = "Empty parameter trait name";
 	private final String EMPTY_PROPERTY_MESSAGE = "Empty parameter property";
 	private final String EMPTY_VALUE_MESSAGE = "Empty parameter value";
+	private final String EMPTY_COMMENT_MESSAGE = "Empty parameter comment";
 	private final String EMPTY_VOTE_VALUE_MESSAGE = "Empty parameter vote_value";
 	private final String WRONG_VOTE_VALUE_MESSAGE = "Wrong parameter vote_value";
 	private final String EMPTY_ACTION_MESSAGE = "Empty parameter action";
 	private final String WRONG_ACTION_MESSAGE = "Wrong parameter action";
 
+	
+
+	public String normalSpecialChar(String value) {
+		value = value.replaceAll(";and;", "&");
+		return value;
+	}
+	
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	synchronized public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// manage errors messages
 		SkosTraitModel traitModel = null;
 		Integer countNb = 0;
@@ -53,7 +61,7 @@ public class Vote extends HttpServlet {
 						if (action == null || action.isEmpty()) {
 							throw new Exception(EMPTY_ACTION_MESSAGE);
 						} else {
-							if (!(action.equals("add") || action.equals("del"))) {
+							if (!(action.equals("add") || action.equals("del") || action.equals("change"))) {
 								throw new Exception(WRONG_ACTION_MESSAGE + " " + action);
 							}
 						}
@@ -69,6 +77,9 @@ public class Vote extends HttpServlet {
 						if (value == null || value.isEmpty()) {
 							throw new Exception(EMPTY_VALUE_MESSAGE);
 						}
+						String comment = request.getParameter("comment");
+						//@PATCH for special character & et #
+						value = normalSpecialChar(value);
 						//@PATCH for def + ref
 						if(value.matches(".*\\(ref: .+\\)")) {
 							value = value.replaceAll("(.*)\\(ref: (.*)\\)", "$1__$2");
@@ -107,7 +118,16 @@ public class Vote extends HttpServlet {
 						if (action.equals("add")) {
 							countNb = myVote.addVote();
 						} else {
-							countNb = myVote.deleteVote();
+							if (action.equals("del")) {
+								countNb = myVote.deleteVote();
+							}
+							else {
+								if (comment == null || comment.isEmpty()) {
+									throw new Exception(EMPTY_COMMENT_MESSAGE);
+								}
+								myVote.setComment(comment);
+								countNb = myVote.changeVote();
+							}
 						}
 						// return vote number
 						response.setContentType("application/json");

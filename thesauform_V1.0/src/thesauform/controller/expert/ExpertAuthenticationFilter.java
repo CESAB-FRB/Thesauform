@@ -52,11 +52,11 @@ public class ExpertAuthenticationFilter implements Filter {
 				chain.doFilter(request, response);
 			} else {
 				// re-authenticate
-				request.getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request, response);
+				request.getRequestDispatcher(ThesauformConfiguration.CONTROLLER_FAILED).forward(request, response);
 			}
 		} else {
 			// re-authenticate
-			request.getRequestDispatcher(ThesauformConfiguration.VUE_FAILED).forward(request, response);
+			request.getRequestDispatcher(ThesauformConfiguration.CONTROLLER_FAILED).forward(request, response);
 		}
 	}
 

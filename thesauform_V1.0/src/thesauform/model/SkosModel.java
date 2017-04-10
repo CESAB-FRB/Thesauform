@@ -536,7 +536,12 @@ public class SkosModel implements AnnotationModel {
 		return cpt;
 	}
 
-	public int countVote(Resource c, Property p, String value) {
+	/**
+	 * Count vote number for a concept
+	 * @param c
+	 * @return
+	 */
+	public int countVote(Resource c) {
 		int cpt = 0;
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
@@ -545,18 +550,7 @@ public class SkosModel implements AnnotationModel {
 		// Query string
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
-				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
-				+ "?vote change:hasValue ?val . FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
-		//@Patch1: count differently for definition with reference
-		if (p == SkosVoc.definition && value.contains("__")) {
-			String prolog4 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
-			String[] refDef = value.split("__");
-			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL + prolog4
-				+ ThesauformConfiguration.NL + "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
-				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
-				+ "?vote change:hasValue ?val . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
-				+ "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\"" + refDef[1] + "\" ) }";
-		}
+				+ "> change:vote ?vote . " + "?vote change:hasValue ?val }";
 		Query query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, m);
 		try {
@@ -574,6 +568,122 @@ public class SkosModel implements AnnotationModel {
 		return cpt;
 	}
 
+	/**
+	 * Count vote number for a concept for a person
+	 * @param c
+	 * @param person,
+	 * @return
+	 */
+	public int countVotePerson(Resource c, String person) {
+		int cpt = 0;
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
+		// Query string
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL
+				+ "SELECT  (COUNT(DISTINCT ?vote) AS ?count)  WHERE { " + "<" + c
+				+ "> change:vote ?vote . "
+				+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
+				+ "?creator foaf:name ?cname ." + "FILTER (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\"" + person.toLowerCase().replace(" ", "_")
+				+ "\")." + " }";
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("count");
+				cpt = Integer.parseInt(y.asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return cpt;
+	}
+
+	/**
+	 * Count vote number for a concept for a property (as definition)
+	 * @param c
+	 * @param p,
+	 * @return
+	 */
+	public int countUserVoteProperty(Resource c, Property p) {
+		int cpt = 0;
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
+		// Query string
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL
+				+ "SELECT  (COUNT(DISTINCT ?creator) AS ?count)  WHERE { " + "<" + c
+				+ "> change:vote ?vote . "
+				+ "?vote change:hasProperty <" + p + "> . "
+				+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
+				+ "}";
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("count");
+				cpt = Integer.parseInt(y.asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return cpt;
+	}
+	
+	/**
+	 * Count number of concept with at least one vote for a person
+	 * @param c
+	 * @param person
+	 * @return
+	 */
+	public int countConceptVotedPerson(String person) {
+		int cpt = 0;
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
+		// Query string
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL
+				+ "SELECT  (COUNT(DISTINCT ?concept) AS ?count)  WHERE { ?concept change:vote ?vote . "
+				+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
+				+ "?creator foaf:name ?cname ." + "FILTER (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\"" + person.toLowerCase().replace(" ", "_")
+				+ "\")." + " }";
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("count");
+				cpt = Integer.parseInt(y.asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return cpt;
+	}
+	
 	public int countVote(String traitName, String property, String value) throws Exception {
 		int cpt = 0;
 		Resource c = this.getResource(Format.formatName(traitName));
@@ -639,6 +749,45 @@ public class SkosModel implements AnnotationModel {
 			qexec.close();
 		}
 		return cpt;
+	}
+	
+	//get all vote link to a concept annotation
+	public List<String> getVote(Resource c, Property p, String value) {
+		List<String> voteList =  new ArrayList<String>();
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		// Query string
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + "SELECT ?cpt WHERE { " + "<" + c
+				+ "> change:vote ?vote . " + "?vote change:hasVote ?cpt . " + "?vote change:hasProperty <" + p + "> . "
+				+ "?vote change:hasValue ?val . FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
+		//@Patch1: count differently for definition with reference
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog4 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL + prolog4
+				+ ThesauformConfiguration.NL + "SELECT ?cpt WHERE { " + "<" + c
+				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
+				+ "?vote change:hasValue ?val . " + "?vote change:hasVote ?cpt . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
+				+ "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\"" + refDef[1] + "\" ) }";
+		}
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			for (; rs.hasNext();) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("cpt");
+				voteList.add(y.asNode().getLiteralLexicalForm());
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return voteList;
 	}
 
 	/**
@@ -709,8 +858,8 @@ public class SkosModel implements AnnotationModel {
 					+ c + "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
 					+ "?vote change:hasValue ?val . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
 					+ "?vote change:contribution ?person . " + "?person dc:creator  ?creator . "
-					+ "?creator foaf:name ?cname ." + "FILTER (?val=\"" + refDef[0] + "\" && ?refval = \""
-					+ refDef[1] + "\" && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\""
+					+ "?creator foaf:name ?cname ." + "FILTER (?val=\"" + refDef[0].trim() + "\" && ?refval = \""
+					+ refDef[1].trim() + "\" && (REPLACE(LCASE(?cname), \" \", \"_\", \"i\")=\""
 					+ person.toLowerCase().replace(" ", "_") + "\"))." + " }";
 		}
 		Query query = QueryFactory.create(queryString);
@@ -736,6 +885,7 @@ public class SkosModel implements AnnotationModel {
 	 * @param traitName
 	 * @param property
 	 * @param person
+	 * @param voteValue
 	 * @param value
 	 * @return
 	 * @throws Exception
@@ -745,6 +895,8 @@ public class SkosModel implements AnnotationModel {
 		Resource c = this.getResource(Format.formatName(traitName));
 		Property p = null;
 		Resource pe = this.getPerson(person);
+		//escape value #
+		value = value.replace("#", "\\#");
 		if (property.equalsIgnoreCase("prefLabel")) {
 			p = SkosXLVoc.prefLabel;
 		} else if (property.equalsIgnoreCase("altLabel")) {
@@ -841,6 +993,59 @@ public class SkosModel implements AnnotationModel {
 		return (returnValue);
 	}
 
+	/**
+	 * Add note to a personal vote for annotation
+	 * 
+	 * @param traitName
+	 * @param property
+	 * @param person
+	 * @param voteValue
+	 * @param value
+	 * @param comment
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean changeVote(String traitName, String property, String person, String value, Integer voteValue, String comment) throws Exception {
+		Boolean returnValue = false;
+		//test voteValue not 0
+		if(voteValue!=0) {
+			Resource vote = this.existVote(traitName, property, person, value);
+			if (vote == null) {
+				throw new Exception("Vote should be inserted before comment.");
+			} else {
+				//remove comment if already exists
+			    m.removeAll(vote, RDFS.comment, (RDFNode) null);
+				//add comment
+				m.add(vote, RDFS.comment, comment);
+				returnValue = true;
+			}
+		}
+		else {
+			throw new Exception("Could not comment without vote.");
+		}
+		return (returnValue);
+	}
+	
+	/**
+	 * Get vote comment if exists
+	 * @param traitName
+	 * @param property
+	 * @param person
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public String getVoteComment(String traitName, String property, String person, String value) throws Exception {
+		String comment = null;
+		Resource vote = this.existVote(traitName, property, person, value);
+		try {
+				comment = vote.getProperty(RDFS.comment).getObject().toString();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return (comment);
+	}
+	
 	public List<String> getAllDelete(String nameTrait) {
 		List<String> deleteList = new ArrayList<String>();
 		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";

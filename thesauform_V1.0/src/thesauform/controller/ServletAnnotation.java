@@ -80,21 +80,23 @@ public class ServletAnnotation extends HttpServlet {
 				boolean authentificationStatus = user.getAuthenticated();
 				if (authentificationStatus) {
 					// do treatment
-					if (request.getParameter("inputAnn") == null && request.getParameter("nameAdd") != null) {
-						try {
-							Annotation.submitSynchronized(session, request, false);
-							request.removeAttribute("nameAdd");
-						} catch (Exception e) {
-							// @TODO exception management
-							System.err.println(e.getMessage());
-						}
-					} else if (request.getParameter("inputAnn") != null) {
-						try {
-							Annotation.submitSynchronized(session, request, true);
-							request.removeAttribute("inputAnn");
-						} catch (Exception e) {
-							// @TODO exception management
-							System.err.println(e.getMessage());
+					if (request.getParameter("fail") == null) {
+						if (request.getParameter("inputAnn") == null && request.getParameter("nameAdd") != null) {
+							try {
+								Annotation.submitSynchronized(session, request, false);
+								request.removeAttribute("nameAdd");
+							} catch (Exception e) {
+								// @TODO exception management
+								System.err.println(e.getMessage());
+							}
+						} else if (request.getParameter("inputAnn") != null) {
+							try {
+								Annotation.submitSynchronized(session, request, true);
+								request.removeAttribute("inputAnn");
+							} catch (Exception e) {
+								// @TODO exception management
+								System.err.println(e.getMessage());
+							}
 						}
 					}
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);

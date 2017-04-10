@@ -73,6 +73,7 @@ public final class ThesauformConfiguration {
 	public static final String uriRef = "/reference#";
 	// authentication constant
 	public static final String VUE_FAILED = "/WEB-INF/scripts/authenticationThesauform.jsp";
+	public static final String CONTROLLER_FAILED = "/authentication";
 	public static final String PARAMETER_MODE = "action";
 	public static final String MODE_ANNOTATION = "annotation";
 	public static final String MODE_VOTE = "expert";
@@ -119,11 +120,17 @@ public final class ThesauformConfiguration {
 			prop.load(input);
 			String databaseString = prop.getProperty("database");
 			if(databaseString!=null&&databaseString!="") {
-				database = true;
-				database_path = databaseString;
+				if(databaseString!=null&&databaseString!="") {
+					if(!databaseString.equals("false")) {
+						database = true;
+						database_path = databaseString;
+					}
+					else {
+						database = false;
+					}
+				}
 			}
 			else {
-				database = false;
 				input.close();
 				throw new Exception( WRONG_DATABASE_CONF_PARAM );
 			}

@@ -118,6 +118,21 @@
 			$("#bodygrid").html(html);
 			$("#jtree").jstree("toggle_node","#"+item);
 		}
+		
+		function checkSpecialChar(form) { 	
+			var fieldValuePairs = $('#'+form).serializeArray();
+			$.each(fieldValuePairs, function(index, fieldValuePair) {
+				if(fieldValuePair.value.indexOf('#') !== -1) {
+					if(fieldValuePair.name=='def') {
+					    alert("definition should not contain the character #");
+					}
+					else {
+					    alert(fieldValuePair.name + " should not contain the character #");	
+					}
+				    $('<input/>', { id: 'fail', name: 'fail', value: '1', type: 'hidden' }).appendTo('#'+form);
+				}
+			});
+		} 
 	</script> 
 </content>
 
@@ -132,7 +147,7 @@
 				data-jowl="owl:Class">
 				<h4 class="ui-dialog-titlebar  ui-state-default propertybox"
 					data-jowl="rdfs:label">Description</h4>
-				<form id="annotation" Method="POST" Action="annotationModification">
+				<form id="annotation" Method="POST" Action="annotationModification" onsubmit="checkSpecialChar('annotation')">
 					<b id="pere"></b> <input type="hidden" id="inputAnn"
 						name="inputAnn" />
 					<div id="bodygrid"></div>
@@ -141,12 +156,12 @@
 		</div>
 		<div id="tabs-2">
 			<div align="left" class="row">Select the new term's category in
-				the tree above</div>
+				the tree to the right</div>
 			<div id="description1" class="resourcebox ui-widget-content"
 				data-jowl="owl:Class">
 				<h4 class="ui-dialog-titlebar  ui-state-default propertybox"
 					data-jowl="rdfs:label">Description</h4>
-				<form id="validation" Method="POST" Action="annotationModification">
+				<form id="validation" Method="POST" Action="annotationModification" onsubmit="checkSpecialChar('validation')">
 					<div class="row">
 						<div class="gras">
 							Category: <span id="Apere"></span>

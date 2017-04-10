@@ -3,9 +3,12 @@ package thesauform.controller.expert;
 import java.io.IOException;
 
 import thesauform.beans.Person;
+import thesauform.model.Format;
 import thesauform.model.SkosTraitModel;
 import thesauform.model.ThesauformConfiguration;
+import thesauform.model.vocabularies.SkosVoc;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +50,8 @@ public class ExpertAdministration extends HttpServlet {
 		Map<String, String> errors = new HashMap<>();
 		// trait model
 		SkosTraitModel traitModel = null;
+		//count definition vote
+		Map<String, Integer> definitionCountMap = new HashMap<String, Integer>();
 		// test if a session is initialized
 		HttpSession session = request.getSession(false);
 		if (session != null) {
@@ -82,6 +87,11 @@ public class ExpertAdministration extends HttpServlet {
 								String typeModif = traitPair.getKey();
 								Iterator<String> traitIterator = traitList.iterator();
 								List<String> tmpList;
+								//count number of vote for definitions by concept
+								for (Iterator<String> conceptIterator = traitList.iterator(); conceptIterator.hasNext();) {
+									String concept = (String) conceptIterator.next();
+									definitionCountMap.put(concept, traitModel.countUserVoteProperty(traitModel.getResource(Format.formatName(concept)), SkosVoc.definition));
+								}
 								String namePara;
 								if (typeModif.equals(TYPE_INSERT)) {
 									insertedTraitList = traitList;
@@ -103,7 +113,9 @@ public class ExpertAdministration extends HttpServlet {
 									}
 								}
 								if (traitIterator.hasNext()) {
+									Collections.sort(tmpList);
 									request.setAttribute(namePara, tmpList);
+									request.setAttribute("definition_count", definitionCountMap);
 								} else {
 									// do nothing view will check if empty
 								}
@@ -136,6 +148,8 @@ public class ExpertAdministration extends HttpServlet {
 		Map<String, String> errors = new HashMap<>();
 		// trait model
 		SkosTraitModel traitModel = null;
+		//count definition vote
+		Map<String, Integer> definitionCountMap = new HashMap<String, Integer>();
 		// test if a session is initialized
 		HttpSession session = request.getSession(false);
 		if (session != null) {
@@ -171,6 +185,11 @@ public class ExpertAdministration extends HttpServlet {
 								String typeModif = traitPair.getKey();
 								Iterator<String> traitIterator = traitList.iterator();
 								List<String> tmpList;
+								//count number of vote for definitions by concept
+								for (Iterator<String> conceptIterator = traitList.iterator(); conceptIterator.hasNext();) {
+									String concept = (String) conceptIterator.next();
+									definitionCountMap.put(concept, traitModel.countUserVoteProperty(traitModel.getResource(Format.formatName(concept)), SkosVoc.definition));
+								}
 								String namePara;
 								if (typeModif.equals(TYPE_INSERT)) {
 									insertedTraitList = traitList;
@@ -192,7 +211,9 @@ public class ExpertAdministration extends HttpServlet {
 									}
 								}
 								if (traitIterator.hasNext()) {
+									Collections.sort(tmpList);
 									request.setAttribute(namePara, tmpList);
+									request.setAttribute("definition_count", definitionCountMap);
 								} else {
 									// do nothing view will check if empty
 								}
