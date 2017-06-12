@@ -40,7 +40,7 @@ public class Annotation {
 	private static void setModif(HttpSession session, HttpServletRequest request) throws Exception {
 		String parameter = (String) request.getServletContext().getAttribute(ThesauformConfiguration.TRAIT_FILE);
 		String file = "";
-		if(request.getServletContext().getAttribute(ThesauformConfiguration.DATABASE)=="false") {
+		if((boolean)request.getServletContext().getAttribute(ThesauformConfiguration.DATABASE)==false) {
 			file = (String) request.getServletContext().getRealPath(parameter);
 		}
 		else {
