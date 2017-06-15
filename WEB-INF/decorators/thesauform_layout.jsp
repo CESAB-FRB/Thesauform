@@ -66,7 +66,7 @@
 	
 		<div id="footer-container">
 			<div id="footer">
-				<a href="${pageContext.request.contextPath}/mailto:${_contact_mail_}" style="color: white">Contact
+				<a href="mailto:${_contact_mail_}" style="color: white">Contact
 					${_contact_information_}</a>
 			</div>
 		</div>
