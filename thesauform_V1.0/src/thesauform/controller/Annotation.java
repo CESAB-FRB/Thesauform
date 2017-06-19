@@ -97,6 +97,21 @@ public class Annotation {
 				}
 				Resource updatelist = m.createCollection("Update");
 				m.addMember(updatelist, modifConcept);
+				//case sensitive label if different from prefLabel in use
+				if (!pere.equalsIgnoreCase("delete")&&!pere.equals(Format.formatName(concept))) {
+					//test annotation not already existing
+					if (!m.existsAnnotation(Format.formatName(concept.trim()),SkosXLVoc.prefLabel,pere.trim())) {
+							Resource modif = m.createUpdate(modifConcept);
+							m.sethasProperty(modif, SkosXLVoc.prefLabel);
+							m.sethasValue(modif, pere.trim());
+							m.setResource(modif, DCTerms.created, date);
+							m.setResource(modif, DC.creator, person);
+					} else {
+						//do nothing
+					}
+				} else {
+					//do nothing
+				}
 				// test if definition is not empty
 				if (!param.get("def")[0].isEmpty() || !param.get("def")[0].trim().equalsIgnoreCase("")) {
 					// test if definition already exists
