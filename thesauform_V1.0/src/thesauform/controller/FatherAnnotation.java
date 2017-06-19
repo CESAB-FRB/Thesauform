@@ -2,6 +2,7 @@ package thesauform.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import thesauform.beans.Person;
@@ -92,14 +93,20 @@ public class FatherAnnotation extends HttpServlet {
 					if (traitModel.getConceptFromSyn(Format.formatName(traitName)) != null) {
 						concept = traitModel.getConceptFromSyn(Format.formatName(traitName));
 					}
-					String var = "[";
-					Resource pere = traitModel.getResource(traitModel.getSuperclass(concept).getLocalName());
-					var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
-					while (pere != null) {
-						pere = traitModel.getSuperclass(pere);
-						if (pere != null) {
-							var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
+					List<Resource> listPere = traitModel.getAllSuperclass(concept);
+					String var = "[ ";
+					for (Resource my_pere : listPere) {
+						Resource pere = traitModel.getResource(my_pere.getLocalName());
+						//Resource pere = traitModel.getResource(traitModel.getSuperclass(concept).getLocalName());
+						var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
+						while (pere != null) {
+							pere = traitModel.getSuperclass(pere);
+							if (pere != null) {
+								var = var + "\"#" + traitModel.getLabelLiteralForm(traitModel.getPrefLabel(pere)) + "\",";
+							}
 						}
+						var = var.substring(0, var.length() - 1);
+						var = var + ",";
 					}
 					var = var.substring(0, var.length() - 1);
 					var = var + "]";
