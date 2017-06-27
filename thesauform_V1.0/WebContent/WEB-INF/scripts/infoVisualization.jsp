@@ -6,11 +6,13 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="JS/jquery.jstree.js"></script>
 	<script type="text/javascript">
+		/*need to fix multiparent  */
 		$(document).ready(function() {
 			$(function () {
 				$("#jtree").jstree({ 
 					"html_data" : {
-						"data" : "<ul> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${my_trait.parent.name}'/>' > <c:out value='${my_trait.parent.name}'/> </a> <ul> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${my_trait.name}'/>' > <c:out value='${my_trait.name}'/> </a> <c:choose> <c:when test='${empty my_trait.sonsList}'> <c:choose> <c:when test='${empty my_trait.categoriesList}'> </c:when><c:otherwise><ul><c:forEach items='${my_trait.categoriesList}' var='category'> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${category.realName}'/>' > <c:out value='${category.realName}'/> </a> </li> </c:forEach></ul></c:otherwise> </c:choose> </c:when> <c:otherwise> <ul> <c:forEach items='${my_trait.sonsList}' var='son'> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${son.name}'/>' > <c:out value='${son.name}'/> </a> </li> </c:forEach> </ul> </c:otherwise> </c:choose> </li> </ul> </li> </ul>"						},
+						"data" : "<ul> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${my_trait.parent[0].name}'/>' > <c:out value='${my_trait.parent[0].name}'/> </a> <ul> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${my_trait.name}'/>' > <c:out value='${my_trait.name}'/> </a> <c:choose> <c:when test='${empty my_trait.sonsList}'> <c:choose> <c:when test='${empty my_trait.categoriesList}'> </c:when><c:otherwise><ul><c:forEach items='${my_trait.categoriesList}' var='category'> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${category.realName}'/>' > <c:out value='${category.realName}'/> </a> </li> </c:forEach></ul></c:otherwise> </c:choose> </c:when> <c:otherwise> <ul> <c:forEach items='${my_trait.sonsList}' var='son'> <li> <a href='annotationInfo?viz=1&trait=<c:out value='${son.name}'/>' > <c:out value='${son.name}'/> </a> </li> </c:forEach> </ul> </c:otherwise> </c:choose> </li> </ul> </li> </ul>"
+					},
 					"themes" : {
 						"theme" : "classic",
 						"dots" : true,

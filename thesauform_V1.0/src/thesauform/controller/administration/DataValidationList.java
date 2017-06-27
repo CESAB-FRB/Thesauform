@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,11 +61,11 @@ public class DataValidationList extends HttpServlet {
 						Resource concept = traitModel.getResource(Format.formatName(conceptName));
 						if (concept != null) {
 							Integer countVote = traitModel.countVote(concept);
-							voteMap.put(conceptName, countVote);
-
+							voteMap.put(conceptName.toLowerCase(), countVote);
 						}
 					}
-					request.setAttribute("vote", voteMap);
+					Map<String,Integer> sortedVoteMap = new TreeMap<String,Integer>(voteMap);
+					request.setAttribute("vote", sortedVoteMap);
 					this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
 				} else {
 					// re-authenticate

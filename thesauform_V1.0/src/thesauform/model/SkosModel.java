@@ -483,6 +483,7 @@ public class SkosModel implements AnnotationModel {
 		return map;
 	}
 	
+	//get vote value with comment
 	public int countVote(Resource c, Property p, String person, String value) {
 		int cpt = 0;
 		//replace value special character
@@ -751,26 +752,33 @@ public class SkosModel implements AnnotationModel {
 		return cpt;
 	}
 	
-	//get all vote link to a concept annotation
+	//get all vote link to a concept annotation TODO:with comment better managed
 	public List<String> getVote(Resource c, Property p, String value) {
 		List<String> voteList =  new ArrayList<String>();
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
 				+ ">";
 		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX rdfs: <" + ThesauformConfiguration.rdfs + ">";
 		// Query string
-		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
-				+ ThesauformConfiguration.NL + "SELECT ?cpt WHERE { " + "<" + c
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT ?cpt ?cmt WHERE { " + "<" + c
 				+ "> change:vote ?vote . " + "?vote change:hasVote ?cpt . " + "?vote change:hasProperty <" + p + "> . "
-				+ "?vote change:hasValue ?val . FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
+				+ "?vote change:hasValue ?val . ?vote change:contribution ?cont . ?cont dc:creator ?crt . "
+				+ "OPTIONAL { ?vote rdfs:comment ?cmt }"
+				+ "FILTER (NOT EXISTS { ?vote trait:reference ?ref } && ?val=\"" + value + "\" ) }";
 		//@Patch1: count differently for definition with reference
 		if (p == SkosVoc.definition && value.contains("__")) {
-			String prolog4 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String prolog6 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
 			String[] refDef = value.split("__");
-			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL + prolog4
-				+ ThesauformConfiguration.NL + "SELECT ?cpt WHERE { " + "<" + c
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL + prolog6
+				+ ThesauformConfiguration.NL + "SELECT ?cpt ?cmt WHERE { " + "<" + c
 				+ "> change:vote ?vote . " + "?vote change:hasProperty <" + p + "> . "
 				+ "?vote change:hasValue ?val . " + "?vote change:hasVote ?cpt . " + "?vote trait:reference ?ref . " + "?ref rdf:value ?refval . "
+				+ "OPTIONAL { ?vote rdfs:comment ?cmt }"
 				+ "FILTER (?val=\"" + refDef[0] + "\" && ?refval=\"" + refDef[1] + "\" ) }";
 		}
 		Query query = QueryFactory.create(queryString);
@@ -780,7 +788,13 @@ public class SkosModel implements AnnotationModel {
 			for (; rs.hasNext();) {
 				QuerySolution rb = rs.nextSolution();
 				RDFNode y = rb.get("cpt");
-				voteList.add(y.asNode().getLiteralLexicalForm());
+				RDFNode z = rb.get("cmt");
+				if(z!= null) {
+					voteList.add(y.asNode().getLiteralLexicalForm() + "___" + z.asNode().getLiteralLexicalForm());
+				}
+				else {
+					voteList.add(y.asNode().getLiteralLexicalForm());
+				}
 			}
 		} finally {
 			// QueryExecution objects should be closed to free any system
@@ -1834,6 +1848,25 @@ public class SkosModel implements AnnotationModel {
 			// TODO: handle exception
 		}
 		return pere;
+	}
+
+	//multi parent patch
+	public List<Resource> getAllSuperclass(Resource r) {
+		List<Resource> listPere = new ArrayList<Resource>();
+		Resource pere = null;
+		try {
+			if (!r.getLocalName().equalsIgnoreCase(ThesauformConfiguration.super_root)) {
+				while(r.listProperties(SkosVoc.broaderTransitive).hasNext())
+				{
+					pere = r.listProperties(SkosVoc.broaderTransitive).next().getObject().as(Resource.class);
+					listPere.add(pere);
+					r.listProperties(SkosVoc.broaderTransitive).removeNext();
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return listPere;
 	}
 
 	public Resource createCollection(String t) {

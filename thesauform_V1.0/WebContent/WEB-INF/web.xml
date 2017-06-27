@@ -40,4 +40,12 @@
     <filter-name>thesauform_expert</filter-name>
     <url-pattern>/expert</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>thesauform_url</filter-name>
+    <filter-class>thesauform.controller.UrlRewriteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>thesauform_url</filter-name>
+    <url-pattern>/TRENVAS/*</url-pattern>
+  </filter-mapping>
 </web-app>

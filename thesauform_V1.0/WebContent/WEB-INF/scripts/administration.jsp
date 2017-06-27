@@ -11,7 +11,7 @@
 <h3>Administration panel</h3>
 <div id="content">
 	<ul>
-		<li><a href="administration/usersList">Users management</a></li>
+		<li><a href="administration/usersList">User management</a></li>
 		<li><a href="administration/validateDataList">Validation</a></li>
 		<li><a href="administration/manageData">Data management</a></li>
 		<li><a href="administration/clearCache">Clear Cache</a></li>

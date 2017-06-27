@@ -13,15 +13,15 @@ public class TraitConceptVote {
 	private Integer nbDeleteVote;
 	// update property should have vote associated by proposition + be
 	// diffentiated by valide/to vote
-	private Map<String, Map<String, Integer>> nameList;
-	private Map<String, Map<String, Integer>> unitList;
-	private Map<String, Map<String, Integer>> definitionList;
-	private Map<String, Map<String, Integer>> referenceList;
-	private Map<String, Map<String, Integer>> abbreviationList;
-	private Map<String, Map<String, Integer>> categoryList;
+	private Map<String, Map<String, TraitVoteValue>> nameList;
+	private Map<String, Map<String, TraitVoteValue>> unitList;
+	private Map<String, Map<String, TraitVoteValue>> definitionList;
+	private Map<String, Map<String, TraitVoteValue>> referenceList;
+	private Map<String, Map<String, TraitVoteValue>> abbreviationList;
+	private Map<String, Map<String, TraitVoteValue>> categoryList;
 	private List<AnnotationConcept> commentList; // No vote associated
-	private Map<String, Map<String, Integer>> synonymList;
-	private Map<String, Map<String, Integer>> relatedList;
+	private Map<String, Map<String, TraitVoteValue>> synonymList;
+	private Map<String, Map<String, TraitVoteValue>> relatedList;
 
 	private static final String MISSING_URI = "URI is empty";
 	//private static final String MISSING_IS_INSERTED = "boolean insertion is empty";
@@ -95,7 +95,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideNameList(Map<String, Map<String, Integer>> nameList) throws Exception {
+	public boolean valideNameList(Map<String, Map<String, TraitVoteValue>> nameList) throws Exception {
 		boolean returnVal = false;
 		if (nameList != null && !nameList.isEmpty()) {
 			returnVal = true;
@@ -105,7 +105,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideUnitList(Map<String, Map<String, Integer>> unitList) throws Exception {
+	public boolean valideUnitList(Map<String, Map<String, TraitVoteValue>> unitList) throws Exception {
 		boolean returnVal = false;
 		if (unitList != null && !unitList.isEmpty()) {
 			returnVal = true;
@@ -115,7 +115,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideDefinitionList(Map<String, Map<String, Integer>> definitionList) throws Exception {
+	public boolean valideDefinitionList(Map<String, Map<String, TraitVoteValue>> definitionList) throws Exception {
 		boolean returnVal = false;
 		if (definitionList != null && !definitionList.isEmpty()) {
 			returnVal = true;
@@ -125,7 +125,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideReferenceList(Map<String, Map<String, Integer>> referenceList) throws Exception {
+	public boolean valideReferenceList(Map<String, Map<String, TraitVoteValue>> referenceList) throws Exception {
 		boolean returnVal = false;
 		if (referenceList != null && !referenceList.isEmpty()) {
 			returnVal = true;
@@ -135,7 +135,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideAbbreviationList(Map<String, Map<String, Integer>> abbreviationList) throws Exception {
+	public boolean valideAbbreviationList(Map<String, Map<String, TraitVoteValue>> abbreviationList) throws Exception {
 		boolean returnVal = false;
 		if (abbreviationList != null && !abbreviationList.isEmpty()) {
 			returnVal = true;
@@ -155,7 +155,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideCategoryList(Map<String, Map<String, Integer>> categoryList) throws Exception {
+	public boolean valideCategoryList(Map<String, Map<String, TraitVoteValue>> categoryList) throws Exception {
 		boolean returnVal = false;
 		if (categoryList != null && !categoryList.isEmpty()) {
 			returnVal = true;
@@ -165,7 +165,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideSynonymList(Map<String, Map<String, Integer>> synonymList) throws Exception {
+	public boolean valideSynonymList(Map<String, Map<String, TraitVoteValue>> synonymList) throws Exception {
 		boolean returnVal = false;
 		if (synonymList != null && !synonymList.isEmpty()) {
 			returnVal = true;
@@ -175,7 +175,7 @@ public class TraitConceptVote {
 		return (returnVal);
 	}
 
-	public boolean valideRelatedList(Map<String, Map<String, Integer>> relatedList) throws Exception {
+	public boolean valideRelatedList(Map<String, Map<String, TraitVoteValue>> relatedList) throws Exception {
 		boolean returnVal = false;
 		if (relatedList != null && !relatedList.isEmpty()) {
 			returnVal = true;
@@ -205,27 +205,27 @@ public class TraitConceptVote {
 		return (this.deleteList);
 	}
 
-	public Map<String, Map<String, Integer>> getNameList() {
+	public Map<String, Map<String, TraitVoteValue>> getNameList() {
 		return (this.nameList);
 	}
 
-	public Map<String, Map<String, Integer>> getUnitList() {
+	public Map<String, Map<String, TraitVoteValue>> getUnitList() {
 		return (this.unitList);
 	}
 
-	public Map<String, Map<String, Integer>> getDefinitionList() {
+	public Map<String, Map<String, TraitVoteValue>> getDefinitionList() {
 		return (this.definitionList);
 	}
 
-	public Map<String, Map<String, Integer>> getReferenceList() {
+	public Map<String, Map<String, TraitVoteValue>> getReferenceList() {
 		return (this.referenceList);
 	}
 
-	public Map<String, Map<String, Integer>> getAbbreviationList() {
+	public Map<String, Map<String, TraitVoteValue>> getAbbreviationList() {
 		return (this.abbreviationList);
 	}
 
-	public Map<String, Map<String, Integer>> getCategoryList() {
+	public Map<String, Map<String, TraitVoteValue>> getCategoryList() {
 		return (this.categoryList);
 	}
 
@@ -233,11 +233,11 @@ public class TraitConceptVote {
 		return (this.commentList);
 	}
 
-	public Map<String, Map<String, Integer>> getSynonymList() {
+	public Map<String, Map<String, TraitVoteValue>> getSynonymList() {
 		return (this.synonymList);
 	}
 
-	public Map<String, Map<String, Integer>> getRelatedList() {
+	public Map<String, Map<String, TraitVoteValue>> getRelatedList() {
 		return (this.relatedList);
 	}
 
@@ -291,7 +291,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setNameList(Map<String, Map<String, Integer>> nameList) throws Exception {
+	public void setNameList(Map<String, Map<String, TraitVoteValue>> nameList) throws Exception {
 		try {
 			if (valideNameList(nameList)) {
 				this.nameList = nameList;
@@ -301,7 +301,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setUnitList(Map<String, Map<String, Integer>> unitList) throws Exception {
+	public void setUnitList(Map<String, Map<String, TraitVoteValue>> unitList) throws Exception {
 		try {
 			if (valideUnitList(unitList)) {
 				this.unitList = unitList;
@@ -311,7 +311,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setDefinitionList(Map<String, Map<String, Integer>> definitionList) throws Exception {
+	public void setDefinitionList(Map<String, Map<String, TraitVoteValue>> definitionList) throws Exception {
 		try {
 			if (valideDefinitionList(definitionList)) {
 				this.definitionList = definitionList;
@@ -321,7 +321,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setReferenceList(Map<String, Map<String, Integer>> referenceList) throws Exception {
+	public void setReferenceList(Map<String, Map<String, TraitVoteValue>> referenceList) throws Exception {
 		try {
 			if (valideReferenceList(referenceList)) {
 				this.referenceList = referenceList;
@@ -331,7 +331,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setAbbreviationList(Map<String, Map<String, Integer>> abbreviationList) throws Exception {
+	public void setAbbreviationList(Map<String, Map<String, TraitVoteValue>> abbreviationList) throws Exception {
 		try {
 			if (valideAbbreviationList(abbreviationList)) {
 				this.abbreviationList = abbreviationList;
@@ -351,7 +351,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setCategoryList(Map<String, Map<String, Integer>> categoryList) throws Exception {
+	public void setCategoryList(Map<String, Map<String, TraitVoteValue>> categoryList) throws Exception {
 		try {
 			if (valideCategoryList(categoryList)) {
 				this.categoryList = categoryList;
@@ -361,7 +361,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setSynonymList(Map<String, Map<String, Integer>> synonymList) throws Exception {
+	public void setSynonymList(Map<String, Map<String, TraitVoteValue>> synonymList) throws Exception {
 		try {
 			if (valideSynonymList(synonymList)) {
 				this.synonymList = synonymList;
@@ -371,7 +371,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setRelatedList(Map<String, Map<String, Integer>> relatedList) throws Exception {
+	public void setRelatedList(Map<String, Map<String, TraitVoteValue>> relatedList) throws Exception {
 		try {
 			if (valideRelatedList(relatedList)) {
 				this.relatedList = relatedList;
@@ -381,7 +381,7 @@ public class TraitConceptVote {
 		}
 	}
 
-	public void setPropertyList(String property, Map<String, Map<String, Integer>> propertyList) throws Exception {
+	public void setPropertyList(String property, Map<String, Map<String, TraitVoteValue>> propertyList) throws Exception {
 		try {
 			switch (property) {
 			case "name":

@@ -66,8 +66,8 @@
 			title='A reference to an article or book, or to a url for a web site.'><img
 				src="IMG/red_help.png"
 				style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
-	</label> <input type="text" name="ref" id="ref"
-		value="<c:out value="${my_trait.reference}"/>">
+	</label>
+	<textarea rows="1" name="ref" id="ref"><c:out value="${my_trait.reference}"/></textarea>
 </div>
 <div class="row">
 	<label id="l_abbr" for="abbr">Abbreviation: <span

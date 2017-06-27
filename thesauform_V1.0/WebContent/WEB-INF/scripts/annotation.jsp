@@ -39,7 +39,7 @@
 				select: function(event, ui) {
 					$("#jtree").jstree("search",ui.item.label);
 				}, 
-				minLength : 3 
+				minLength : 2 
 			});
 		});
 	</script> 
@@ -133,6 +133,17 @@
 				}
 			});
 		} 
+		
+		function validate(form) {
+			checkSpecialChar(form);
+			if($('#hpere').val() == '') {
+				alert('Please choose a category in the tree to the right');
+		        	return false;
+		    	}
+		    	else {
+		    		return(confirm('Do you really want to insert term ' + $('#nameAdd').val() + ' with parent ' + $('#hpere').val() + '?'));
+		    	}
+		}
 	</script> 
 </content>
 
@@ -161,7 +172,7 @@
 				data-jowl="owl:Class">
 				<h4 class="ui-dialog-titlebar  ui-state-default propertybox"
 					data-jowl="rdfs:label">Description</h4>
-				<form id="validation" Method="POST" Action="annotationModification" onsubmit="checkSpecialChar('validation')">
+				<form id="validation" Method="POST" Action="annotationModification" onsubmit="return(validate('validation'));">
 					<div class="row">
 						<div class="gras">
 							Category: <span id="Apere"></span>
@@ -191,7 +202,8 @@
 								title='A reference to an article or book, or to a url for a web site.'><img
 									src="IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
-						</label> <input type="text" name="ref" id="ref" />
+						</label>
+						<textarea name="ref" id="ref" rows="1"></textarea>
 					</div>
 					<div class="row">
 						<label id="l_abbr" for="abbr">Abbreviation: <span
@@ -244,8 +256,7 @@
 						</c:if>
 					</c:forTokens>
 					<div style="clear: both"></div>
-					<input type="submit" id="" value="Submit" class="button"
-						onclick="if($('#hpere').val() == '') return false;" />
+					<input type="submit" id="" value="Submit" class="button"/>
 				</form>
 			</div>
 		</div>
