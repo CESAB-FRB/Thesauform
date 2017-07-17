@@ -17,6 +17,7 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import thesauform.model.SkosTraitModel;
 import thesauform.model.ThesauformConfiguration;
 import thesauform.model.vocabularies.RefVoc;
+import thesauform.model.vocabularies.TraitVocTemp;
 
 @WebServlet("/references")
 public class ReferencesVisualization extends HttpServlet {
@@ -53,15 +54,17 @@ public class ReferencesVisualization extends HttpServlet {
 					Set<String> myReferenceList = new HashSet<String>();
 					while (it.hasNext()) {
 						Resource ref = it.next().getSubject();
-						String refValue = ref.listProperties(RDF.value).next().getObject().asNode()
-								.getLiteralLexicalForm();
-						myReferenceList.add(refValue);
+						if(ref.listProperties(RDF.value).hasNext()) {
+							String refValue = ref.listProperties(RDF.value).next().getObject().asNode().getLiteralLexicalForm();
+							myReferenceList.add(refValue);
+						}
 					}
 					request.setAttribute("my_ref", myReferenceList);
 					traitModel.close();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
+				e.printStackTrace();
 			}
 		}
 		this.getServletContext().getRequestDispatcher(VUE_SUCCESS).forward(request, response);
