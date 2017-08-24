@@ -48,6 +48,9 @@ public class AuthenticationThesauform extends HttpServlet {
 		getServletContext().setAttribute("_logos_", ThesauformConfiguration.logos);
 		getServletContext().setAttribute("_logo_header_", ThesauformConfiguration.logo);
 		getServletContext().setAttribute("_facet_list_", ThesauformConfiguration.facet_list);
+		getServletContext().setAttribute("_menu_hidden_display_", ThesauformConfiguration.menu_hidden_display);
+		getServletContext().setAttribute("_menu_hidden_display_map_", new HashMap<String,Integer>());
+		
 		// test if a session is initialized
 		HttpSession session = request.getSession(false);
 		// get the mode

@@ -72,7 +72,8 @@ public class ExportFileXls extends HttpServlet {
 	private static Integer cptLine = 0;
 	private static HashMap<Integer,HashMap<Integer,String>> csvPatch = new HashMap<Integer,HashMap<Integer,String>>();
 	
-	//POI only support row by row insertion should transform before passing POI
+	//POI only support row by row insertion should transform before passing POI 
+	//TODO: check infinite loop
 	private void printHierarchy(String root, HashMap<String,List<String>> hierarchyMap, Integer cptCol) {
 		HashMap<Integer,String> cellPatch = new HashMap<Integer,String>();
 		if(csvPatch.containsKey(cptLine)) {

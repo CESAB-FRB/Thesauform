@@ -3,6 +3,7 @@ package thesauform.beans;
 import java.util.List;
 import java.util.Map;
 
+//TODO manage accent
 public class TraitConcept {
 	private String uri;
 	private String name;

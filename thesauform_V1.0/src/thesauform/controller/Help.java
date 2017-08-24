@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import thesauform.model.ThesauformConfiguration;
-
 @WebServlet("/help")
 public class Help extends HttpServlet {
 	

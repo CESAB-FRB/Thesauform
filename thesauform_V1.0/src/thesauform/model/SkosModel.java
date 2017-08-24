@@ -1201,6 +1201,28 @@ public class SkosModel implements AnnotationModel {
 		}
 		return map;
 	}
+	
+	/**
+	 * Test id a property exists for a concept
+	 * @param concept_name
+	 * @param property
+	 * @return
+	 */
+	public boolean existsProperty(String concept_name, Property property) {
+		boolean my_return = false;
+		System.out.println(property);
+		Resource concept = this.getResource(Format.formatName(concept_name));
+		System.out.println(concept);
+		StmtIterator iterator = concept.listProperties(property);
+		if(iterator.hasNext()) {
+			System.out.println("true");
+			my_return = true;
+		}
+		else {
+			System.out.println("false");
+		}
+		return my_return;
+	}
 
 	/*
 	 * TODO test if annotation exists before to insert. Not working with reference definition.
@@ -1333,6 +1355,13 @@ public class SkosModel implements AnnotationModel {
 		// JOWL
 		this.setResource(concept, RDF.type, OWL.Class);
 		this.setResource(concept, RDFS.label, cl);
+		return concept;
+	}
+	
+	//set parent of the term
+	public Resource setFather(Resource concept, Resource father) {
+		this.setResource(concept, SkosVoc.broaderTransitive, father); // RDFS.subClass
+		this.setResource(concept, RDFS.subClassOf, father);
 		return concept;
 	}
 

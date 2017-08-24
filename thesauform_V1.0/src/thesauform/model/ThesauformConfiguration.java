@@ -33,6 +33,7 @@ public final class ThesauformConfiguration {
 	public static String logo;
 	public static String facet_file;
 	public static String facet_list;
+	public static String menu_hidden_display;
 	
 	//exception
 	public static final String WRONG_DATABASE_CONF_PARAM = "Wrong database configuration parameter (true/false)";
@@ -100,7 +101,9 @@ public final class ThesauformConfiguration {
 	public static final String CACHE_ERROR = "cache_error";
 	public static final String CACHE_ERROR_PARAMETER = "errors";
 	public static final String CACHE_MESSAGE = "cache flushing failed";
-
+	//administration
+	public static final String TEMPLATE_HEADER = "Name,Category,Definition,Unit,Abbreviation,Synonym,Related";
+	
 	private static String filename = "thesauform.properties";
 
 	public static Logger thesauform_logger;
@@ -195,17 +198,17 @@ public final class ThesauformConfiguration {
 			trait_display = prop.getProperty("trait_display");
 			logos = prop.getProperty("logos");
 			logo = prop.getProperty("logo_header");
-			if(database) {
-				facet_file = database_path + prop.getProperty("facet_file");
-			}
-			else {
-				facet_file = prop.getProperty("facet_file");
-			}
 			if(prop.getProperty("facet_list")!="") {
 				facet_list = prop.getProperty("facet_list");
 			}
 			else {
 				facet_list = "";
+			}
+			if(prop.getProperty("menu_hidden_display")!="") {
+				menu_hidden_display = prop.getProperty("menu_hidden_display");
+			}
+			else {
+				menu_hidden_display = "";
 			}
 			ThesauformConfiguration.prop = prop;
 			input.close();

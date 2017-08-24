@@ -5,7 +5,8 @@
 	<script src="JS/jquery-1.9.0.js"></script>
 	<script src="JS/underscore.js"></script>
 	<script src="JS/facetedsearch.js"></script>
-	<script src="facetCode"></script>
+	<script src="facetCode">
+	</script>
 </content>
 
 <div id="down">

@@ -36,21 +36,38 @@
 		</div>
 		<div id="navigation-container">
 			<div id="navigation">
+				<c:set var="menu_hidden_display_list"
+					value="${fn:split(_menu_hidden_display_, ',')}" />
+				<c:forEach var="menu_hidden" items="${menu_hidden_display_list}">
+					<c:set target="${_menu_hidden_display_map_}" property="${menu_hidden}" value="1"/> 
+				</c:forEach>
 				<ul id="menu">
 					<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-					<c:if test="${not empty _facet_list_}">
-						<li><a href="${pageContext.request.contextPath}/visualizationFacet">Faceted search</a></li>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('facet')}">
+						<c:if test="${not empty _facet_list_}">
+							<li><a href="${pageContext.request.contextPath}/visualizationFacet">Faceted search</a></li>
+						</c:if>
 					</c:if>
 					<c:if test="${not empty _public_data_file_}">
 						<li><a href="${pageContext.request.contextPath}/visualizationHierarchy">Hierarchy search</a></li>
-						<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
+					</c:if>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('index')}">
+							<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
+					</c:if>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('reference')}">
 						<li><a href="${pageContext.request.contextPath}/references">References</a></li>
+					</c:if>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('api')}">
 						<li><a href="${pageContext.request.contextPath}/api">API</a></li>
 					</c:if>
-					<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
-					<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
-					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('annotation')}">
+						<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
+					</c:if>
+					<c:if test="${!_menu_hidden_display_map_.containsKey('vote')}">
+						<li><a href="${pageContext.request.contextPath}/expert">Vote</a></li>
+					</c:if>
 					<li><a href="${pageContext.request.contextPath}/DOC/thesauform_manual.pdf" target="_blank">Manual</a></li>
+					<li><a href="${pageContext.request.contextPath}/administration">Administration</a></li>
 				</ul>
 			</div>
 		</div>

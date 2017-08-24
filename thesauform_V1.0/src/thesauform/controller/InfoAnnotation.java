@@ -182,33 +182,6 @@ public class InfoAnnotation extends HttpServlet {
 				} catch (Exception e) {
 					errors.put(ERROR_CATEGORIES, e.getMessage() + " for " + traitName);
 				}
-				/*
-				try {
-					TraitConcept myTraitTmp = new TraitConcept();
-					myTraitTmp.setName(
-							traitModel.getLabelLiteralForm(traitModel.getPrefLabel(traitModel.getCategory(concept))));
-					myTrait.setParent(myTraitTmp);
-				} catch (Exception e) {
-					errors.put(ERROR_PARENT, e.getMessage() + " for " + traitName);
-					// if not a parent it could be a category
-					StmtIterator getTraitOfCat = traitModel.SimpleSelector(null, TraitVocTemp.cat, concept);
-					if (getTraitOfCat.hasNext()) {
-						TraitConcept myTraitTmp = new TraitConcept();
-						Resource parentCat = null;
-						while (getTraitOfCat.hasNext()) {
-							Statement st = getTraitOfCat.next();
-							parentCat = st.getSubject();
-						}
-						try {
-							myTraitTmp.setName(traitModel.getLabelLiteralForm(traitModel.getPrefLabel(parentCat)));
-							myTrait.setParent(myTraitTmp);
-						} catch (Exception e2) {
-							errors.put(ERROR_PARENT, e2.getMessage() + " for category " + traitName);
-						}
-					} else {
-						errors.put("category", "no cat");
-					}
-				}*/
 				// get comments in a list
 				try {
 					// get all comments in a list

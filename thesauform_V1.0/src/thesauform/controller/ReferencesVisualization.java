@@ -17,7 +17,6 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import thesauform.model.SkosTraitModel;
 import thesauform.model.ThesauformConfiguration;
 import thesauform.model.vocabularies.RefVoc;
-import thesauform.model.vocabularies.TraitVocTemp;
 
 @WebServlet("/references")
 public class ReferencesVisualization extends HttpServlet {
