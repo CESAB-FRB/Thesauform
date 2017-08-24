@@ -1,0 +1,221 @@
+/* @@@@@@@@@@@@@@@@   Affichage menu   @@@@@@@@@@@@@@@@@@@*/
+
+#menu, #menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menu {
+	width: 960px;
+	margin: 0px 10px 10px 10px;
+	border: 1px solid #222;
+	background-color: #1482B4;
+	background-image: linear-gradient(#444, #111);
+	border-radius: 6px;
+	box-shadow: 0 1px 1px #777;
+}
+#menu:before,
+#menu:after {
+	content: "";
+	display: table;
+}
+
+#menu:after {
+	clear: both;
+}
+
+#menu {
+	zoom:1;
+}
+#menu li {
+	float: left;
+	border-right: 1px solid #222;
+	box-shadow: 1px 0 0 #444;
+	position: relative;
+}
+
+#menu a {
+	float: left;
+	padding: 12px 30px;
+	color: #fafafa;
+	text-transform: uppercase;
+	font: bold 12px Arial, Helvetica;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a {
+	color: #CCC6AD;
+}
+
+
+
+/* @@@@@@@@@@@@@@@@   Affichage  facettes   @@@@@@@@@@@@@@@@@@@*/
+.facetsearch {
+  display:inline-block;
+  vertical-align:top;
+/*   width:150px; */
+  width:180px;
+  
+}
+.facetlist{
+ background-color: #FFFFFF;
+ height: 200px;
+ /*height: 345px;*/
+ 
+ margin: 20px auto;
+ overflow: auto;
+ padding: 20px 0 20px 20px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ border-radius: 5px;
+}
+.facetitem, .orderbyitem, .deselectstartover{
+	cursor: pointer;
+}
+.activeorderby, .activefacet {
+  color:red;
+}
+.bottomline {
+  font-weight:bold;
+  padding:10px 0;
+}
+.bottomline .orderby, .bottomline .facettotalcount {
+  display:inline-block;
+}
+.bottomline .orderby ul, .bottomline .orderby li {
+  display:inline;
+  padding:0;
+}
+.bottomline .orderby-title {
+  margin:0 0 0 10px;
+}
+.bottomline .deselectstartover {
+  float:right;
+}
+#language {
+  width:400px;
+}
+#language .facetlist {
+  -webkit-column-count:2;
+}
+.item {
+  display:inline-block;
+  height:100px;
+ 
+  vertical-align:top;
+  width:150px;
+ 
+  
+  
+  float: left;
+  margin: 10px;
+  border: 5px solid #fff;
+ 
+  -webkit-transition: box-shadow 0.5s ease;
+  -moz-transition: box-shadow 0.5s ease;
+  -o-transition: box-shadow 0.5s ease;
+  -ms-transition: box-shadow 0.5s ease;
+  transition: box-shadow 0.5s ease;
+  
+}
+.item h4 {
+	height: 40px;
+  font-size:1.2em;
+  margin-top: 0.1em;
+  line-height:15px;
+  cursor: pointer;
+}
+.item .tags {
+  color:gray;
+  font-weight:bold;
+  vertical-align:inherit;
+  line-height:13px;
+}
+#showmorebutton {
+  background-color:#f6f6f6;
+  
+  border-bottom-left-radius:15px;
+  border-bottom-right-radius:15px;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  cursor:pointer;
+  display:block;
+  margin:0 0 10px;
+  padding:10px;
+  text-align:center;
+  width:100%;
+}
+
+#wrapper, #documentation {
+  margin:0 auto;
+  width:800px;
+}
+p {
+  line-height:1.3em;
+  padding-bottom:1em;
+}
+
+tt {
+  background-color:#EEEEEE;
+  border:1px solid #CCCCCC;
+}
+
+#results{
+	height: 500px;
+	overflow: auto;
+}
+ 
+.facetitem {
+  font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.facetitem:last-child {
+  border: none;
+}
+/* @@@@@@@@@@@@@@@@   Affichage liste facettes   @@@@@@@@@@@@@@@@@@@*/
+.facetitem {
+  text-decoration: none;
+  color: #000;
+  display: block;
+ 
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.facetitem:hover {
+  font-size: 20px;
+  background: #f6f6f6;
+}
+
+.facettitle{
+	height: 36px;
+	
+	text-align: center;
+}
+
+.gris{
+	background: #DCDCDC;
+}
+
+.white{
+	background: white;
+}
+
+.green{
+	background: #91C05E;
+}
+/* @@@@@@@@@@@@@@@@@@@  Affichage RŽsultats @@@@@@@@@@@@@@@@*/
+
+ 
+.item:hover {
+ font-size: 13px;
+  background: white;
+}
+

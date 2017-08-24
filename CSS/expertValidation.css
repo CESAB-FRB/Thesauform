@@ -1,0 +1,20 @@
+#content {
+	width: 100%;
+}
+
+#modif1 {
+	width: 90%;
+}
+
+#concept_vote_title {
+}
+
+#title {
+	float: left;
+	width: 70%;
+}
+
+#title_vote_count {
+	float: right;
+	width: 20%;
+}

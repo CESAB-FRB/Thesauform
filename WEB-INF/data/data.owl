@@ -1,0 +1,47 @@
+<rdf:RDF
+    xmlns:ref="http://thesaurus.org/test/reference#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:change="http://thesaurus.org/test/change#"
+    xmlns:unit="http://thesaurus.org/test/unit#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:trait="http://thesaurus.org/test#" >
+  <rdf:Description rdf:about="http://thesaurus.org/test#Thesaurusbiodiversity">
+    <change:insert rdf:nodeID="A126"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ThesaurusBiodiversity</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>    
+  <rdf:Description rdf:about="http://thesaurus.org/test#Thesaurus">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thesaurus</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <skosxl:prefLabel rdf:nodeID="A0"/>
+    <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">testing</vs:term_status>
+    <skos:inScheme rdf:resource="http://thesaurus.org/test#Thesaurusbiodiversity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A0">
+    <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thesaurus</skosxl:literalForm>
+    <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://thesaurus.org/test#Root">
+    <rdfs:subClassOf rdf:resource="http://thesaurus.org/test#Thesaurus"/>
+    <skos:inScheme rdf:resource="http://thesaurus.org/test#Thesaurusbiodiversity"/>
+    <skosxl:prefLabel rdf:nodeID="A1"/>
+    <skos:broaderTransitive rdf:resource="http://thesaurus.org/test#Thesaurus"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Root</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <vs:term_status rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stable</vs:term_status>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <skosxl:literalForm rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Root</skosxl:literalForm>
+    <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </rdf:Description>
+</rdf:RDF> 

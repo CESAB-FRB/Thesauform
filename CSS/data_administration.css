@@ -1,0 +1,17 @@
+#content {
+	font-weight: bold;
+}
+
+#content a {
+        color: black;
+        text-decoration: none;
+}
+
+#content ul {
+	list-style-type: none;
+	padding-bottom: 10px;
+}
+
+#content li {
+	padding-bottom: 10px;
+}

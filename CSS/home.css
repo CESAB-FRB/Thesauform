@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 12px; 
+}
+
+#title {
+	font-style: italic;
+	margin-bottom: 30px;
+}
+
+#para1 {
+	margin-bottom: 10px;
+}
+
+#para2 {
+	margin-bottom: 10px;
+}
+
+#para2 ul {
+	margin-bottom: 10px;
+}
+
+#para2 li {
+	margin-left: 80px;
+}
+
+#para3 {
+	margin-bottom: 30px;
+}
+
+#contact {
+	margin-bottom: 30px;
+}
+
+#contact_sentence {
+	font-weight: bold;
+}
+
+#thanks {
+	margin-bottom: 35px;
+}
+
+#special_thanks {
+	font-size: 11px;
+}
+
+#thanks_sentence {
+	font-weight: bold;
+}
+
+#thanks_person {
+	font-style: italic;
+}

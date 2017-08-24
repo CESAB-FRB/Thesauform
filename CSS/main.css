@@ -1,0 +1,89 @@
+.row
+{
+	display: block;
+	width: 80%;
+	clear: both;
+	padding: 5px;
+}
+.row input, .row TEXTAREA
+{
+	float: left;
+	width: 250px;
+}
+
+#delete_input 
+{
+	float: left;
+	width: 5%;
+}
+
+.imgrow
+{
+	float: left;
+	vertical-align: middle;
+}
+.ui-state-error
+{
+	margin-bottom: 5px;
+	padding: 2px;
+}
+label
+{
+float: left;
+font-weight: bold;
+width: 120px;
+text-align: left;
+padding-left: 5px;
+}
+
+.button
+{
+	width: 60px;
+	clear: both;
+	margin-top: 10px;
+	
+}
+
+h4
+{
+	height: 20px;
+	line-height: 20px;
+	text-align: left !important;
+	font-weight: bold !important;
+/* 	for the tree */
+	margin-top: 1px;
+	margin-bottom: 5px;
+}
+th
+{
+	text-align: left;
+	
+}
+
+input, textarea
+{
+	width: 275px;
+}
+
+.gras
+{
+font-weight: bold;
+}
+
+input.buttonTry {
+	width: 80px;
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    /*border is optional*/
+    border-bottom:1px solid #444; 
+    font-family:verdana;
+  	font-size:12px;
+  	cursor: pointer;
+	color: #0000ff;	
+	font-weight: bold;
+}
+
+/**************************************/
+/*            jtree                   */
+/**************************************/
