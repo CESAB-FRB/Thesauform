@@ -2,9 +2,8 @@
 
 #Description: 
 
-Thesauform is a tool written in java and running on a web server to help scientists to produce their own thesaurus 
-easily. 
-The thesaurus is represented by a tree. The user has the capacity to vote for the propositions, and there are some basic tools to export data.
+The Thesauform is a tool written in java and running on a web server to help scientists easily produce their own thesaurus. 
+It is represented in a tree structure. The user has the capacity to vote for the propositions, and there are some basic tools to export data.
 
 #Installation: 
 
