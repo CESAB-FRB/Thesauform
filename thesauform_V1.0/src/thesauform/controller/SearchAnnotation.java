@@ -86,6 +86,7 @@ public class SearchAnnotation extends HttpServlet {
 		// Treatment
 		if (traitModel != null) {
 			String traitName = request.getParameter(GET_PARAMETER);
+			traitName = java.net.URLDecoder.decode(traitName, "UTF-8");
 			try {
 				if (traitName != null && !traitName.isEmpty()) {
 					//// interrogate model

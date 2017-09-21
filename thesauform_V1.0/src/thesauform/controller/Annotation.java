@@ -55,7 +55,7 @@ public class Annotation {
 				// Treatment if user is logged
 				Map<String, String[]> param = request.getParameterMap();
 				//remove line break during insertion
-				for (Map.Entry<?, String[]> e : param.entrySet()) {
+				for (Map.Entry<String, String[]> e : param.entrySet()) {
 					String[] valArray = e.getValue();
 					if (valArray != null && valArray.length>0) {
 						for (int i = 0; i < valArray.length; i++) {
@@ -100,7 +100,7 @@ public class Annotation {
 				//case sensitive label if different from prefLabel in use
 				if (!pere.equalsIgnoreCase("delete")&&!pere.equals(Format.formatName(concept))) {
 					//test annotation not already existing
-					if (!m.existsAnnotation(Format.formatName(concept.trim()),SkosXLVoc.prefLabel,pere.trim())) {
+					if (!m.existAnnotation(Format.formatName(concept.trim()),SkosXLVoc.prefLabel,pere.trim())) {
 							Resource modif = m.createUpdate(modifConcept);
 							m.sethasProperty(modif, SkosXLVoc.prefLabel);
 							m.sethasValue(modif, pere.trim());
@@ -214,8 +214,11 @@ public class Annotation {
 						al.add(Format.formatName(label));
 					}
 					for (int i = 0; i < param.get("syn").length; i++) {
+						//test if at least one synonym
 						if (m.getAllAltLabel(modifConcept).toList().size() != 0) {
+							//test if synonym already exists
 							if (!al.contains(Format.formatName(param.get("syn")[i].trim()))) {
+								m.setAltLabel(modifConcept, param.get("syn")[i].trim());
 								Resource modif = m.createUpdate(modifConcept);
 								m.sethasProperty(modif, SkosXLVoc.altLabel);
 								m.sethasValue(modif, param.get("syn")[i].trim());
@@ -223,17 +226,7 @@ public class Annotation {
 								m.setResource(modif, DC.creator, person);
 							}
 						} else {
-							Resource father = m.getCategory(modifConcept);
-							Resource synconcept = null;
-							if (m.containsConcept(m.getResource(Format.formatName(param.get("syn")[i])))) {
-								synconcept = m.getResource(Format.formatName(param.get("syn")[i]));
-							} else {
-								synconcept = m.setConcept(Format.formatName(param.get("syn")[i]), scheme, father,
-										person, date);
-								m.setDefinition(synconcept, "Synonym for the trait " + modifConcept.getLocalName());
-								Resource insertlist = m.createCollection("Insert");
-								m.addMember(insertlist, synconcept);
-							}
+							m.setAltLabel(modifConcept, param.get("syn")[i].trim());
 							Resource modif = m.createUpdate(modifConcept);
 							m.sethasProperty(modif, SkosXLVoc.altLabel);
 							m.sethasValue(modif, param.get("syn")[i].trim());
@@ -394,27 +387,12 @@ public class Annotation {
 				}
 				if (!param.get("syn")[0].trim().isEmpty() || !param.get("syn")[0].trim().equalsIgnoreCase("")) {
 					for (int i = 0; i < param.get("syn").length; i++) {
-						Resource ConceptLabel = null;
-						// XL Label
-						if (!m.getResource((Format.formatName(param.get("syn")[i]).trim()))
-								.hasProperty(SkosXLVoc.prefLabel)) {
-							m.setConcept(param.get("syn")[i].trim(), scheme, m.getResource(Format.formatName(pere)),
-									person, date);
-							Resource synConcept = m.getResource(Format.formatName(param.get("syn")[i]));
-							ConceptLabel = m.getPrefLabel(synConcept);
-							Resource Label = m.getPrefLabel(newConcept);
-							m.setResource(ConceptLabel, TraitVocTemp.synonym, Label);
-							m.setResource(Label, TraitVocTemp.synonym, newConcept);
-							m.setResource(newConcept, SkosXLVoc.altLabel, ConceptLabel);
-							m.setDefinition(synConcept, "Synonym of the term " + newConcept.getLocalName());
-						} else {
-							ConceptLabel = m
-									.getPrefLabel(m.getResource((Format.formatName(param.get("syn")[i].trim()))));
-							Resource Label = m.getPrefLabel(newConcept);
-							m.setResource(ConceptLabel, TraitVocTemp.synonym, Label);
-							m.setResource(Label, TraitVocTemp.synonym, newConcept);
-							m.setResource(newConcept, SkosXLVoc.altLabel, ConceptLabel);
-						}
+						m.setAltLabel(newConcept, param.get("syn")[i].trim());
+						Resource modif = m.createUpdate(newConcept);
+						m.sethasProperty(modif, SkosXLVoc.altLabel);
+						m.sethasValue(modif, param.get("syn")[i].trim());
+						m.setResource(modif, DCTerms.created, date);
+						m.setResource(modif, DC.creator, person);
 					}
 				}
 				if (param.get("unit")!=null && (!param.get("unit")[0].trim().isEmpty() || !param.get("unit")[0].trim().equalsIgnoreCase(""))) {

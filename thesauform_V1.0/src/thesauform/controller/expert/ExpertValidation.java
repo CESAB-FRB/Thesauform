@@ -111,6 +111,8 @@ public class ExpertValidation extends HttpServlet {
 					Integer countNbConceptVoted = 0;
 					// get parameter
 					String traitName = request.getParameter(GET_PARAMETER);
+					//TODO detect encoding
+					traitName = java.net.URLDecoder.decode(traitName, "UTF-8");
 					try {
 						if (traitName == null) {
 							throw new Exception(ERROR_MESSAGE_PARAMETER);
@@ -323,22 +325,24 @@ public class ExpertValidation extends HttpServlet {
 						}
 						// get all synonyms
 						try {
-							StmtIterator synonymIt = traitModel.getAllAltLabel(concept);
-							if (synonymIt.hasNext()) {
+							//validated synonym
+							StmtIterator synonymValidatedIt = traitModel.getAllValidatedAltLabel(concept);
+							if (synonymValidatedIt.hasNext()) {
 								Map<String, TraitVoteValue> voteMapTmp = new HashMap<String, TraitVoteValue>();
-								while (synonymIt.hasNext()) {
-									Statement st = synonymIt.next();
-									Resource AltLabel = st.getObject().as(Resource.class);
-									String synonym = traitModel.getLabelLiteralForm(AltLabel);
+								while (synonymValidatedIt.hasNext()) {
+									Statement st = synonymValidatedIt.next();
+									String synonym = st.getObject().asNode().getLiteralLexicalForm();
 									//get vote value
-									Integer propertyVoteValue = traitModel.countVote(concept, SkosXLVoc.altLabel, user.getName(), synonym);
+									Integer propertyVoteValue = traitModel.countVote(concept, SkosVoc.altLabel, user.getName(), synonym);
 									//get comment value
-									String commentVote = traitModel.getVoteComment(name, SkosXLVoc.altLabel.getLocalName(), user.getName(), synonym);
+									String commentVote = traitModel.getVoteComment(name, "validatedAltLabel", user.getName(), synonym);
 									//create bean
 									TraitVoteValue propertyVote = new TraitVoteValue(propertyVoteValue,commentVote);
 									voteMapTmp.put(synonym, propertyVote);
 								}
-								synonymVoteMap.put("proposed", voteMapTmp);
+								synonymVoteMap.put("current", voteMapTmp);
+							}
+							if(!synonymVoteMap.isEmpty()) {
 								// set bean property
 								myTraitVote.setSynonymList(synonymVoteMap);
 							} else {
@@ -349,7 +353,7 @@ public class ExpertValidation extends HttpServlet {
 						}
 						// get all related
 						try {
-							StmtIterator RelatedIt = traitModel.getAllRelated(concept);
+							StmtIterator RelatedIt = traitModel.getAllValidatedRelated(concept);
 							if (RelatedIt.hasNext()) {
 								Map<String, TraitVoteValue> voteMapTmp = new HashMap<String, TraitVoteValue>();
 								while (RelatedIt.hasNext()) {
@@ -364,9 +368,10 @@ public class ExpertValidation extends HttpServlet {
 									TraitVoteValue propertyVote = new TraitVoteValue(propertyVoteValue,commentVote);
 									voteMapTmp.put(related, propertyVote);
 								}
+								relatedVoteMap.put("current", voteMapTmp);
 								// set bean property
 								myTraitVote.setRelatedList(relatedVoteMap);
-								relatedVoteMap.put("proposed", voteMapTmp);
+								
 							} else {
 								throw new Exception(EMPTY_RELATED);
 							}
@@ -453,6 +458,15 @@ public class ExpertValidation extends HttpServlet {
 											//create bean
 											propertyVote = new TraitVoteValue(propertyVoteValue,commentVote);
 											break;
+										case "related":
+											//get vote value
+											propertyVoteValue = traitModel.countVote(concept, SkosVoc.related, user.getName(), 
+													value);
+											//get comment value
+											commentVote = traitModel.getVoteComment(name, SkosVoc.related.getLocalName(), user.getName(), value);
+											//create bean
+											propertyVote = new TraitVoteValue(propertyVoteValue,commentVote);
+											break;
 										default:
 											propertyVoteMap.put("proposed", voteMapTmp);
 											//get vote value
@@ -494,6 +508,10 @@ public class ExpertValidation extends HttpServlet {
 										synonymVoteMap.put("proposed", voteMapTmp);
 										propertyVoteMap = synonymVoteMap;
 										break;
+									case "related":
+										relatedVoteMap.put("proposed", voteMapTmp);
+										propertyVoteMap = relatedVoteMap;
+										break;
 									default:
 										propertyVoteMap.put("proposed", voteMapTmp);
 										myTraitVote.setPropertyList(property, propertyVoteMap);
@@ -522,42 +540,49 @@ public class ExpertValidation extends HttpServlet {
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = unitVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
 						}
 						try {
 							String property = "reference";
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = referenceVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
 						}
 						try {
 							String property = "definition";
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = definitionVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
 						}
 						try {
 							String property = "abbreviation";
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = abbreviationVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
 						}
 						try {
 							String property = "category";
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = categoryVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
 						}
 						try {
 							String property = "synonym";
 							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = synonymVoteMap;
 							myTraitVote.setPropertyList(property, propertyVoteMap);
 						} catch (Exception e) {
-							System.out.println(e.getMessage());
+							//System.out.println(e.getMessage());
+						}
+						try {
+							String property = "related";
+							Map<String, Map<String, TraitVoteValue>> propertyVoteMap = relatedVoteMap;
+							myTraitVote.setPropertyList(property, propertyVoteMap);
+						} catch (Exception e) {
+							//System.out.println(e.getMessage());
 						}
 					} else {
 						errors.put(ERROR_CONCEPT, ERROR_MESSAGE_CONCEPT + ": " + traitName);

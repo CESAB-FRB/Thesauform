@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="/WEB-INF/tags/mytaglib" prefix="mytag"%>
 
 <content tag="logout">
 	<jsp:include page="logout.jsp" />
@@ -53,7 +54,7 @@
 									</c:choose>
 								</c:otherwise>
 							</c:choose>
-							<a href="expert/validation?change=Update&&trait=<c:out value="${name}"/>">
+							<a href="expert/validation?change=Update&&trait=<c:out value="${mytag:encode(name)}"/>">
 								<c:out value="${name}" />
 							</a>
 						</div>
@@ -84,7 +85,7 @@
 									</c:choose>
 								</c:otherwise>
 							</c:choose>
-							<a href="expert/validation?change=Insert&&trait=<c:out value="${name}"/>">
+							<a href="expert/validation?change=Insert&&trait=<c:out value="${mytag:encode(name)}"/>">
 								<c:out value="${name}" />
 							</a>
 						</div>
@@ -115,7 +116,7 @@
 									</c:choose>
 								</c:otherwise>
 							</c:choose>
-							<a href="expert/validation?change=Delete&&trait=<c:out value="${name}"/>">
+							<a href="expert/validation?change=Delete&&trait=<c:out value="${mytag:encode(name)}"/>">
 								<c:out value="${name}" />
 							</a>
 						</div>

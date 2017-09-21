@@ -16,6 +16,10 @@ public class ChangeVoc extends Voc {
 	public static Property contribution = null;
 	public static Property vote = null;
 	public static Property hasVote = null;
+	public static Property validated = null;
+	public static Property hasValidated = null;
+	public static Property invalidated = null;
+	public static Property hasInvalidated = null;
 
 	static {
 		try {
@@ -31,6 +35,10 @@ public class ChangeVoc extends Voc {
 			contribution = getCProperty("contribution");
 			vote = getCProperty("vote");
 			hasVote = getCProperty("hasVote");
+			validated = getCProperty("validated");
+			hasValidated = getCProperty("hasValidated");
+			invalidated = getCProperty("invalidated");
+			hasInvalidated = getCProperty("hasInvalidated");
 		} catch (Exception e) {
 			ThesauformConfiguration.thesauform_logger.error(String.class.getName()+ ": failure" + e.getMessage());
 		}

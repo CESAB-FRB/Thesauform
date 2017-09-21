@@ -6,36 +6,31 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 /**
- * Manage personal vote
+ * Manage validation
  * 
  * @author Baptiste
  */
-public class VotesModel {
+public class ValidatedModel {
 
 	protected static String NL = System.getProperty("line.separator");
 	protected ThesauformConfiguration conf = new ThesauformConfiguration();
 	public static final String ERROR_TRAIT_EMPTY = "No trait given";
 	public static final String ERROR_PROP_EMPTY = "No propriety given";
-	public static final String ERROR_COMMENT_EMPTY = "No comment given";
-	public static final String ERROR_PERSON_EMPTY = "No person given";
 	public static final String ERROR_VALUE_EMPTY = "No value given";
-	public static final String ERROR_VOTE_VALUE_EMPTY = "No vote value given";
 	public static final String ERROR_DATABASE_EMPTY = "No trait dabatabase given";
 	public static final String ERROR_TMP_DATABASE_EMPTY = "No trait temporary dabatabase given";
 	public static final String ERROR_MODEL_EMPTY = "No model given";
 	public static final String ERROR_TRAIT_FILE = "problem writing in trait database";
 	public static final String ERROR_TRAIT_TMP_FILE = "problem writing in trait temporary database";
 	public static final String ERROR_TRAIT_FILE_NOT_EMPTY = "the file cache is not empty";
-	public static final String ERROR_ADD_VOTE = "adding vote failed";
-	public static final String ERROR_DEL_VOTE = "deleting vote failed";
-	public static final String ERROR_CHG_VOTE = "changing vote failed";
+	public static final String ERROR_ADD_VAL = "adding validated failed";
+	public static final String ERROR_ADD_INVAL = "adding invalidated failed";
+	public static final String ERROR_DEL_VAL = "deleting validated failed";
+	public static final String ERROR_DEL_INVAL = "deleting invalidated failed";
 	private SkosModel myModel;
 	private String traitName;
 	private String property;
-	private String person;
 	private String value;
-	private String comment;
-	private Integer voteValue;
 	private String database;
 	private String tmp_database;
 
@@ -50,8 +45,7 @@ public class VotesModel {
 	 * @param person
 	 * @param value
 	 */
-	public VotesModel(SkosModel myModel, String traitFile, String traitTmpFile, String traitName, String property,
-			String person, String value, Integer voteValue) {
+	public ValidatedModel(SkosModel myModel, String traitFile, String traitTmpFile, String traitName, String property, String value) {
 		try {
 			// initialize properties
 			if (!(traitName == null || traitName.isEmpty())) {
@@ -64,20 +58,10 @@ public class VotesModel {
 			} else {
 				throw new Exception(ERROR_PROP_EMPTY);
 			}
-			if (!(person == null || person.isEmpty())) {
-				this.person = person;
-			} else {
-				throw new Exception(ERROR_PERSON_EMPTY);
-			}
 			if (!(value == null || value.isEmpty())) {
 				this.value = value;
 			} else {
 				throw new Exception(ERROR_VALUE_EMPTY);
-			}
-			if (voteValue != null) {
-				this.voteValue = voteValue;
-			} else {
-				throw new Exception(ERROR_VOTE_VALUE_EMPTY);
 			}
 			if (!(traitFile == null || traitFile.isEmpty())) {
 				this.database = traitFile;
@@ -98,99 +82,72 @@ public class VotesModel {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Set comment
-	 * @param comment
-	 * @return
-	 * @throws Exception
-	 */
-	public boolean setComment(String comment) throws Exception{
-		boolean returnValue = false;
-		if (!(comment == null || comment.isEmpty())) {
-			this.comment = comment;
-		} else {
-			throw new Exception(ERROR_PROP_EMPTY);
-		}
-		return(returnValue);
-	}
 
 	/**
-	 * Test existence of a personal vote
+	 * Add validated tag
 	 * 
 	 * @return
 	 * @throws java.lang.Exception
 	 */
-	public boolean existsVote() throws Exception {
+	public boolean addValidated() throws Exception {
 		boolean returnVal = false;
-		if (myModel.existVote(this.traitName, this.property, this.person, this.value) != null) {
+		if (myModel.addValidated(traitName, property, value)) {
+			this.saveModel();
 			returnVal = true;
+		} else {
+			//throw new Exception(ERROR_ADD_VAL);
 		}
 		return (returnVal);
 	}
 
 	/**
-	 * Add vote
+	 * Add invalidated tag
 	 * 
 	 * @return
 	 * @throws java.lang.Exception
 	 */
-	public Integer addVote() throws Exception {
-		Integer cptVote = null;
-		if (myModel.addVote(this.traitName, this.property, this.person, this.value, this.voteValue)) {
+	public boolean addInvalidated() throws Exception {
+		boolean returnVal = false;
+		if (myModel.addInvalidated(traitName, property, value)) {
 			this.saveModel();
-			cptVote = this.countVote();
+			returnVal = true;
 		} else {
-			throw new Exception(ERROR_ADD_VOTE);
+			throw new Exception(ERROR_ADD_INVAL);
 		}
-		return (cptVote);
+		return (returnVal);
 	}
 
 	/**
-	 * Delete vote
+	 * Remove validated tag
 	 */
-	public Integer deleteVote() throws Exception {
-		Integer cptVote = null;
-		if (myModel.delVote(this.traitName, this.property, this.person, this.value)) {
+	public boolean deleteValidated() throws Exception {
+		boolean returnVal = false;
+		if (myModel.deleteValidated(traitName, property, value)) {
 			this.saveModel();
-			cptVote = this.countVote();
+			returnVal = true;
 		} else {
-			throw new Exception(ERROR_DEL_VOTE);
+			throw new Exception(ERROR_DEL_VAL);
 		}
-		return (cptVote);
-	}
-	
-	/**
-	 * Change vote
-	 * 
-	 * @return
-	 * @throws java.lang.Exception
-	 */
-	public Integer changeVote() throws Exception {
-		Integer cptVote = null;
-		if (myModel.changeVote(this.traitName, this.property, this.person, this.value, this.voteValue, this.comment)) {
-			this.saveModel();
-			cptVote = this.countVote();
-		} else {
-			throw new Exception(ERROR_CHG_VOTE);
-		}
-		return (cptVote);
-	}
-
+		return (returnVal);
+	}	
 
 	/**
-	 * Get vote number for a propriety
+	 * Remove invalidated tag
 	 */
-	public Integer countVote() throws Exception {
-		Integer cptVote = null;
-		cptVote = myModel.countVote(this.traitName, this.property, this.value);
-		return (cptVote);
-	}
+	public boolean deleteInvalidated() throws Exception {
+		boolean returnVal = false;
+		if (myModel.deleteInvalidated(traitName, property, value)) {
+			this.saveModel();
+			returnVal = true;
+		} else {
+			throw new Exception(ERROR_DEL_INVAL);
+		}
+		return (returnVal);
+	}	
 
 	/**
 	 * Save the model
 	 * 
-	 * @param personModel
 	 * @return
 	 */
 	public boolean saveModel() throws Exception {

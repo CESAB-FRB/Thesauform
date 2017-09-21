@@ -25,7 +25,7 @@
 						url : 'annotationSearch', 
 						dataType : 'json', 
 						data : {
-							trait : $('#owlauto').val(), 
+							trait : encodeURIComponent($('#owlauto').val()), 
 							maxRows : 15
 						},
 						success : function(data){
@@ -111,7 +111,7 @@
 			$("#pere").html(item);
 			$("#Apere").html(item);
 			$("#pereadd").html(item);
-			var html = $.ajax({ url: "annotationInfo?trait="+item, async: false }).responseText;
+			var html = $.ajax({ url: "annotationInfo?trait="+encodeURIComponent(item), async: false }).responseText;
 			$("#hpere").val(item);
 			$("#inputAdd").val(item);
 			$("#inputAnn").val(item);
@@ -143,6 +143,22 @@
 		    	else {
 		    		return(confirm('Do you really want to insert term ' + $('#nameAdd').val() + ' with parent ' + $('#hpere').val() + '?'));
 		    	}
+		}
+		
+		function add_synonyme() {
+			var $div = $('div[id^="synclone"]:last');
+			var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+			var $new_syn = $('#synclone1').clone().prop('id', 'synclone'+num );
+			$new_syn.find('span').remove();
+			$new_syn.insertAfter('#synclone1');
+		}
+
+		function add_related() {
+			var $div = $('div[id^="relclone"]:last');
+			var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+			var $new_syn = $('#relclone1').clone().prop('id', 'relclone'+num );
+			$new_syn.find('span').remove();
+			$new_syn.insertAfter('#relclone1');
 		}
 	</script> 
 </content>
@@ -213,26 +229,26 @@
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
 						</label> <input type="text" name="abbr" id="abbr" />
 					</div>
-					<div class="row" id="synclone2">
-						<label id="l_syn" for="syn">Synonym: <span
+					<div class="row" id="synclone1">
+						<label class="l_syn" for="syn">Synonym: <span
 							style='float: right; margin-right: 10px;'><a
 								title='Another name that may be commonly used for this term.'><img
 									src="IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
-						</label> <input type="text" name="syn" id="syn" /> <span
+						</label> <input type="text" name="syn" class="syn" /> <span
 							class="ui-icon ui-icon-circle-plus"
 							style="float: left; margin-right: 0.3em;"
-							onclick="  $('#synclone2').clone().insertAfter('#synclone2');"></span>
+							onclick="add_synonyme();"></span>
 					</div>
-					<div class="row" id="relclone2">
-						<label id="l_rel" for="related">Related: <span
+					<div class="row" id="relclone1">
+						<label class="l_rel" for="related">Related: <span
 							style='float: right; margin-right: 10px;'><a title='A term that you feel is closely allied to this one.'><img
 									src="IMG/red_help.png"
 									style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
-						</label> <input type="text" name="related" id="related" /> <span
+						</label> <input type="text" name="related" class="related" /> <span
 							class="ui-icon ui-icon-circle-plus"
 							style="float: left; margin-right: 0.3em;"
-							onclick="  $('#relclone2').clone().insertAfter('#relclone2');"></span>
+							onclick="add_related();"></span>
 					</div>
 					<c:forTokens items="${_trait_display_}" delims="," var="my_display">
 						<c:if test="${my_display eq 'unit'}">

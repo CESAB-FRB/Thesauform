@@ -41,8 +41,8 @@
 			delVote(id, name, prop, value)
 			if (vote != 0) {
 				var json = $.ajax({
-					url : "vote?action=add&trait_name=" + name + "&property="
-							+ prop + "&value=" + value + "&vote_value=" + vote,
+					url : "vote?action=add&trait_name=" + encodeURIComponent(name) + "&property="
+							+ prop + "&value=" + encodeURIComponent(value) + "&vote_value=" + vote,
 					error: function(xhr, status, error) {
 						alert(xhr.responseText);
 					},
@@ -63,8 +63,8 @@
 	
 		function delVote(id, name, prop, value) {
 			var json = $.ajax({
-				url : "vote?action=del&trait_name=" + name + "&property=" + prop
-						+ "&value=" + value + "&vote_value=" + 0,
+				url : "vote?action=del&trait_name=" + encodeURIComponent(name) + "&property=" + prop
+						+ "&value=" + encodeURIComponent(value) + "&vote_value=" + 0,
 				async : false
 			}).responseText;
 			var obj = JSON.parse(json);
@@ -80,8 +80,8 @@
 			comment = comment.replace("&", ";and;");
 			if (vote != 0) {
 				var json = $.ajax({
-					url : "vote?action=change&trait_name=" + name + "&property="
-							+ prop + "&value=" + value + "&vote_value=" + vote + "&comment=" + comment,
+					url : "vote?action=change&trait_name=" + encodeURIComponent(name) + "&property="
+							+ prop + "&value=" + encodeURIComponent(value) + "&vote_value=" + vote + "&comment=" + encodeURIComponent(comment),
 					error: function(xhr, status, error) {
 						alert(xhr.responseText);
 					},
@@ -103,7 +103,7 @@
 
 		function updateCountVote(name) {
 			var json = $.ajax({
-				url : "count?concept=" + name,
+				url : "count?concept=" + encodeURIComponent(name),
 				async : false
 			}).responseText;
 			var obj = JSON.parse(json);
@@ -120,7 +120,7 @@
 			else {
 				//get comment value
 				var json = $.ajax({
-					url : "get_comment?concept=" + encodeURIComponent(concept) + "&prop="+ encodeURIComponent(prop) + "&value=" + encodeURIComponent(value),
+					url : "get_comment?concept=" + encodeURIComponent(concept) + "&prop="+ prop + "&value=" + encodeURIComponent(value),
 					async : false
 				}).responseText;
 				var obj = JSON.parse(json);
@@ -593,87 +593,85 @@
 						<td colspan="3"></td>
 					</tr>
 					<c:set var="count" value="1" scope="page" />
-					<c:forEach items="${myTraitVote.synonymList}" var="myTypeList">
-						<c:forEach items="${myTypeList.value}" var="prop">
-							<c:choose>
-								<c:when test="${myTypeList.key=='current'}">
-									<tr>
-										<td>Current synonym: </td>
-										<td><c:out value="${prop.key}" /></td>
-										<td><select name="syn${count}" title="syn${count}" class="notation"
-											onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
-												<option
-													<c:if test="${prop.value.voteValue==0}">selected="selected"</c:if>
-													value="0">no response</option>
-												<option
-													<c:if test="${prop.value.voteValue==1}">selected="selected"</c:if>
-													value="1">strongly disagree</option>
-												<option
-													<c:if test="${prop.value.voteValue==2}">selected="selected"</c:if>
-													value="2">disagree</option>
-												<option
-													<c:if test="${prop.value.voteValue==3}">selected="selected"</c:if>
-													value="3">ambivalent</option>
-												<option
-													<c:if test="${prop.value.voteValue==4}">selected="selected"</c:if>
-													value="4">agree</option>
-												<option
-													<c:if test="${prop.value.voteValue==5}">selected="selected"</c:if>
-													value="5">strongly agree</option>
-										</select></td>
-										<td class="comment-block">
-											Comment: 
-											<span onclick="displayComment('comment-syn${count}', '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}')" class="ui-icon ui-icon-circle-plus" style="float: right;margin-right: 50%;" ></span>
-											<span id="comment-syn${count}" <c:if test="${empty prop.value.comment}">style="display: none;"</c:if>>
-												<textarea id="comment-text-syn${count}" rows="2"><c:out value="${prop.value.comment}" /></textarea>
-												<button onclick="changeVote('${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('syn${count}')[0].selectedIndex, document.getElementById('comment-text-syn${count}').value,'comment-syn${count}');">
-													OK
-												</button>
-											</span>
-										</td>										
-									</tr>
-									<c:set var="count" value="${count + 1}" scope="page" />
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<td>Proposition ${count}: </td>
-										<td><c:out value="${prop.key}" /></td>
-										<td><select name="syn${count}" title="syn${count}" class="notation"
-											onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
-												<option
-													<c:if test="${prop.value.voteValue==0}">selected="selected"</c:if>
-													value="0">no response</option>
-												<option
-													<c:if test="${prop.value.voteValue==1}">selected="selected"</c:if>
-													value="1">strongly disagree</option>
-												<option
-													<c:if test="${prop.value.voteValue==2}">selected="selected"</c:if>
-													value="2">disagree</option>
-												<option
-													<c:if test="${prop.value.voteValue==3}">selected="selected"</c:if>
-													value="3">ambivalent</option>
-												<option
-													<c:if test="${prop.value.voteValue==4}">selected="selected"</c:if>
-													value="4">agree</option>
-												<option
-													<c:if test="${prop.value.voteValue==5}">selected="selected"</c:if>
-													value="5">strongly agree</option>
-										</select></td>
-										<td class="comment-block">
-											Comment: 
-											<span onclick="displayComment('comment-syn${count}', '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}')" class="ui-icon ui-icon-circle-plus" style="float: right;margin-right: 50%;" ></span>
-											<span id="comment-syn${count}" <c:if test="${empty prop.value.comment}">style="display: none;"</c:if>>
-												<textarea id="comment-text-syn${count}" rows="2"><c:out value="${prop.value.comment}" /></textarea>
-												<button onclick="changeVote('${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('syn${count}')[0].selectedIndex, document.getElementById('comment-text-syn${count}').value,'comment-syn${count}');">
-													OK
-												</button>											</span>
-										</td>										
-									</tr>
-									<c:set var="count" value="${count + 1}" scope="page" />
-								</c:otherwise>
-							</c:choose>
+					<c:if test="${not empty myTraitVote.synonymList['current']}">
+						<c:forEach items="${myTraitVote.synonymList['current']}" var="prop" varStatus="cptSyn">
+							<tr>
+								<td>Current synonym: ${cptSyn.index + 1}</td>
+								<td><c:out value="${prop.key}" /></td>
+								<td><select name="syn${count}" title="syn${count}" class="notation"
+									onchange="addVote(this.title, '${myTraitVote.uri}', 'validatedAltLabel', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
+										<option
+											<c:if test="${prop.value.voteValue==0}">selected="selected"</c:if>
+											value="0">no response</option>
+										<option
+											<c:if test="${prop.value.voteValue==1}">selected="selected"</c:if>
+											value="1">strongly disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==2}">selected="selected"</c:if>
+											value="2">disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==3}">selected="selected"</c:if>
+											value="3">ambivalent</option>
+										<option
+											<c:if test="${prop.value.voteValue==4}">selected="selected"</c:if>
+											value="4">agree</option>
+										<option
+											<c:if test="${prop.value.voteValue==5}">selected="selected"</c:if>
+											value="5">strongly agree</option>
+								</select></td>
+								<td class="comment-block">
+									Comment: 
+									<span onclick="displayComment('comment-syn${count}', '${myTraitVote.uri}', 'validatedAltLabel', '${fn:replace(prop.key,search,replace)}')" class="ui-icon ui-icon-circle-plus" style="float: right;margin-right: 50%;" ></span>
+									<span id="comment-syn${count}" <c:if test="${empty prop.value.comment}">style="display: none;"</c:if>>
+										<textarea id="comment-text-syn${count}" rows="2"><c:out value="${prop.value.comment}" /></textarea>
+										<button onclick="changeVote('${myTraitVote.uri}', 'validatedAltLabel', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('syn${count}')[0].selectedIndex, document.getElementById('comment-text-syn${count}').value,'comment-syn${count}');">
+											OK
+										</button>
+									</span>
+								</td>										
+							</tr>
+							<c:set var="count" value="${count + 1}" scope="page" />
 						</c:forEach>
-					</c:forEach>
+					</c:if>
+					<c:if test="${not empty myTraitVote.synonymList['proposed']}">
+						<c:forEach items="${myTraitVote.synonymList['proposed']}" var="prop" varStatus="cptSyn">
+							<tr>
+								<td>Proposition ${cptSyn.index + 1 }: </td>
+								<td><c:out value="${prop.key}" /></td>
+								<td><select name="syn${count}" title="syn${count}" class="notation"
+									onchange="addVote(this.title, '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
+										<option
+											<c:if test="${prop.value.voteValue==0}">selected="selected"</c:if>
+											value="0">no response</option>
+										<option
+											<c:if test="${prop.value.voteValue==1}">selected="selected"</c:if>
+											value="1">strongly disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==2}">selected="selected"</c:if>
+											value="2">disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==3}">selected="selected"</c:if>
+											value="3">ambivalent</option>
+										<option
+											<c:if test="${prop.value.voteValue==4}">selected="selected"</c:if>
+											value="4">agree</option>
+										<option
+											<c:if test="${prop.value.voteValue==5}">selected="selected"</c:if>
+											value="5">strongly agree</option>
+								</select></td>
+								<td class="comment-block">
+									Comment: 
+									<span onclick="displayComment('comment-syn${count}', '${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}')" class="ui-icon ui-icon-circle-plus" style="float: right;margin-right: 50%;" ></span>
+									<span id="comment-syn${count}" <c:if test="${empty prop.value.comment}">style="display: none;"</c:if>>
+										<textarea id="comment-text-syn${count}" rows="2"><c:out value="${prop.value.comment}" /></textarea>
+										<button onclick="changeVote('${myTraitVote.uri}', 'altLabel', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('syn${count}')[0].selectedIndex, document.getElementById('comment-text-syn${count}').value,'comment-syn${count}');">
+											OK
+										</button>											</span>
+								</td>										
+							</tr>
+							<c:set var="count" value="${count + 1}" scope="page" />
+						</c:forEach>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
@@ -692,9 +690,49 @@
 						<td colspan="3"></td>
 					</tr>
 					<c:set var="count" value="1" scope="page" />
-					<c:forEach items="${myTraitVote.relatedList}" var="prop">
+					<c:if test="${not empty myTraitVote.relatedList['current']}">
+						<c:forEach items="${myTraitVote.relatedList['current']}" var="prop" varStatus="cptRel">
+							<tr>
+								<td>Current related ${cptRel.index + 1}: </td>
+								<td><c:out value="${prop.key}" /></td>
+								<td><select name="rel${count}" title="rel${count}" class="notation"
+									onchange="addVote(this.title, '${myTraitVote.uri}', 'related', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
+										<option
+											<c:if test="${prop.value.voteValue==0}">selected="selected"</c:if>
+											value="0">no response</option>
+										<option
+											<c:if test="${prop.value.voteValue==1}">selected="selected"</c:if>
+											value="1">strongly disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==2}">selected="selected"</c:if>
+											value="2">disagree</option>
+										<option
+											<c:if test="${prop.value.voteValue==3}">selected="selected"</c:if>
+											value="3">ambivalent</option>
+										<option
+											<c:if test="${prop.value.voteValue==4}">selected="selected"</c:if>
+											value="4">agree</option>
+										<option
+											<c:if test="${prop.value.voteValue==5}">selected="selected"</c:if>
+											value="5">strongly agree</option>
+								</select></td>
+								<td class="comment-block">
+									Comment: 
+									<span onclick="displayComment('comment-rel${count}', '${myTraitVote.uri}', 'related', '${fn:replace(prop.key,search,replace)}')" class="ui-icon ui-icon-circle-plus" style="float: right;margin-right: 50%;" ></span>
+									<span id="comment-rel${count}" <c:if test="${empty prop.value.comment}">style="display: none;"</c:if>>
+										<textarea id="comment-text-rel${count}" rows="2"><c:out value="${prop.value.comment}" /></textarea>
+										<button onclick="changeVote('${myTraitVote.uri}', 'related', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('rel${count}')[0].selectedIndex, document.getElementById('comment-text-rel${count}').value,'comment-rel${count}');">
+											OK
+										</button>								</span>
+								</td>										
+							</tr>
+							<c:set var="count" value="${count + 1}" scope="page" />
+					</c:forEach>
+					</c:if>
+					<c:if test="${not empty myTraitVote.relatedList['proposed']}">
+						<c:forEach items="${myTraitVote.relatedList['proposed']}" var="prop" varStatus="cptRel">
 						<tr>
-							<td>Proposition ${count}: </td>
+							<td>Proposition ${cptRel.index + 1}: </td>
 							<td><c:out value="${prop.key}" /></td>
 							<td><select name="rel${count}" title="rel${count}" class="notation"
 								onchange="addVote(this.title, '${myTraitVote.uri}', 'related', '${fn:replace(prop.key,search,replace)}', this.options[this.selectedIndex].value);">
@@ -725,10 +763,11 @@
 									<button onclick="changeVote('${myTraitVote.uri}', 'related', '${fn:replace(prop.key,search,replace)}', document.getElementsByName('rel${count}')[0].selectedIndex, document.getElementById('comment-text-rel${count}').value,'comment-rel${count}');">
 										OK
 									</button>								</span>
-							</td>
+							</td>										
 						</tr>
 						<c:set var="count" value="${count + 1}" scope="page" />
-					</c:forEach>
+						</c:forEach>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>

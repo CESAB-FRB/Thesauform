@@ -48,4 +48,10 @@
     <filter-name>thesauform_url</filter-name>
     <url-pattern>/TRENVAS/*</url-pattern>
   </filter-mapping>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/WEB-INF/tags/mytaglib</taglib-uri>
+        <taglib-location>/WEB-INF/tags/mytaglib.tld</taglib-location>
+    </taglib>
+  </jsp-config>
 </web-app>

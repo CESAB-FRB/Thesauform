@@ -112,6 +112,8 @@ public class InfoAnnotation extends HttpServlet {
 		// Treatment
 		if (traitModel != null) {
 			String traitName = request.getParameter(GET_PARAMETER);
+			//TODO detect encoding
+			traitName = java.net.URLDecoder.decode(traitName, "UTF-8");
 			// create object trait
 			TraitConcept myTrait = new TraitConcept();
 			// set name
@@ -272,15 +274,15 @@ public class InfoAnnotation extends HttpServlet {
 				}
 				// get all synonym in a list of TraitConcept
 				try {
-					StmtIterator synonymIt = traitModel.getAllAltLabel(concept);
+					StmtIterator synonymIt = traitModel.getAllValidatedAltLabel(concept);
 					if (synonymIt.hasNext()) {
 						List<TraitConcept> mySynonymsList = new ArrayList<>();
 						while (synonymIt.hasNext()) {
 							TraitConcept myTraitTmp = new TraitConcept();
 							Statement st = synonymIt.next();
-							Resource AltLabel = st.getObject().as(Resource.class);
-							myTraitTmp.setRealName(traitModel.getLabelLiteralForm(AltLabel));
-							myTraitTmp.setName(traitModel.getLabelLiteralForm(AltLabel));
+							String AltLabel = st.getObject().asNode().getLiteralLexicalForm();
+							myTraitTmp.setRealName(AltLabel);
+							myTraitTmp.setName(AltLabel);
 							mySynonymsList.add(myTraitTmp);
 						}
 						myTrait.setSynonymsList(mySynonymsList);

@@ -33,6 +33,8 @@ import javax.servlet.http.Part;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.DC;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 
@@ -103,18 +105,15 @@ public class ImportFile extends HttpServlet {
 		try {
 			Resource newConcept = null;
 			//test if already existing
-			if(!model.existsProperty(Format.formatName(concept.getName()), SkosXLVoc.prefLabel)) {
-				newConcept = model.setConcept(Format.formatName(concept.getName()), scheme, person, date,"stable");
+			if(!model.existProperty(Format.formatName(concept.getName()), SkosXLVoc.prefLabel)) {
+				newConcept = model.setConcept(Format.formatLabel(concept.getName()), scheme, person, date,"stable");
 			}
 			else {
 				newConcept = model.getResource(Format.formatName(concept.getName()));
 
 			}
-			//test if already existing
 			Resource insertlist = model.createCollection("Insert");
-			if(!model.existsProperty(Format.formatName(concept.getName()), ChangeVoc.insert)) {
-				model.addMember(insertlist, newConcept);
-			}
+			model.addMember(insertlist, newConcept);
 			if(concept.getDefinition()!=null) {
 				String defRef = concept.getDefinition();
 				String definition = "";
@@ -128,7 +127,7 @@ public class ImportFile extends HttpServlet {
 					definition = defRef;
 				}
 				//test if already existing
-				if(!model.existsProperty(concept.getName(), SkosVoc.definition)) {
+				if(!model.existProperty(concept.getName(), SkosVoc.definition)) {
 					if (!definition.trim().isEmpty() || !definition.trim().equalsIgnoreCase("")) {
 						// definition
 						Resource def = model.setDefinition(newConcept, definition.trim());
@@ -149,7 +148,7 @@ public class ImportFile extends HttpServlet {
 			}
 			if(concept.getAbbreviation()!=null) {
 				//test if already existing
-				if(!model.existsProperty(concept.getName(), TraitVocTemp.abbreviation)) {
+				if(!model.existProperty(concept.getName(), TraitVocTemp.abbreviation)) {
 					if (!concept.getAbbreviation().trim().isEmpty() || !concept.getAbbreviation().trim().equalsIgnoreCase("")) {
 						Resource Label = model.setAbbreviation(model.getPrefLabel(newConcept), concept.getAbbreviation().trim());
 						Resource note = model.createInsert(Label);
@@ -161,13 +160,13 @@ public class ImportFile extends HttpServlet {
 			if(concept.getSynonymsList()!=null) {
 				if (!concept.getSynonymsList().isEmpty()) {
 					for (TraitConcept syn : concept.getSynonymsList()) {
-						model.setResource(newConcept, SkosXLVoc.altLabel, syn.getName());
+						model.setResource(newConcept, SkosVoc.altLabel, syn.getName());
 					}
 				}
 			}
 			if(concept.getUnit()!=null) {
 				//test if already existing
-				if(!model.existsProperty(concept.getName(), TraitVocTemp.prefUnit)) {
+				if(!model.existProperty(concept.getName(), TraitVocTemp.prefUnit)) {
 					if (concept.getUnit()!=null && (!concept.getUnit().trim().isEmpty() || !concept.getUnit().trim().equalsIgnoreCase(""))) {
 						Resource unit = model.setUnit(newConcept, concept.getUnit().trim());
 						Resource note = model.createInsert(unit);

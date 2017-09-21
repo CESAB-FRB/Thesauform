@@ -47,20 +47,26 @@ public class DataValidation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//print a concept with vote and comment for each propertie
+		//TODO create ajax call for validation
+		//TODO draw line between category
 		// manage errors messages
 		Map<String, String> errors = new HashMap<String,String>();
 		//vote notation for all properties managed
 		Map<String, Map<String, List<String>>> voteMap =  new LinkedHashMap<String,Map<String, List<String>>>();
+		//name
+		Map<String, List<String>> nameVoteMap =  new LinkedHashMap<String, List<String>>();
 		//definition
-		Map<String, List<String>> definitionVoteMap =  new HashMap<String, List<String>>();
+		Map<String, List<String>> definitionVoteMap =  new LinkedHashMap<String, List<String>>();
 		//abbreviation
-		Map<String, List<String>> abbreviationVoteMap =  new HashMap<String, List<String>>();
+		Map<String, List<String>> abbreviationVoteMap =  new LinkedHashMap<String, List<String>>();
 		//synonym
-		Map<String, List<String>> synonymVoteMap =  new HashMap<String, List<String>>();
+		Map<String, List<String>> synonymVoteMap =  new LinkedHashMap<String, List<String>>();
+		//related
+		Map<String, List<String>> relatedVoteMap =  new LinkedHashMap<String, List<String>>();
 		//category
-		Map<String, List<String>> categoryVoteMap =  new HashMap<String, List<String>>();
+		Map<String, List<String>> categoryVoteMap =  new LinkedHashMap<String, List<String>>();
 		//unit
-		Map<String, List<String>> unitVoteMap =  new HashMap<String, List<String>>();
+		Map<String, List<String>> unitVoteMap =  new LinkedHashMap<String, List<String>>();
 		// test if a session is initialized
 		SkosTraitModel traitModel = null;
 		HttpSession session = request.getSession(false);
@@ -88,6 +94,9 @@ public class DataValidation extends HttpServlet {
 					Resource concept = traitModel.getResource(Format.formatName(traitName));
 					if (concept != null) {
 						////get each property to retrieve vote and comment
+						///name
+						String name = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(concept));
+						nameVoteMap.put(name, traitModel.getVote(concept, SkosXLVoc.prefLabel, name));
 						///definition
 						String definition = traitModel.getValue(traitModel.getDefinition(concept));
 						// get current reference linked to definition
@@ -109,13 +118,12 @@ public class DataValidation extends HttpServlet {
 							abbreviationVoteMap.put(abbreviation, traitModel.getVote(concept, TraitVocTemp.abbreviation, abbreviation));
 						}
 						///synonym
-						StmtIterator synonymIt = traitModel.getAllAltLabel(concept);
+						StmtIterator synonymIt = traitModel.getAllValidatedAltLabel(concept);
 						// test if not empty
 						if (synonymIt.hasNext()) {
 							while (synonymIt.hasNext()) {
 								Statement st = synonymIt.next();
-								Resource AltLabel = st.getObject().as(Resource.class);
-								String synonym = traitModel.getLabelLiteralForm(AltLabel);
+								String synonym = st.getObject().asNode().getLiteralLexicalForm();
 								synonymVoteMap.put(synonym, traitModel.getVote(concept, SkosXLVoc.altLabel, synonym));
 							}
 						}
@@ -126,7 +134,7 @@ public class DataValidation extends HttpServlet {
 								Statement st = parentIt.next();
 								Resource parent = st.getObject().as(Resource.class);
 								String category = parent.getLocalName();
-								categoryVoteMap.put(category, traitModel.getVote(concept, SkosXLVoc.altLabel, category));
+								categoryVoteMap.put(category, traitModel.getVote(concept, SkosVoc.altLabel, category));
 							}
 						}
 						///unit
@@ -135,58 +143,70 @@ public class DataValidation extends HttpServlet {
 						if (unit != null && !unit.isEmpty()) {
 							unitVoteMap.put(unit, traitModel.getVote(concept, TraitVocTemp.prefUnit, unit));
 						}
+						// get all related
+						StmtIterator relatedIt = traitModel.getAllValidatedRelated(concept);
+						if(relatedIt.hasNext()) {
+							while (relatedIt.hasNext()) {
+									Statement st = relatedIt.next();
+									Resource Related = st.getObject().as(Resource.class);
+									String related = traitModel.getLabelLiteralForm(traitModel.getPrefLabel(Related));
+									relatedVoteMap.put(related, traitModel.getVote(concept, SkosVoc.related, related));
+							}
+						}
 						// get all update properties vote
 						try {
 							Map<String, List<String>> updateMap = traitModel.getAnnotation(Format.formatName(traitName), "update");
 							Iterator<Entry<String, List<String>>> updateIt = updateMap.entrySet().iterator();
 							// test if the concept is updated
-							if (updateIt.hasNext()) {
-								// for each property
-								while (updateIt.hasNext()) {
-									// get the properties lists
-									Entry<String, List<String>> updatePair = updateIt.next();
-									String property = updatePair.getKey();
-									List<String> valueList = (List<String>) updatePair.getValue();
-									Iterator<String> valueIt = valueList.iterator();
-									while (valueIt.hasNext()) {
-										// get property value
-										String value = valueIt.next();
-										//definition
-										if(property == "definition"){
-											definitionVoteMap.put(value,traitModel.getVote(concept, SkosVoc.definition, value));
-										}
-										else if (property == "abbreviation") {
-											abbreviationVoteMap.put(value,traitModel.getVote(concept, TraitVocTemp.abbreviation, value));
-										}
-										else if (property == "synonym") {
-											synonymVoteMap.put(value,traitModel.getVote(concept, SkosXLVoc.altLabel, value));
-										}
-										else if (property == "category") {
-											categoryVoteMap.put(value,traitModel.getVote(concept, SkosVoc.broaderTransitive, value));
-										}
-										else if (property == "unit") {
-											unitVoteMap.put(value,traitModel.getVote(concept, TraitVocTemp.prefUnit, value));
-										}
-										else {
-											throw new Exception(ERROR_MESSAGE_PROPERTY);
-										}
+							// for each property
+							while (updateIt.hasNext()) {
+								// get the properties lists
+								Entry<String, List<String>> updatePair = updateIt.next();
+								String property = updatePair.getKey();
+								List<String> valueList = (List<String>) updatePair.getValue();
+								Iterator<String> valueIt = valueList.iterator();
+								while (valueIt.hasNext()) {
+									// get property value
+									String value = valueIt.next();
+									//add a tag to know validated from proposed
+									String key_value = value.concat("@prop");
+									if(property == "definition"){
+										definitionVoteMap.put(key_value,traitModel.getVote(concept, SkosVoc.definition, value));
+									}
+									else if (property == "name") {
+										nameVoteMap.put(key_value,traitModel.getVote(concept, SkosXLVoc.prefLabel, value));
+									}
+									else if (property == "abbreviation") {
+										abbreviationVoteMap.put(key_value,traitModel.getVote(concept, TraitVocTemp.abbreviation, value));
+									}
+									else if (property == "synonym") {
+										synonymVoteMap.put(key_value,traitModel.getVote(concept, SkosXLVoc.altLabel, value));
+									}
+									else if (property == "category") {
+										categoryVoteMap.put(key_value,traitModel.getVote(concept, SkosVoc.broaderTransitive, value));
+									}
+									else if (property == "unit") {
+										unitVoteMap.put(key_value,traitModel.getVote(concept, TraitVocTemp.prefUnit, value));
+									}
+									else if (property == "related") {
+										relatedVoteMap.put(key_value,traitModel.getVote(concept, SkosVoc.related, value));
+									}
+									else {
+										throw new Exception(ERROR_MESSAGE_PROPERTY + ":" + property);
 									}
 								}
-							} else {
-								//do nothing
 							}
-							//abbreviation
-							//synonym
-							//category
-							//unit
 						} catch (Exception e) {
+							System.out.println(e.getMessage());
 							errors.put(ERROR_PROPERTY, e.getMessage());
 						}
+						voteMap.put("name",nameVoteMap);
 						voteMap.put("definition",definitionVoteMap);
 						voteMap.put("unit",unitVoteMap);
 						voteMap.put("abbreviation",abbreviationVoteMap);
 						voteMap.put("category",categoryVoteMap);
 						voteMap.put("synonym",synonymVoteMap);
+						voteMap.put("related",relatedVoteMap);
 					}
 					request.setAttribute("concept", traitName);
 					request.setAttribute("vote", voteMap);

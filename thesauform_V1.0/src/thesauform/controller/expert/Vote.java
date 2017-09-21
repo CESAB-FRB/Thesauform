@@ -3,6 +3,7 @@ package thesauform.controller.expert;
 import java.io.IOException;
 
 import thesauform.beans.Person;
+import thesauform.model.SkosModel;
 import thesauform.model.SkosTraitModel;
 import thesauform.model.ThesauformConfiguration;
 import thesauform.model.VotesModel;
@@ -37,7 +38,7 @@ public class Vote extends HttpServlet {
 
 	
 
-	public String normalSpecialChar(String value) {
+	public static String normalSpecialChar(String value) {
 		value = value.replaceAll(";and;", "&");
 		return value;
 	}
@@ -66,6 +67,7 @@ public class Vote extends HttpServlet {
 							}
 						}
 						String traitName = request.getParameter("trait_name");
+						traitName = java.net.URLDecoder.decode(traitName, "UTF-8");
 						if (traitName == null || traitName.isEmpty()) {
 							throw new Exception(EMPTY_TRAIT_NAME_MESSAGE);
 						}
@@ -74,15 +76,19 @@ public class Vote extends HttpServlet {
 							throw new Exception(EMPTY_PROPERTY_MESSAGE);
 						}
 						String value = request.getParameter("value");
+						value = java.net.URLDecoder.decode(value, "UTF-8");
 						if (value == null || value.isEmpty()) {
 							throw new Exception(EMPTY_VALUE_MESSAGE);
 						}
 						String comment = request.getParameter("comment");
+						if(comment!=null&&!comment.isEmpty()) {
+							comment = java.net.URLDecoder.decode(comment, "UTF-8");
+						}
 						//@PATCH for special character & et #
 						value = normalSpecialChar(value);
 						//@PATCH for def + ref
 						if(value.matches(".*\\(ref: .+\\)")) {
-							value = value.replaceAll("(.*)\\(ref: (.*)\\)", "$1__$2");
+							value = value.replaceAll(" *(.*)\\(ref: (.*)\\)", "$1__$2");
 						}
 						Integer voteValue;
 						String voteValueString = request.getParameter("vote_value");
@@ -116,10 +122,21 @@ public class Vote extends HttpServlet {
 						}
 						// do vote
 						if (action.equals("add")) {
-							countNb = myVote.addVote();
+							try {
+								countNb = myVote.addVote();
+							} catch (Exception e) {
+								//vote already existing, do nothing
+								if(e.getMessage().equals(SkosModel.EXISTING_PROP_VAL_MES)) {
+									throw new Exception(SkosModel.EXISTING_PROP_VAL_MES);
+								}
+							}
 						} else {
 							if (action.equals("del")) {
-								countNb = myVote.deleteVote();
+								try {
+									countNb = myVote.deleteVote();
+								} catch (Exception e) {
+									//vote not existing, do nothing
+								}
 							}
 							else {
 								if (comment == null || comment.isEmpty()) {

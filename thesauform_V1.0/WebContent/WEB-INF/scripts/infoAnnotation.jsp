@@ -15,25 +15,40 @@
 			classes : 'helpClasse'
 		}
 	});
-	$("#cat").autocomplete(
-			{
-				source : function(requete, reponse) {
-					$.ajax({
-						url : 'annotationSearch',
-						dataType : 'json',
-						data : {
-							trait : $('#cat').val(),
-							maxRows : 15
-						},
-						success : function(data) {
-							reponse($.map($.parseJSON(JSON.stringify(data)),
-									function(objet) {
-										return objet; // on retourne cette forme de suggestion
-									}));
-						}
-					});
+	$("#cat").autocomplete({
+		source : function(requete, reponse) {
+			$.ajax({
+				url : 'annotationSearch',
+				dataType : 'json',
+				data : {
+					trait : $('#cat').val(),
+					maxRows : 15
+				},
+				success : function(data) {
+					reponse($.map($.parseJSON(JSON.stringify(data)),
+							function(objet) {
+								return objet; // on retourne cette forme de suggestion
+							}));
 				}
 			});
+		}
+	});
+	
+	function add_synonyme() {
+		var $div = $('div[id^="synclone"]:last');
+		var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+		var $new_syn = $('#synclone1').clone().prop('id', 'synclone'+num );
+		$new_syn.find('span').remove();
+		$new_syn.insertAfter('#synclone1');
+	}
+
+	function add_related() {
+		var $div = $('div[id^="relclone"]:last');
+		var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+		var $new_syn = $('#relclone1').clone().prop('id', 'relclone'+num );
+		$new_syn.find('span').remove();
+		$new_syn.insertAfter('#relclone1');
+	}
 </script>
 
 <c:if test="${not empty my_errors['parent']}">
@@ -94,41 +109,52 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${my_trait.synonymsList}" var="synonym">
-			<div class="row" id="toto">
-				<label id="l_syn" for="syn">Synonym:&nbsp;</label> <input
-					type="text" name="syn" id="syn"
-					value="<c:out value="${synonym.realName}"/>"> <span
-					class="ui-icon ui-icon-circle-plus"
-					style="float: left; margin-right: 0.3em;"
-					onclick=" $('#toto').clone().insertAfter('#toto'); "></span>
+			<div class="row">
+				<label id="l_valsyn" for="valsyn">Synonym:&nbsp;</label> 
+				<input style="color: black;" type="text" disabled="disabled" id="valsyn" value="<c:out value="${synonym.realName}"/>">
 			</div>
 		</c:forEach>
+		<div class="row" id="synclone1">
+			<label class="l_syn" for="syn">Synonym: <span
+				style='float: right; margin-right: 10px;'><a
+					title='Another name that may be commonly used for this term.'><img
+						src="IMG/red_help.png"
+						style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
+			</label> <input type="text" name="syn" class="syn" /> <span
+				class="ui-icon ui-icon-circle-plus"
+				style="float: left; margin-right: 0.3em;"
+				onclick="add_synonyme();"></span>
+		</div>
 	</c:otherwise>
 </c:choose>
 <c:choose>
 	<c:when test="${empty my_trait.relatedsList}">
-		<div class="row" id="relclone">
-			<label id="l_rel" for="related">Related: <span
+		<div class="row" id="relclone1">
+			<label class="l_rel" for="related">Related: <span
 				style='float: right; margin-right: 10px;'><a title='A term that you feel is closely allied to this one.'><img
 						src="IMG/red_help.png"
 						style="width: 10px; height: 10px; margin-bottom: 3px;" /></a></span>&nbsp;
-			</label> <input type="text" name="related" id="related" value=""> <span
+			</label> <input type="text" name="related" class="related" /> <span
 				class="ui-icon ui-icon-circle-plus"
 				style="float: left; margin-right: 0.3em;"
-				onclick=" $('#relclone').clone().insertAfter('#relclone'); "></span>
+				onclick="add_related();"></span>
 		</div>
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${my_trait.relatedsList}" var="related">
-			<div class="row" id="relclone">
-				<label id="l_rel" for="related">Related :&nbsp;</label> <input
-					type="text" name="related" id="related "
-					value="<c:out value="${related.realName}"/>"> <span
-					class="ui-icon ui-icon-circle-plus"
-					style="float: left; margin-right: 0.3em;"
-					onclick=" $('#relclone').clone().insertAfter('#relclone'); "></span>
+			<div class="row">
+				<label id="l_valrel" for="valrel">Related:&nbsp;</label> 
+				<input style="color: black;" type="text" id="valrel" disabled="disabled" value="<c:out value="${related.realName}"/>">
 			</div>
 		</c:forEach>
+		<div class="row" id="relclone">
+			<label id="l_rel" for="related">Related :&nbsp;</label> <input
+				type="text" name="related" id="related "
+				value=""> <span
+				class="ui-icon ui-icon-circle-plus"
+				style="float: left; margin-right: 0.3em;"
+				onclick=" $('#relclone').clone().insertAfter('#relclone'); "></span>
+		</div>
 	</c:otherwise>
 </c:choose>
 <c:forTokens items="${_trait_display_}" delims="," var="my_display">

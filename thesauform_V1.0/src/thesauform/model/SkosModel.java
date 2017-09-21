@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -47,6 +48,7 @@ import thesauform.model.vocabularies.UnitVoc;
  */
 public class SkosModel implements AnnotationModel {
 
+	public static final String EXISTING_PROP_VAL_MES = "The property with this value does not exists";
 	protected Model m = ModelFactory.createDefaultModel();
 	private static String uri = null;
 
@@ -64,7 +66,7 @@ public class SkosModel implements AnnotationModel {
 	}
 
 	public SkosModel(String file) {
-		// TODO manage exeception
+		// TODO manage exception
 		// use the file manager to read an RDF document into the model
 		FileManager.get().readModel(m, file);
 	}
@@ -307,7 +309,6 @@ public class SkosModel implements AnnotationModel {
 	}
 	
 	public Resource getPerson(String name, String email) {
-		// TODO Auto-generated method stub
 		Resource person = null;
 		String prolog2 = "PREFIX rdf: <" + RDF.getURI() + ">";
 		String prolog3 = "PREFIX foaf: <" + FOAF.getURI() + ">";
@@ -341,7 +342,6 @@ public class SkosModel implements AnnotationModel {
 	}
 
 	public Resource getPerson(String name) {
-		// TODO Auto-generated method stub
 		Resource person = null;
 		String prolog2 = "PREFIX rdf: <" + RDF.getURI() + ">";
 		String prolog3 = "PREFIX foaf: <" + FOAF.getURI() + ">";
@@ -370,7 +370,6 @@ public class SkosModel implements AnnotationModel {
 	}
 
 	public boolean getPersonB(String name, String email) {
-		// TODO Auto-generated method stub
 		boolean person = false;
 		// test if it is not the generic user
 		if (!name.equals("public")) {
@@ -689,33 +688,7 @@ public class SkosModel implements AnnotationModel {
 		int cpt = 0;
 		Resource c = this.getResource(Format.formatName(traitName));
 		Property p = null;
-		if (property.equalsIgnoreCase("prefLabel")) {
-			p = SkosXLVoc.prefLabel;
-		} else if (property.equalsIgnoreCase("altLabel")) {
-			p = SkosXLVoc.altLabel;
-		} else if (property.equalsIgnoreCase("abbreviation")) {
-			p = TraitVocTemp.abbreviation;
-		} else if (property.equalsIgnoreCase("prefUnit")) {
-			p = TraitVocTemp.prefUnit;
-		} else if (property.equalsIgnoreCase("reference")) {
-			p = TraitVocTemp.reference;
-		} else if (property.equalsIgnoreCase("definition")) {
-			p = SkosVoc.definition;
-		} else if (property.equalsIgnoreCase("update")) {
-			p = ChangeVoc.update;
-		} else if (property.equalsIgnoreCase("delete")) {
-			p = ChangeVoc.delete;
-		} else if (property.equalsIgnoreCase("comment")) {
-			p = ChangeVoc.comment;
-		} else if (property.equalsIgnoreCase("insert")) {
-			p = ChangeVoc.insert;
-		} else if (property.equalsIgnoreCase("broaderTransitive")) {
-			p = SkosVoc.broaderTransitive;
-		} else if (property.equalsIgnoreCase("related")) {
-			p = SkosVoc.related;
-		} else {
-			throw new Exception("Vocabularie " + property + " not managed");
-		}
+		p = StringToProperty(property);
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
 				+ ">";
@@ -805,23 +778,19 @@ public class SkosModel implements AnnotationModel {
 	}
 
 	/**
-	 * Test existence of vote and return the resource
-	 * 
-	 * @param traitName
+	 * Transform a string to property
 	 * @param property
-	 * @param person
-	 * @param value
 	 * @return
 	 * @throws Exception
 	 */
-	public Resource existVote(String traitName, String property, String person, String value) throws Exception {
-		Resource returnValue = null;
-		Resource c = this.getResource(Format.formatName(traitName));
+	public Property StringToProperty(String property) throws Exception {
 		Property p = null;
 		if (property.equalsIgnoreCase("prefLabel")) {
 			p = SkosXLVoc.prefLabel;
+		} else if (property.equalsIgnoreCase("validatedAltLabel")) {
+			p = SkosVoc.altLabel;
 		} else if (property.equalsIgnoreCase("altLabel")) {
-			p = SkosXLVoc.altLabel;
+					p = SkosXLVoc.altLabel;
 		} else if (property.equalsIgnoreCase("abbreviation")) {
 			p = TraitVocTemp.abbreviation;
 		} else if (property.equalsIgnoreCase("prefUnit")) {
@@ -845,6 +814,63 @@ public class SkosModel implements AnnotationModel {
 		} else {
 			throw new Exception("Vocabularie " + property + " not managed");
 		}
+		return(p);
+	}
+	
+	/**
+	 * Transform a string to property
+	 * @param property
+	 * @return
+	 * @throws Exception
+	 */
+	public String PropertyToString(Property property) throws Exception {
+		String p = null;
+		if (property==SkosXLVoc.prefLabel) {
+			p = "prefLabel";
+		} else if (property==SkosVoc.altLabel) {
+			p = "validatedAltLabel";
+		} else if (property==SkosXLVoc.altLabel) {
+					p = "altLabel";
+		} else if (property==TraitVocTemp.abbreviation) {
+			p = "abbreviation";
+		} else if (property==TraitVocTemp.prefUnit) {
+			p = "prefUnit";
+		} else if (property==TraitVocTemp.reference) {
+			p = "reference";
+		} else if (property==SkosVoc.definition) {
+			p = "definition";
+		} else if (property==ChangeVoc.update) {
+			p = "update";
+		} else if (property==ChangeVoc.delete) {
+			p = "delete";
+		} else if (property==ChangeVoc.comment) {
+			p = "comment";
+		} else if (property==ChangeVoc.insert) {
+			p = "insert";
+		} else if (property==SkosVoc.broaderTransitive) {
+			p = "broaderTransitive";
+		} else if (property==SkosVoc.related) {
+			p = "related";
+		} else {
+			throw new Exception("Vocabularie " + property + " not managed");
+		}
+		return(p);
+	}
+	
+	/**
+	 * Test existence of vote and return the resource
+	 * 
+	 * @param traitName
+	 * @param property
+	 * @param person
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Resource existVote(String traitName, String property, String person, String value) throws Exception {
+		Resource returnValue = null;
+		Resource c = this.getResource(Format.formatName(traitName));
+		Property p = StringToProperty(property);
 		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
 		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
 				+ ">";
@@ -852,7 +878,7 @@ public class SkosModel implements AnnotationModel {
 		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
 		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
 		// Query string
-		// TODO @Patch1 if def__ref annotation should be selected on a special way
+		// @Patch1 if def__ref annotation should be selected on a special way
 		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
 				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
 				+ ThesauformConfiguration.NL + "SELECT ?vote WHERE { " + "<" + c + "> change:vote ?vote . "
@@ -911,56 +937,37 @@ public class SkosModel implements AnnotationModel {
 		Resource pe = this.getPerson(person);
 		//escape value #
 		value = value.replace("#", "\\#");
-		if (property.equalsIgnoreCase("prefLabel")) {
-			p = SkosXLVoc.prefLabel;
-		} else if (property.equalsIgnoreCase("altLabel")) {
-			p = SkosXLVoc.altLabel;
-		} else if (property.equalsIgnoreCase("abbreviation")) {
-			p = TraitVocTemp.abbreviation;
-		} else if (property.equalsIgnoreCase("prefUnit")) {
-			p = TraitVocTemp.prefUnit;
-		} else if (property.equalsIgnoreCase("reference")) {
-			p = TraitVocTemp.reference;
-		} else if (property.equalsIgnoreCase("definition")) {
-			p = SkosVoc.definition;
-		} else if (property.equalsIgnoreCase("update")) {
-			p = ChangeVoc.update;
-		} else if (property.equalsIgnoreCase("delete")) {
-			p = ChangeVoc.delete;
-		} else if (property.equalsIgnoreCase("comment")) {
-			p = ChangeVoc.comment;
-		} else if (property.equalsIgnoreCase("insert")) {
-			p = ChangeVoc.insert;
-		} else if (property.equalsIgnoreCase("broaderTransitive")) {
-			p = SkosVoc.broaderTransitive;
-		} else if (property.equalsIgnoreCase("related")) {
-			p = SkosVoc.related;
-		} else {
-			throw new Exception("Vocabularie " + property + " not managed");
-		}
-		if (this.existVote(traitName, property, person, value) == null) {
-			// TODO @Patch1 if def__ref annotation should be inserted in a special way
-			Resource vote = m.createResource();
-			m.add(vote, ChangeVoc.hasVote, m.createTypedLiteral(voteValue));
-			m.add(vote, ChangeVoc.hasProperty, p);
-			if (p == SkosVoc.definition && value.contains("__")) {
-				String[] refDef = value.split("__");
-				m.add(vote, ChangeVoc.hasValue, refDef[0].trim());
-				Resource refR = createResource();
-				m.add(refR,RDF.value,refDef[1]);
-				m.add(refR,RDF.type,RefVoc.Reference);
-				m.add(vote, TraitVocTemp.reference, refR);
-			} else {
-				m.add(vote, ChangeVoc.hasValue, value);
+		p = StringToProperty(property);
+		//test if value exists in annotation and in validated property
+		if(this.existAnnotation(traitName, p, value)||this.existProperty(traitName, p, value)){
+			if(this.existVote(traitName, property, person, value) == null) {
+				//@Patch1 if def__ref annotation should be inserted in a special way
+				Resource vote = m.createResource();
+				m.add(vote, ChangeVoc.hasVote, m.createTypedLiteral(voteValue));
+				m.add(vote, ChangeVoc.hasProperty, p);
+				if (p == SkosVoc.definition && value.contains("__")) {
+					String[] refDef = value.split("__");
+					m.add(vote, ChangeVoc.hasValue, refDef[0].trim());
+					Resource refR = createResource();
+					m.add(refR,RDF.value,refDef[1]);
+					m.add(refR,RDF.type,RefVoc.Reference);
+					m.add(vote, TraitVocTemp.reference, refR);
+				} else {
+					m.add(vote, ChangeVoc.hasValue, value);
+				}
+				m.add(c, ChangeVoc.vote, vote);
+				Resource contribution = m.createResource();
+				m.add(contribution, DC.creator, pe);
+				this.setResource(contribution, DCTerms.created, Calendar.getInstance());
+				m.add(vote, ChangeVoc.contribution, contribution);
+				returnValue = true;
 			}
-			m.add(c, ChangeVoc.vote, vote);
-			Resource contribution = m.createResource();
-			m.add(contribution, DC.creator, pe);
-			this.setResource(contribution, DCTerms.created, Calendar.getInstance());
-			m.add(vote, ChangeVoc.contribution, contribution);
-			returnValue = true;
-		} else {
-			throw new Exception("Vote already exists");
+			else {
+				throw new Exception("Vote already exists");
+			}
+		}
+		else {
+			throw new Exception(EXISTING_PROP_VAL_MES);		
 		}
 		return (returnValue);
 	}
@@ -977,21 +984,7 @@ public class SkosModel implements AnnotationModel {
 	 */
 	public Boolean delVote(String traitName, String property, String person, String value) throws Exception {
 		Boolean returnValue = false;
-		if (property.equalsIgnoreCase("prefLabel")) {
-		} else if (property.equalsIgnoreCase("altLabel")) {
-		} else if (property.equalsIgnoreCase("abbreviation")) {
-		} else if (property.equalsIgnoreCase("prefUnit")) {
-		} else if (property.equalsIgnoreCase("reference")) {
-		} else if (property.equalsIgnoreCase("definition")) {
-		} else if (property.equalsIgnoreCase("update")) {
-		} else if (property.equalsIgnoreCase("delete")) {
-		} else if (property.equalsIgnoreCase("comment")) {
-		} else if (property.equalsIgnoreCase("insert")) {
-		} else if (property.equalsIgnoreCase("broaderTransitive")) {
-		} else if (property.equalsIgnoreCase("related")) {
-		} else {
-			throw new Exception("Vocabularie " + property + " not managed");
-		}
+		StringToProperty(property);
 		// TODO @Patch1 if def__ref annotation should be removed in a special way
 		Resource vote = this.existVote(traitName, property, person, value);
 		if (vote != null) {
@@ -1053,13 +1046,330 @@ public class SkosModel implements AnnotationModel {
 		String comment = null;
 		Resource vote = this.existVote(traitName, property, person, value);
 		try {
-				comment = vote.getProperty(RDFS.comment).getObject().toString();
+			comment = vote.getProperty(RDFS.comment).getObject().toString();
 		} catch (Exception e) {
-			// TODO: handle exception
+			//comment does not exist, do nothing
 		}
 		return (comment);
 	}
 	
+
+	/**
+	 * test if property already validated
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean isValidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		if(existValidated(traitName, property, value)!=null) {
+			returnValue = true;
+		}
+		return (returnValue);
+	}
+
+	/**
+	 * Return the existing validated resource
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Resource existValidated(String traitName, String property, String value) throws Exception {
+		Resource returnValue = null;
+		Resource c = this.getResource(Format.formatName(traitName));
+		Property p = StringToProperty(property);
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
+		// Query string
+		// TODO @Patch1 if def__ref annotation should be selected on a special way
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT ?vali WHERE { " + "<" + c + "> change:validated ?vali . "
+				+ "?vali change:hasProperty <" + p + "> . " + "?vali change:hasValue ?val . "
+				+ "FILTER (?val = \"" + value
+				+ "\" && NOT EXISTS { ?vali trait:reference ?ref } "
+				+ ")." + " }";
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog6 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			// change queryString
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL
+					+ prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL + prolog6
+					+ ThesauformConfiguration.NL + "SELECT ?vali WHERE { " + "<" + c + "> change:validated ?vali . "
+					+ "?vali change:hasProperty <" + p + "> . " + "?vali change:hasValue ?val . "
+					+ "?vali trait:reference ?ref . " + "?ref rdf:value ?refval . "
+					+ "FILTER (?val=\"" + refDef[0].trim() + "\" && ?refval = \""
+					+ refDef[1].trim() + "\")." + " }";
+		}
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			if (rs.hasNext()) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("vali");
+				returnValue = y.as(Resource.class);
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return (returnValue);
+	}
+
+	/**
+	 * test if property already invalidated
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean isInvalidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		if(existInvalidated(traitName, property, value)!=null) {
+			returnValue = true;
+		}
+		return (returnValue);
+	}
+	
+	/**
+	 * Return the existing invalidated resource
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Resource existInvalidated(String traitName, String property, String value) throws Exception {
+		Resource returnValue = null;
+		Resource c = this.getResource(Format.formatName(traitName));
+		Property p = StringToProperty(property);
+		String prolog1 = "PREFIX skos: <" + ThesauformConfiguration.skos + ">";
+		String prolog2 = "PREFIX change: <" + ThesauformConfiguration.term_uri + ThesauformConfiguration.uriChange
+				+ ">";
+		String prolog3 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
+		String prolog4 = "PREFIX dc: <" + ThesauformConfiguration.dc + ">";
+		String prolog5 = "PREFIX foaf: <" + ThesauformConfiguration.foaf + ">";
+		// Query string
+		// TODO @Patch1 if def__ref annotation should be selected on a special way
+		String queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3
+				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
+				+ ThesauformConfiguration.NL + "SELECT ?vali WHERE { " + "<" + c + "> change:invalidated ?vali . "
+				+ "?vali change:hasProperty <" + p + "> . " + "?vali change:hasValue ?val . "
+				+ "FILTER (?val = \"" + value
+				+ "\" && NOT EXISTS { ?vali trait:reference ?ref } "
+				+ ")." + " }";
+		if (p == SkosVoc.definition && value.contains("__")) {
+			String prolog6 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
+			String[] refDef = value.split("__");
+			// change queryString
+			queryString = prolog1 + ThesauformConfiguration.NL + prolog2 + ThesauformConfiguration.NL + prolog3 + ThesauformConfiguration.NL
+					+ prolog4 + ThesauformConfiguration.NL + prolog5 + ThesauformConfiguration.NL + prolog6
+					+ ThesauformConfiguration.NL + "SELECT ?vali WHERE { " + "<" + c + "> change:invalidated ?vali . "
+					+ "?vali change:hasProperty <" + p + "> . " + "?vali change:hasValue ?val . "
+					+ "?vali trait:reference ?ref . " + "?ref rdf:value ?refval . "
+					+ "FILTER (?val=\"" + refDef[0].trim() + "\" && ?refval = \""
+					+ refDef[1].trim() + "\")." + " }";
+		}
+		Query query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, m);
+		try {
+			ResultSet rs = qexec.execSelect();
+			if (rs.hasNext()) {
+				QuerySolution rb = rs.nextSolution();
+				RDFNode y = rb.get("vali");
+				returnValue = y.as(Resource.class);
+			}
+		} finally {
+			// QueryExecution objects should be closed to free any system
+			// resources
+			qexec.close();
+		}
+		return (returnValue);
+	}
+	
+	/**
+	 * add validated tag
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean addValidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		//test if value exists in annotation and in validated property
+		if(this.existAnnotation(traitName, this.StringToProperty(property), value)
+				||this.existProperty(traitName, this.StringToProperty(property), value)){
+			//test if not already validated
+			if(!isValidated(traitName, property, value)) {
+				//remove tag invalidated if any
+				if(isInvalidated(traitName, property, value)) {
+					deleteInvalidated(traitName, property, value);
+				}
+				//add validated tag
+				Resource c = this.getResource(Format.formatName(traitName));
+				Property p = StringToProperty(property);
+				//escape value #
+				value = value.replace("#", "\\#");
+				// TODO @Patch1 if def__ref annotation should be inserted in a special way
+				Resource validated = m.createResource();
+				m.add(validated, ChangeVoc.hasValidated, m.createTypedLiteral(true));
+				m.add(validated, ChangeVoc.hasProperty, p);
+				if (p == SkosVoc.definition && value.contains("__")) {
+					String[] refDef = value.split("__");
+					m.add(validated, ChangeVoc.hasValue, refDef[0].trim());
+					Resource refR = createResource();
+					m.add(refR,RDF.value,refDef[1]);
+					m.add(refR,RDF.type,RefVoc.Reference);
+					m.add(validated, TraitVocTemp.reference, refR);
+				} else {
+					m.add(validated, ChangeVoc.hasValue, value);
+				}
+				m.add(c, ChangeVoc.validated, validated);
+				returnValue = true;
+			}
+		}
+		return (returnValue);
+	}
+	
+	/**
+	 * remove validated tag to the property
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean deleteValidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		//test if already validated
+		if(isValidated(traitName, property, value)) {
+			//remove tag validated
+			Resource validated = existValidated(traitName, property, value);
+			if (validated != null) {
+				//TODO should be saved to the model
+				// remove statements where resource is subject
+			    m.removeAll(validated, null, (RDFNode) null);
+			    // remove statements where resource is object
+			    m.removeAll(null, null, validated);
+				returnValue = true;
+			} else {
+				throw new Exception("Validated not existing");
+			}
+
+		}
+		return(returnValue);
+	}
+
+	/**
+	 * add invalidated tag
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean addInvalidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		//test if value exists in annotation and in validated property
+		if(this.existAnnotation(traitName, this.StringToProperty(property), value)
+				||this.existProperty(traitName, this.StringToProperty(property), value)){
+			//test if not already invalidated
+			if(!isInvalidated(traitName, property, value)) {
+				//remove tag validated if any
+				if(isValidated(traitName, property, value)) {
+					deleteValidated(traitName, property, value);
+				}
+				//add invalidated tag
+				Resource c = this.getResource(Format.formatName(traitName));
+				Property p = StringToProperty(property);
+				//escape value #
+				value = value.replace("#", "\\#");
+				// TODO @Patch1 if def__ref annotation should be inserted in a special way
+				Resource invalidated = m.createResource();
+				m.add(invalidated, ChangeVoc.hasInvalidated, m.createTypedLiteral(1));
+				m.add(invalidated, ChangeVoc.hasProperty, p);
+				if (p == SkosVoc.definition && value.contains("__")) {
+					String[] refDef = value.split("__");
+					m.add(invalidated, ChangeVoc.hasValue, refDef[0].trim());
+					Resource refR = createResource();
+					m.add(refR,RDF.value,refDef[1]);
+					m.add(refR,RDF.type,RefVoc.Reference);
+					m.add(invalidated, TraitVocTemp.reference, refR);
+				} else {
+					m.add(invalidated, ChangeVoc.hasValue, value);
+				}
+				m.add(c, ChangeVoc.invalidated, invalidated);
+				returnValue = true;
+			}
+		}
+		return (returnValue);
+	}
+
+	/**
+	 * remove invalidated tag to the property
+	 * @param traitName
+	 * @param property
+	 * @param value
+	 * @return
+	 * @throws Exception
+	 */
+	public Boolean deleteInvalidated(String traitName, String property, String value) throws Exception {
+		Boolean returnValue = false;
+		//test if already invalidated
+		if(isInvalidated(traitName, property, value)) {
+			//remove tag invalidated
+			Resource invalidated = existInvalidated(traitName, property, value);
+			if (invalidated != null) {
+				//TODO should be saved to the model
+				// remove statements where resource is subject
+			    m.removeAll(invalidated, null, (RDFNode) null);
+			    // remove statements where resource is object
+			    m.removeAll(null, null, invalidated);
+				returnValue = true;
+			} else {
+				throw new Exception("Invalidated not existing");
+			}
+
+		}
+		return(returnValue);
+	}
+
+	/**
+	 * TODO Get all term with properties with validation tag or already validated if no tag, but without invalidated tag
+	 * @return
+	 */
+	public List<String> getAllValidatedList() {
+		List<String> validatedList = new ArrayList<String>();
+		return validatedList;
+	}
+	
+	/**
+	 * TODO get all validated property (with validated tag or already validated if no tag, need to check unvalidated) and their value for a concept
+	 * @param nameTrait
+	 * @return
+	 */
+	public Map<String, List<String>> getAllValidated(String nameTrait) {
+		Map<String, List<String>> validatedMap = new HashMap<String, List<String>>();
+		return validatedMap;
+	}
+	
+	/**
+	 * Get all concepts with a delete proposition
+	 * @param nameTrait
+	 * @return
+	 */
 	public List<String> getAllDelete(String nameTrait) {
 		List<String> deleteList = new ArrayList<String>();
 		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
@@ -1178,6 +1488,14 @@ public class SkosModel implements AnnotationModel {
 					} else {
 						map.get("synonym").add(value);
 					}
+				} else if (prop.getLocalName().equalsIgnoreCase("related")) {
+					if (map.get("related") == null || map.get("related").isEmpty()) {
+						List<String> list = new ArrayList<String>();
+						list.add(value);
+						map.put("related", list);
+					} else {
+						map.get("related").add(value);
+					}
 				} else if (prop.getLocalName().equalsIgnoreCase("broaderTransitive")) {
 					if (map.get("category") == null || map.get("category").isEmpty()) {
 						List<String> list = new ArrayList<String>();
@@ -1203,32 +1521,153 @@ public class SkosModel implements AnnotationModel {
 	}
 	
 	/**
-	 * Test id a property exists for a concept
+	 * Test if a property exists for a concept
 	 * @param concept_name
 	 * @param property
 	 * @return
 	 */
-	public boolean existsProperty(String concept_name, Property property) {
+	public boolean existProperty(String concept_name, Property property) {
 		boolean my_return = false;
-		System.out.println(property);
 		Resource concept = this.getResource(Format.formatName(concept_name));
-		System.out.println(concept);
 		StmtIterator iterator = concept.listProperties(property);
 		if(iterator.hasNext()) {
-			System.out.println("true");
 			my_return = true;
-		}
-		else {
-			System.out.println("false");
 		}
 		return my_return;
 	}
 
-	/*
-	 * TODO test if annotation exists before to insert. Not working with reference definition.
-	 * Not important as vote are linked to concept
+	/**
+	 * test if a property with a value already exists
+	 * @param concept_name
+	 * @param property
+	 * @param value
+	 * @return
 	 */
-	public boolean existsAnnotation(String trait, Property property, String value) {
+	public boolean existProperty(String concept_name, Property property, String value) throws Exception {
+		boolean my_return = false;
+		Resource concept = this.getResource(Format.formatName(concept_name));
+		if(concept!=null) {
+			//special case for abbreviation which are linked to validated label
+			if(property==TraitVocTemp.abbreviation) {
+				if (this.getAbbreviation(this.getPrefLabel(concept)) != null) {
+					Resource abbr = this.getAbbreviation(this.getPrefLabel(concept));
+					String valueAbbr = this.getLabelLiteralForm(abbr);
+					if (valueAbbr.trim().equalsIgnoreCase(value)) {
+						my_return = true;							
+					}
+				}
+			}
+			else {
+				StmtIterator iterator = concept.listProperties(property);
+				if(iterator.hasNext()) {
+					if (property==SkosXLVoc.prefLabel) {
+						if(Format.formatName(concept_name).equals(Format.formatName(value))) {
+							my_return = true;
+						}
+					} else if (property==SkosVoc.altLabel) {
+						StmtIterator synonymIt = this.getAllValidatedAltLabel(concept);
+						if (synonymIt.hasNext()) {
+							ArrayList<String> synArray = new ArrayList<String>();
+							while (synonymIt.hasNext()) {
+								Statement st = synonymIt.next();
+								String synonym = st.getObject().asNode().getLiteralLexicalForm();
+									synArray.add(synonym);
+							}
+							if (synArray.size() != 0) {
+								
+								if (synArray.contains(value)) {
+									my_return = true;							
+								}
+							}
+						}
+					} else if (property==SkosXLVoc.altLabel) {
+						StmtIterator synonymIt = this.getAllAltLabel(concept);
+						if (synonymIt.hasNext()) {
+							ArrayList<String> synArray = new ArrayList<String>();
+							while (synonymIt.hasNext()) {
+								Statement st = synonymIt.next();
+								String synonym = this.getLabelLiteralForm(st.getObject().as(Resource.class));
+									synArray.add(synonym);
+							}
+							if (synArray.size() != 0) {
+								if (synArray.contains(value)) {
+									my_return = true;							
+								}
+							}
+						}
+					} else if (property==TraitVocTemp.prefUnit) {
+						if (this.getUnit(concept) != null) {
+							Resource unit = this.getUnit(concept);
+							String valueUnit = this.getValue(unit);
+							if (valueUnit.trim().equalsIgnoreCase(value)) {
+								my_return = true;							
+							}
+						}
+					} else if (property==SkosVoc.definition) {
+						if (this.getDefinition(concept) != null) {
+							
+							Resource def = this.getDefinition(concept);
+							String valueDef = this.getValue(def);
+							if(value.contains("__")) {
+								String[] refDef = value.split("__");
+								Resource ref = this.getReference(def);
+								String valueRef = this.getValue(ref);
+								if(valueDef.equalsIgnoreCase(refDef[0].trim())&&valueRef.equalsIgnoreCase(refDef[1].trim())) {
+									my_return = true;								
+								}
+							}
+							else {
+								if(valueDef.equalsIgnoreCase(value)) {
+									Resource ref = this.getReference(def);
+									String valueRef = this.getValue(ref);
+									if(ref==null||valueRef.isEmpty()) {
+										my_return = true;
+									}
+								}
+							}
+						}
+					} else if (property==SkosVoc.broaderTransitive) {
+						if(concept.listProperties(SkosVoc.broaderTransitive) != null
+								&& concept.listProperties(SkosVoc.broaderTransitive).hasNext()) {
+							RDFNode cat = concept.listProperties(SkosVoc.broaderTransitive).next().getObject();
+							if (cat.isResource()) {
+								Resource Cat = cat.as(Resource.class);
+								if (Cat.getLocalName().trim().equalsIgnoreCase(value)) {
+									my_return = true;							
+								}
+							}
+						}
+					} else if (property==SkosVoc.related) {
+						StmtIterator Sti = this.getAllRelated(concept);
+						ArrayList<String> al = new ArrayList<String>();
+						while (Sti.hasNext()) {
+							Statement st = Sti.next();
+							Resource rel = st.getObject().as(Resource.class);
+							String label = this.getLabelLiteralForm(this.getPrefLabel(rel));
+							al.add(Format.formatName(label));
+						}
+						if (this.getAllRelated(concept).toList().size() != 0) {
+								if (al.contains(Format.formatName(value))) {
+									my_return = true;							
+								}
+						}
+					} else {
+						throw new Exception("Vocabularie " + PropertyToString(property) + " not managed");
+					}
+				}
+			}			
+		}
+		return my_return;
+	}
+
+	/**
+	 * Test if annotation exists before to insert
+	 * @param trait
+	 * @param property
+	 * @param value
+	 * @return
+	 */
+	public boolean existAnnotation(String trait, Property property, String value) {
 		boolean exists = false;
 		String prolog1 = "PREFIX trait: <" + ThesauformConfiguration.term_uri + "#>";
 		String prolog2 = "PREFIX rdf: <" + ThesauformConfiguration.rdf + ">";
@@ -1240,8 +1679,8 @@ public class SkosModel implements AnnotationModel {
 				+ ThesauformConfiguration.NL + prolog4 + ThesauformConfiguration.NL + prolog5
 				+ ThesauformConfiguration.NL + "SELECT ?name WHERE {" + "?trait rdf:type skos:Concept ."
 				+ "?trait rdfs:label ?name ." + "?trait change:update ?upd ." + "?upd change:hasValue ?val ."
-				+ "?upd change:hasProperty <" + property + "> ." + "FILTER (regex(?val,\"" + value
-				+ "\") && NOT EXISTS { ?upd trait:reference ?ref } && REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\""
+				+ "?upd change:hasProperty <" + property + "> ." + "FILTER (?val=\"" + value
+				+ "\" && NOT EXISTS { ?upd trait:reference ?ref } && REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\""
 				+ trait.toLowerCase().replace(" ", "_") + "\")." + "}";
 		// @Patch1: if referenced definition
 		if (property == SkosVoc.definition && value.contains("__")) {
@@ -1252,8 +1691,8 @@ public class SkosModel implements AnnotationModel {
 					+ ThesauformConfiguration.NL + "SELECT ?name WHERE {" + "?trait rdf:type skos:Concept ."
 					+ "?trait rdfs:label ?name ." + "?trait change:update ?upd ." + "?upd change:hasValue ?val ."
 					+ "?upd change:hasProperty <" + property + "> ." + "?upd trait:reference ?ref . "
-					+ "?ref rdf:value ?refval . " + "FILTER (regex(?val,\"" + refDef[0]
-					+ "\") && REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\" && regex(?val,\"" + refDef[1] + "\")"
+					+ "?ref rdf:value ?refval . " + "FILTER (?val=\"" + refDef[0].trim() + "\" && ?refval = \""	+ refDef[1].trim() + "\""
+					+ "&& REPLACE(LCASE(?name), \" \", \"_\", \"i\")=\""
 					+ trait.toLowerCase().replace(" ", "_") + "\")." + "}";
 		}
 		Query query = QueryFactory.create(queryString);
@@ -1497,7 +1936,17 @@ public class SkosModel implements AnnotationModel {
 		return it;
 	}
 
+	public StmtIterator getAllValidatedAltLabel(Resource concept) {
+		StmtIterator it = concept.listProperties(SkosVoc.altLabel);
+		return it;
+	}
+
 	public StmtIterator getAllRelated(Resource concept) {
+		StmtIterator it = concept.listProperties(SkosVoc.related);
+		return it;
+	}
+
+	public StmtIterator getAllValidatedRelated(Resource concept) {
 		StmtIterator it = concept.listProperties(SkosVoc.related);
 		return it;
 	}

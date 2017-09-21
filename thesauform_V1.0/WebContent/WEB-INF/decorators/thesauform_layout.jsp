@@ -50,15 +50,15 @@
 					</c:if>
 					<c:if test="${not empty _public_data_file_}">
 						<li><a href="${pageContext.request.contextPath}/visualizationHierarchy">Hierarchy search</a></li>
-					</c:if>
-					<c:if test="${!_menu_hidden_display_map_.containsKey('index')}">
-							<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
-					</c:if>
-					<c:if test="${!_menu_hidden_display_map_.containsKey('reference')}">
-						<li><a href="${pageContext.request.contextPath}/references">References</a></li>
-					</c:if>
-					<c:if test="${!_menu_hidden_display_map_.containsKey('api')}">
-						<li><a href="${pageContext.request.contextPath}/api">API</a></li>
+						<c:if test="${!_menu_hidden_display_map_.containsKey('index')}">
+								<li><a href="${pageContext.request.contextPath}/index">Index</a></li>
+						</c:if>
+						<c:if test="${!_menu_hidden_display_map_.containsKey('reference')}">
+							<li><a href="${pageContext.request.contextPath}/references">References</a></li>
+						</c:if>
+						<c:if test="${!_menu_hidden_display_map_.containsKey('api')}">
+							<li><a href="${pageContext.request.contextPath}/api">API</a></li>
+						</c:if>
 					</c:if>
 					<c:if test="${!_menu_hidden_display_map_.containsKey('annotation')}">
 						<li><a href="${pageContext.request.contextPath}/annotationModification">Annotation</a></li>
